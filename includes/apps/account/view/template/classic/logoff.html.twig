@@ -1,0 +1,20 @@
+{# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
+{# file: includes/apps/account/view/template/classic/logoff.html.twig #}
+{% extends "base.html.twig" %}
+{% block appcontent %}
+<div id="account" class="span{{ GridContentWidth}}">
+    
+<h1 class="title-app">{{ constant('HEADING_TITLE_LOGOFF') }}</h1>
+
+<div class="contentContainer">
+  <div class="contentText">
+    {{ constant('TEXT_MAIN_LOGOFF') | raw }}
+  </div>
+
+  <div class="buttonSet">
+    <a class="btn" href="{{ link('index') }}"><i class="icon-fa-chevron-right"></i>  {{ constant('IMAGE_BUTTON_CONTINUE') }}</a>
+  </div>
+</div>
+
+</div>
+{% endblock %}

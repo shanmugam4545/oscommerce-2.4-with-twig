@@ -1,0 +1,13 @@
+{# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
+{# file: includes/apps/products/view/template/classic/specials.html.twig #}
+{% extends "base.html.twig" %}
+{% block appcontent %}
+<div id="bodyContent" class="span{{ GridContentWidth}}">
+    <h1>{{ constant('HEADING_TITLE_SPECIALS') }}</h1>
+    <div class="contentContainer">
+        <div class="contentText">
+            {{ dump(data) }}
+        </div>
+    </div>
+</div>
+{% endblock %}

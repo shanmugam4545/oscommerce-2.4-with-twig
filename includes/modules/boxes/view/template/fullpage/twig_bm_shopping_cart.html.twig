@@ -1,0 +1,36 @@
+{# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
+{# file: includes/modules/boxes/view/template/fullpage/twig_bm_shopping_cart.html.twig #}
+<div id="shopping-cart-switcher" style="right: 0px;">
+<h3 class="text-center text-info"><i class="icon-fa-shopping-cart"></i>  {{ constant('MODULE_BOXES_SHOPPING_CART_BOX_TITLE') }}</h3>
+<div>
+<ul class="unstyled">
+{{ data | raw }}           
+</ul>
+</div>
+<div class="btn-toolbar">
+<div class="btn-group" id="shopping-cart-switcher-button">
+    <button class="btn" onclick="$('#shopping-cart-switcher').animate({right: '-300px'})"><i class="icon-fa-remove"></i> {{constant('SMALL_IMAGE_BUTTON_CLOSE') }}</button>
+    <a href="{{ link('cart') | raw }}" class="btn btn-info"><i class="icon-fa-eye-open"></i> {{ constant('SMALL_IMAGE_BUTTON_VIEW') }}</a>
+</div>
+</div>
+</div>
+<script>
+jQuery(document)
+    .ready(function(jQuery) { jQuery('#shopping-cart-switcher').animate({right: '-300px'});
+jQuery('#popovercart').click(function(e) {e.preventDefault();
+var div = jQuery('#shopping-cart-switcher');
+        console.log(div.css('right'));
+        if (div.css('right') === '-300px') {
+            jQuery('#shopping-cart-switcher')
+                .animate({
+                right: '0px'
+            }).css('display','block');
+        } else {
+            jQuery('#shopping-cart-switcher')
+                .animate({
+                right: '-300px'
+            });
+        }
+    });
+});
+</script>

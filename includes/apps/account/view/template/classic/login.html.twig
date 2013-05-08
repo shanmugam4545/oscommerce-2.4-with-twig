@@ -1,0 +1,90 @@
+{# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
+{# file: includes/apps/account/view/template/classic/login.html.twig #}
+{% extends "base.html.twig" %}
+{% block head_javascript %}
+<script src="ext/jquery/jquery.validate.js"></script>
+{% endblock %}
+{% block appcontent %}
+{% import "forms.html.twig" as forms %}
+<div class="span{{ GridContentWidth}}">
+    <div class="row-fluid">     
+{{ messagestack('login') | raw }}
+            <h1 class="title-app">{{ constant('HEADING_TITLE_LOGIN') }}</h1>
+            <div class="contentText well">
+                <h2>{{ constant('HEADING_RETURNING_CUSTOMER') }}</h2>
+                <p>{{ constant('TEXT_RETURNING_CUSTOMER') | raw }}</p>
+{{ form('login', link('account', 'login&process', 'SSL'), 'post', 'class="form-horizontal" id="login"', 'true') | raw }}
+{{ forms.inputlabelandwithicon(constant('ENTRY_EMAIL_ADDRESS'), 'email_address', 'icon-fa-envelope', 'input-prepend', 'input-large', '','text', constant('PLACEHOLDER_EMAIL_ADRESS') ) }}
+{{ forms.inputlabelandwithicon(constant('ENTRY_PASSWORD'), 'password', 'icon-fa-lock', 'input-prepend input-append', 'input-large', '', 'password' ) }}
+                <div class="form-actions">
+                    <div class="controls">
+                        <button class="btn btn-primary" type="submit"><i class="icon-fa-ok-sign icon-white"></i> {{ constant('IMAGE_BUTTON_LOGIN') }}</button>
+                    </div>
+                </div>
+                </form>
+                <div class="control-group">
+                    <div class="controls ">
+                        <span class="thumbnail"><i class="icon-fa-question-sign text-error"></i><a class="text-error" href="{{ link('account', 'password&forgotten', 'SSL') | raw }}">  {{ constant('TEXT_PASSWORD_FORGOTTEN') }}</a></span>
+                    </div>
+                </div>
+            </div>
+            <div class="contentText well">
+                <h2>{{ constant('HEADING_NEW_CUSTOMER') }}</h2>
+                <p>{{ constant('TEXT_NEW_CUSTOMER') | raw }}</p>
+                <p>{{ constant('TEXT_NEW_CUSTOMER_INTRODUCTION') | raw }}</p>
+                <p class="text-right"><a class="btn" href="{{ link('account', 'create', 'SSL') | raw }}"><i class="icon-fa-signin"></i>  {{ constant('HEADER_TITLE_SIGNUP') }}</a></p>
+            </div>
+        </div>
+    </div>
+    <div id="form-errors" class="modal hide fade">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3>{{ constant('CREATE_ACCOUNT_FORM_ERROR_TITLE') }}</h3>
+        </div>
+        <div class="modal-body">
+            <p id="summary"></p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" data-dismiss="modal" aria-hidden="true" class="btn">Close</button>
+        </div>
+    </div>
+    <script>
+        $(function() {
+            $('#showpassword').click(function(e) {
+                e.preventDefault();
+                if ($(this).children('i').hasClass('icon-fa-eye-open')) {
+                    $(this).children('i').removeClass('icon-fa-eye-open').addClass('icon-fa-eye-close').addClass('cursor');
+                    $('#password').removeAttr('type').attr('type', 'text');
+                    $('#showpassword').removeAttr('data-original-title').hide().attr('data-original-title', '{{ constant('CLICK_HIDE_PASSWORD') }}').show();
+                } else {
+                    $(this).children('i').removeClass('icon-fa-eye-close').addClass('icon-fa-eye-open');
+                    $('#password').removeAttr('type').attr('type', 'password');
+                    $('#showpassword').removeAttr('data-original-title').hide().attr('data-original-title', '{{ constant('CLICK_SHOW_PASSWORD') }}').show();
+                }
+            }).hover(function() {
+                $(this).tooltip('show')
+            }).removeClass('hidden').css('cursor', 'pointer');
+            var validator = $("#login").bind("invalid-form.validate", function() {
+                $("#summary").html("<strong>{{ constant('CREATE_ACCOUNT_FORM_ERROR') }}" + validator.numberOfInvalids() + "{{ constant('CREATE_ACCOUNT_FORM_ERROR_NUMBERS') | raw }}</strong>");
+                $("#form-errors").modal('show');
+            }).validate({
+                errorClass: "alert alert-danger",
+                rules: {
+                    email_address: {required: true, minlength: {{ constant('ENTRY_EMAIL_ADDRESS_MIN_LENGTH') }}, email: true},
+                    password: {required: true, minlength: {{constant('ENTRY_PASSWORD_MIN_LENGTH') }}}
+                },
+                messages: {
+                    email_address: {required: '{{ constant('CREATE_ACCOUNT_FIELD_REQUIRED') }}', minlength: '{{ constant('ENTRY_EMAIL_ADDRESS_ERROR') }}', email: '{{ constant('ENTRY_EMAIL_ADDRESS_CHECK_ERROR') }}'},
+                    password: {required: '{{ constant('CREATE_ACCOUNT_FIELD_REQUIRED') }}', minlength: '{{ constant('ENTRY_PASSWORD_ERROR') }}'}
+                },
+                errorPlacement: function(error, element) {
+                    if (element.is("#password")) {
+                        error.insertAfter("#showpassword");
+                    } else {
+                        error.insertAfter("#" + element.attr("name"));
+                    }
+                }
+            });
+        })
+        </script>
+{% endblock %}

@@ -1,0 +1,32 @@
+{# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
+{# file: includes/apps/account/view/template/classic/address_book.html.twig #}
+{% extends "base.html.twig" %}
+{% block appcontent %}
+<div class="span{{ GridContentWidth}}">
+    
+        {{ messagestack('addressbook') | raw }}
+            
+            <div class="page-header">
+                <h1 class="title-app">{{ constant('HEADING_TITLE_ADDRESS_BOOK') }}<span class="pull-right"><small>{{ constant('PRIMARY_ADDRESS_TITLE') }} </small></span></h1>
+             </div> 
+            <div class="contentText pull-right span2">
+                    <address>{{ address_label | raw }}</address>                   
+                </div>
+                <div class="contentText">
+                    {{ constant('PRIMARY_ADDRESS_DESCRIPTION') | raw }} 
+                </div>
+<div class="clearfix"></div>
+
+<div class="row-fluid">
+{% for address in data %}  
+<div class="span3 well pull-left">
+<address>
+{{ address.address_format  | raw }}
+</address>
+<a class="btn btn-small btn-info" href="{{  link('account', ['address_book&edit&id=',address.address_book_id]|join, 'SSL') | raw }}"><i class="icon-fa-pencil"></i>  {{ constant('SMALL_IMAGE_BUTTON_EDIT') }}</a>
+<a class="btn btn-small btn-danger pull-right" href="{{ link('account', ['address_book&delete&id=',address.address_book_id]|join, 'SSL') | raw }}"><i class="icon-fa-trash"></i>  {{ constant('SMALL_IMAGE_BUTTON_DELETE') }}</a>
+</div>
+{% endfor %}   
+</div>  
+</div>
+{% endblock %}

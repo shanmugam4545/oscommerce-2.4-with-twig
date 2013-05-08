@@ -1,0 +1,24 @@
+{# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
+{# file:  includes/apps/info/view/template/classic/cookie_usage.html.twig #}
+{% extends "base.html.twig" %}
+{% block appcontent %}
+<div id="bodyContent" class="span{{ GridContentWidth}}">
+    <h1 class="title-app">{{ constant('HEADING_TITLE_CONTACT') }}</h1>
+  <div class="contentText">
+    <div class="ui-widget infoBoxContainer" style=" width: 40%; float: right; padding: 0 0 10px 10px;">
+      <div class="ui-widget-header infoBoxHeading">{{ constant('BOX_INFORMATION_HEADING_COOKIE_USAGE') }}</div>
+
+      <div class="ui-widget-content infoBoxContents">
+        {{ constant('BOX_INFORMATION_COOKIE_USAGE') | raw }}
+      </div>
+    </div>
+
+    {{ constant('TEXT_INFORMATION_COOKIE_USAGE') | raw }}
+  </div>
+
+  <div class="form-actions">
+    <a class="btn pull-right" href="{{ link() | raw }}"><i class="icon-fa-ok-sign"></i>  {{ constant('IMAGE_BUTTON_CONTINUE')}}</a>
+    <a class="btn" href="{{ link('info') | raw }}"><i class="icon-fa-chevron-left"></i>  {{ constant('IMAGE_BUTTON_BACK')}}</a>
+  </div>
+</div>
+{% endblock %}

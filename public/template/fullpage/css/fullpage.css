@@ -1,0 +1,51 @@
+/**
+ * osCommerce Online Merchant
+ *
+ * @copyright Copyright (c) 2013 osCommerce; http://www.oscommerce.com
+ * @copyright Copyright (c) 2013 FoxP2; http://www.oscommerce.fr
+ * @license GNU General Public License; http://www.oscommerce.com/gpllicense.txt
+ */
+.icon-fa-xxlarge {font-size: 400%;}
+.icon-3x {font-size: 3em;}
+.title-app{color: #2790B0;}
+#piGal ul {  list-style-type: none;}
+#piGal img {  -webkit-box-shadow: 0px 0px 1px #000; -moz-box-shadow: 0px 0px 1px #000;}
+#piGal .outer {  margin-left: -30px;}
+#breadcrumb{ height: 20px;border:0;border-radius: 0px;}
+#breadcrumb li{ text-shadow: none;color: whitesmoke;}
+#breadcrumb ul { background: #000; border:0;padding-top:6px;border-radius: 0px;}
+#breadcrumb ul li a{ color: #fff;text-decoration: none;}
+#breadcrumb ul li a:hover{color: whitesmoke;}
+#breadcrumb ul li a:active{color: whitesmoke;text-shadow: none;}
+.well{background: transparent;padding: 10px 10px 10px 10px;}
+#cat_menu li a:hover{ background: #000;}
+#account-nav{color: #555555;background-color: #e5e5e5;}
+#footer{height: auto;width: 100%;background-color: rgb(27, 27, 27);background-image: linear-gradient(to bottom, rgb(34, 34, 34), rgb(17, 17, 17));background-repeat: repeat-x;border-color: rgb(37, 37, 37);margin: 0;padding-top: 10px;padding-bottom: 10px;}
+#bm-informations a, #bm-social a{ text-decoration: none;}
+#date_available{  margin-right: auto; margin-left: auto; text-align: center;}
+.reduce70right{ max-height: 70%; max-width: 70%; float: right;}
+.reduce85left{ max-height: 85%; max-width: 85%; float: left;}
+#htc-one { background-color: #e9e8e8;}
+.radio-label { padding-left: 25px;}
+/* boxe shopping cart header */
+#shopping-cart-switcher {background: #fff;width: 300px;height: auto;position: absolute;right: 0px;z-index: 940;display: none;top: 73px;border-radius: 0 0 0px 10px;margin-top: 0px;-webkit-box-shadow: -4px 4px 8px rgba(50, 50, 50, 0.34);-moz-box-shadow: -4px 4px 8px rgba(50, 50, 50, 0.34);box-shadow: -4px 4px 8px rgba(50, 50, 50, 0.34);}
+#shopping-cart-switcher li{text-align: center;}
+#shopping-cart-switcher-button{margin-left: 80px;}
+/* boxes in product page */
+.product-boxe {border: 1px solid #e3e3e3;background-color: #fff;border-bottom: 1px solid #ccc;border-left: 4px solid #2790B0;border-radius: 0px;border-right: 1px solid #ccc;border-top: 1px solid #ccc;box-shadow: 0px 5px 12px rgba(50, 50, 50, 0.15);margin-bottom: 20px;min-height: 20px;-moz-border-radius: 0px;-moz-box-shadow: 0px 5px 12px rgba(50, 50, 50, 0.15);padding: 19px;position: relative;-webkit-border-radius: 0px;-webkit-box-shadow: 0px 5px 12px rgba(50, 50, 50, 0.15);}
+.product-boxe:before {border-bottom: 9px solid transparent;border-left: 9px solid #2790B0;border-top: 9px solid transparent;content: '';display: inline-block;left: 0px;position: absolute;top: 40%;}
+/* application account page main */
+.account-main{color: #5a5a5a;text-align: center;}
+.account-main .btn {margin-top: 5px;}
+p.features{border-bottom: 4px solid #fefefe;font-size: 90%;-moz-transition: all 0.3s ease-in-out;-ms-transition: all 0.3s ease-in-out;-o-transition: all 0.3s ease-in-out;padding-bottom: 15px;	text-align: justify;transition: all 0.3s ease-in-out;-webkit-transition: all 0.3s ease-in-out;line-height: 35px;}
+p.features:hover{border-bottom: 4px solid #2790B0;padding-bottom: 12px; cursor: pointer;}
+h3.features-title {font-size: 120%;text-transform: uppercase;}
+.features-info li{font-size: 90%;-moz-transition: all 0.3s ease-in-out;-ms-transition: all 0.3s ease-in-out;-o-transition: all 0.3s ease-in-out;padding-bottom: 5px;	text-align: justify;transition: all 0.3s ease-in-out;-webkit-transition: all 0.3s ease-in-out;}
+.features-info li:hover{border-bottom: 4px solid #2790B0;padding-bottom: 12px; cursor: pointer;}
+.features-social li{font-size: 90%;-moz-transition: all 0.3s ease-in-out;-ms-transition: all 0.3s ease-in-out;-o-transition: all 0.3s ease-in-out;padding-bottom: 5px;	text-align: justify;transition: all 0.3s ease-in-out;-webkit-transition: all 0.3s ease-in-out;}
+.features-social li:hover{border-bottom: 4px solid  rgb(164, 126, 60);;padding-bottom: 12px; cursor: pointer;}
+/* application shopping cart */
+.table td.center_text, .table th.center_text { text-align: center; vertical-align: middle;}
+.table th.text_black{background: #e5e5e5}
+.table tr.text_black{background: #e5e5e5}
+

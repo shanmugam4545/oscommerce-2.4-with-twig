@@ -1,0 +1,17 @@
+{# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
+{# file: includes/apps/cart/view/template/classic/empty.html.twig #}
+{% extends "base.html.twig" %}
+{% block appcontent %}
+<div id="bodyContent" class="span{{ GridContentWidth }}">
+
+<h1 class="title-app">{{ constant('HEADING_TITLE') }}</h1>
+
+<div class="contentContainer">
+  <div class="contentText">
+    {{ constant('TEXT_CART_EMPTY') }}
+
+          <p align="right"><a class="btn" href="{{ link() | raw }}"><i class="icon-fa-ok-sign"></i>  {{ constant('IMAGE_BUTTON_CONTINUE') }}</a></p>
+  </div>
+</div>
+</div>
+{% endblock %}

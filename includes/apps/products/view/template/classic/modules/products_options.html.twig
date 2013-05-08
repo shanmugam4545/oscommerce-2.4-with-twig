@@ -1,0 +1,72 @@
+{# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
+{# file: includes/apps/products/view/template/classic/modules/products_options.html.twig #}
+{% macro classic_dropdown(data, name, id, data_selected,required) %}
+<h4>{{ name }}{% if required == '0' %}<br /><small><em>{{ constant('PRODUCT_OPTION_OPTIONAL') }}</em></small>{% endif %}</h4>
+<select name="id[{{ id }}]" class="classic">
+    {% if required == '0' %}
+    <option value="0">{{ constant('PULL_DOWN_DEFAULT') }}</option>
+    {% endif %}
+    {% for option in data %}
+    <option {%if data_selected == option.id %} selected="selected" {% endif %} value="{{ option.id}}">{{ option.text }} {% if option.option_prefix != null %}{{ ['(', option.option_prefix, option.option_price, ')']|join }}{% endif %}</option>
+    {% endfor %}
+</select>
+{% endmacro %}
+
+{% macro button_dropdown(data,name,id,data_selected,required) %}
+{# Copyright (c) 2013 caseyjhol; https://github.com/caseyjhol #}
+<h4>{{ name }}{% if required == '0' %}<br /><small><em>{{ constant('PRODUCT_OPTION_OPTIONAL') }}</em></small>{% endif %}</h4>
+<select name="id[{{ id }}]" class="selectpicker">
+    {% if required == '0' %}
+    <option value="0">{{ constant('PULL_DOWN_DEFAULT') }}</option>
+    {% endif %}
+    {% for option in data %}
+    <option {%if data_selected == option.id %} class="btn-warning" selected="selected" {% endif %} value="{{ option.id}}" data-subtext="{% if option.option_prefix != null %}{{ ['(', option.option_prefix, option.option_price, ')']|join }}{% endif %}">{{ option.text }}</option>
+    {% endfor %}
+</select>
+<script>window.onload=function(){$('.selectpicker').selectpicker();}</script>
+{% endmacro %}
+
+{% macro options_with_text(data, name, id, data_selected, required) %}
+<div style="clear: both;"></div>
+<h4>{{ name }}{% if required == '0' %}<br /><small><em>{{ constant('PRODUCT_OPTION_OPTIONAL') }}</em></small>{% endif %}</h4>
+<div class="row-fluid">
+{% for option in data %}
+{% if data_selected == option.id %}{% set check = true %}{%else%}{% set check = false %}{% endif %}
+{% if data_selected == null and required == '1' %}{% set check = true %}{% endif %}
+<div class="span{{12 / loop.length }}">
+<div class="well">
+<h2 class="muted">{{ option.text  }}</h2>
+{{ option.description | raw }}
+<h3 class="text-center text-info">{{ option.option_price }}</h3>
+
+<div class="btn-group offset1"><label class="btn btn-info btn-large radio radio-label"> {{ radio(['id[', id , ']']|join, option.id, check, 'class="input input-large"') |raw}}  {{ constant('PRODUCT_OPTION_RADIO_BUTTON') }}</label></div>
+</div>
+</div>
+{% endfor %}
+</div>
+{% endmacro %}
+            
+{% macro options_table(data, name, id, data_selected, required) %}
+<h4>{{ name }}{% if required == '0' %}<br /><small><em>{{ constant('PRODUCT_OPTION_OPTIONAL') }}</em></small>{% endif %}</h4>
+
+<table class="table table-bordered table-hover table-striped">
+            <thead class="center_text">
+                <tr>
+                    <th class="center_text"><i class="icon-fa-barcode"></i> {{ constant('TWIG_PRODUCT_OPTION_NAME') }}</th>                    
+                    <th class="center_text"><i class="icon-fa-money"></i> {{ constant('TWIG_PRODUCT_OPTION_UNIT_PRICE') }}</th>
+                    <th class="center_text"><i class="icon-fa-filter"></i> {{ constant('PULL_DOWN_DEFAULT') }}</th>
+                </tr>
+            </thead>
+            <tbody>                              
+{% for option in data %}
+{% if data_selected == option.id %}{% set classselected = 'class="info"' %}{% set check = true %}{%else%}{% set check = false %}{% set classselected = '' %}{% endif %}
+{% if data_selected == null and required == '1' %}{% set check = true %}{% endif %}
+                <tr {{classselected | raw}}>  
+                <td class="center_text">{{ option.text }}</td>                
+                <td class="center_text">{% if option.option_prefix != null %}{{ ['(', option.option_prefix, option.option_price, ')']|join }}{% else %}{{ option.option_price }}{% endif %}</td>
+                <td class="center_text"><label class="btn btn-info btn-medium radio radio-label">{{ radio(['id[', id , ']']|join, option.id, check, 'class="input-medium"') |raw}}  {{ constant('PRODUCT_OPTION_RADIO_BUTTON') }}</label></td>
+                </tr>
+{% endfor %}                
+            </tbody>
+</table>
+{% endmacro %}

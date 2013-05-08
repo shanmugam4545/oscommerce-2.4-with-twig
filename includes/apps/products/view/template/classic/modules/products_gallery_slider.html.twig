@@ -1,0 +1,32 @@
+{# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
+{# file: includes/apps/products/view/template/classic/modules/products_gallery_slider.html.twig #}
+{% extends "product_base.html.twig" %}
+{% block stylesheet %}
+<link rel="stylesheet" href="ext/bootstrap/css/bootstrap-image-gallery.min.css" />
+{% endblock %}
+{% block head_javascript %}
+<script src="http://blueimp.github.com/JavaScript-Load-Image/load-image.min.js"></script>
+<script src="ext/bootstrap/js/bootstrap-image-gallery.min.js"></script>
+{% endblock %}
+
+{% block gallery %}
+<div id="modal-gallery" class="modal modal-gallery hide fade" tabindex="-1">
+    <div class="modal-header">
+        <a class="close" data-dismiss="modal">&times;</a>
+        <h3 class="modal-title"></h3>
+    </div>
+    <div class="modal-body"><div class="modal-image"></div></div>
+    <div class="modal-footer">
+        <a class="btn btn-info modal-prev"><i class="icon-arrow-left icon-white"></i> {{ constant('BUTTON_PREV') }}</a>
+        <a class="btn btn-primary modal-next">{{ constant('BUTTON_NEXT') }} <i class="icon-arrow-right icon-white"></i></a>
+        <a class="btn btn-success modal-play modal-slideshow" data-slideshow="5000"><i class="icon-play icon-white"></i> {{ constant('BUTTON_SLIDESHOW') }}</a>
+    </div>
+</div>
+{% if gallery_data != null %}
+<div id="gallery" data-toggle="modal-gallery" data-target="#modal-gallery" class="span4 pull-right">
+{% for key in gallery_data %}
+    <a data-gallery="gallery" href="{{ [constant('HTTP_SERVER'),constant('DIR_WS_HTTP_CATALOG'),constant('DIR_WS_IMAGES'),key.image]|join }}" title="{{ key.image }}">{{ image([constant('HTTP_SERVER'),constant('DIR_WS_HTTP_CATALOG'),constant('DIR_WS_IMAGES'),key.thumb]|join, '', '', '') | raw}}</a>
+{% endfor %}
+</div>
+{% endif %}
+{% endblock %}

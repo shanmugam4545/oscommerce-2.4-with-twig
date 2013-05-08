@@ -1,0 +1,19 @@
+{# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
+{# file:  includes/apps/info/view/template/classic/conditions.html.twig #}
+{% extends "base.html.twig" %}
+{% block appcontent %}
+<div id="bodyContent" class="span{{ GridContentWidth}}">
+    <h1 class="title-app">{{ constant('HEADING_TITLE_CONDITIONS') }}</h1>
+
+<div class="contentContainer">
+  <div class="contentText">
+    {{ constant('INFO_CONDITIONS') | raw}}
+  </div>
+
+  <div class="form-actions">
+    <a class="btn pull-right" href="{{ link() | raw }}"><i class="icon-fa-ok-sign"></i>  {{ constant('IMAGE_BUTTON_CONTINUE')}}</a>
+    <a class="btn" href="{{ link('info') | raw }}"><i class="icon-fa-chevron-left"></i>  {{ constant('IMAGE_BUTTON_BACK')}}</a>
+  </div>
+</div>
+</div>
+{% endblock %}

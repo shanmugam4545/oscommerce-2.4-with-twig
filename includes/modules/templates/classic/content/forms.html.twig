@@ -1,0 +1,162 @@
+{# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
+{# file: includes/modules/templates/fullpage/content/forms.html.twig #}
+{% macro inputwithiconandpopover(name, icon, placement, class, value, type, placeholder, popovercontent, popovertitle) %}
+<div class="{{ placement }}">
+    
+    <span class="add-on"><i class="{{ icon }}"></i></span>
+    
+    <input id="{{ name }}" class="{{ class }}" type="{{ type|default('text') }}" name="{{ name }}" placeholder="{{ placeholder }}" value="{{ osc_output_string(value|e) }}" data-content="{{ popovercontent }}" data-original-title="{{ popovertitle }}" />
+    {% if type == 'password' %}    
+    <span id="show{{name}}" data-toggle="tooltip" data-original-title="{{ constant('CLICK_SHOW_PASSWORD') }}" class="add-on hidden"><i class="icon-fa-eye-open"></i></span>
+    {% endif %}
+</div> 
+<script>
+$(function ()
+{ $("#{{name}}").popover({trigger:'hover',placement:'top'});            
+});
+</script>
+{% endmacro %}
+
+{% macro inputwithicon(name, icon, placement, class, value, type, placeholder) %}
+<div class="{{ placement }}">
+    
+    <span class="add-on"><i class="{{ icon }}"></i></span>
+    
+    <input id="{{ name }}" class="{{ class }}" type="{{ type|default('text') }}" name="{{ name }}" placeholder="{{ placeholder }}" value="{{ osc_output_string(value|e) }}"  />
+    {% if type == 'password' %}    
+    <span  id="show{{name}}" data-toggle="tooltip" data-original-title="{{ constant('CLICK_SHOW_PASSWORD') }}" class="add-on hidden"><i class="icon-fa-eye-open"></i></span>
+    {% endif %}
+</div> 
+<script>
+$(function ()
+{ $("#{{name}}").popover({trigger:'hover'});            
+});
+</script>
+{% endmacro %}
+
+{% macro inputwithtwoicon(name, icon, iconappend, class, value, type, placeholder) %}
+<div class="input-prepend input-append">
+    
+    <span class="add-on"><i class="{{ icon }}"></i></span>
+    
+    <input id="{{ name }}" class="{{ class }}" type="{{ type|default('text') }}" name="{{ name }}" placeholder="{{ placeholder }}" value="{{ osc_output_string(value|e) }}" size="{{ size|default(20) }} " />
+    {% if type == 'password' %}    
+    <span id="show{{name}}" data-toggle="tooltip" data-original-title="{{ constant('CLICK_SHOW_PASSWORD') }}" class="add-on hidden"><i class="icon-fa-eye-open"></i></span>
+    {% endif %}
+    
+    <span class="add-on"><i class="{{ iconappend }}"></i></span>
+    
+</div>    
+{% endmacro %}
+
+{% macro inputwithtwoiconandpopover(name, icon, iconappend, class, value, type, placeholder, popovercontent, popovertitle) %}
+<div class="input-prepend input-append">
+    
+    <span class="add-on"><i class="{{ icon }}"></i></span>
+    
+    <input id="{{ name }}" class="{{ class }}" type="{{ type|default('text') }}" name="{{ name }}" placeholder="{{ placeholder }}" value="{{ osc_output_string(value|e) }}" data-content="{{ popovercontent }}"  data-original-title="{{ popovertitle }}" />
+    {% if type == 'password' %}    
+    <span id="show{{name}}" data-toggle="tooltip" data-original-title="{{ constant('CLICK_SHOW_PASSWORD') }}" class="add-on hidden"><i class="icon-fa-eye-open"></i></span>
+    {% endif %}    
+    <span class="add-on"><i class="{{ iconappend }}"></i></span>    
+</div>
+<script>
+$(function ()
+{ $("#{{name}}").popover({trigger:'hover',placement:'top'});            
+});
+</script>
+{% endmacro %}
+
+{% macro inputlabelandwithicon(label, name, icon, placement, class, value, type, placeholder) %}
+{# placement options : input-prepend, input-append #} 
+<div class="control-group">
+    
+    <label class="control-label" for="{{ name }}">{{ label }}</label>
+    
+        <div class="controls">
+            
+            <div class="{{ placement }}">
+                
+                <span class="add-on"><i class="{{ icon }}"></i></span>
+                
+                <input id="{{ name }}" class="{{ class }}" type="{{ type|default('text') }}" name="{{ name }}" placeholder="{{ placeholder }}" value="{{ osc_output_string(value|e) }}" />
+            
+            {% if type == 'password' %}   
+            <span id="show{{ name }}" data-toggle="tooltip" data-original-title="{{ constant('CLICK_SHOW_PASSWORD') }}" class="add-on hidden"><i class="icon-fa-eye-open"></i></span>
+            {% endif %}
+            </div>
+                
+    </div>    
+</div>
+{% endmacro %}
+
+{% macro textareawithicon(name, icon, placement, class, rows, text) %}
+<div class="{{ placement }}">
+    
+    <span class="add-on"><i class="{{ icon }}"></i></span>
+    
+    <textarea class="{{ class }}" name="{{ name }}"  rows="{{ rows }}">
+
+    {{ text }}
+    
+    </textarea>
+    
+</div>
+{% endmacro %}
+
+{% macro simplecheckbox(label ,name, value, required) %}
+{# class : default checkbox, option : checkbox inline #}
+<input type="checkbox" id="{{ name }}" name="{{ name }}" {% if value == 1 %}checked{% endif %}>{{ label }}
+{% endmacro %}
+
+{% macro simplecheckboxwithlabel(label, class, name, value, required) %}
+{# class : default checkbox, option : checkbox inline #}
+<label for="{{ name }}" class="{{ class }}">
+    <input type="checkbox" id="{{ name }}" name="{{ name }}" checked="{{ value }}">{{ label }}
+</label>
+{% endmacro %}
+
+{% macro simpleradio(name, value) %}
+<input class="{{ class2 }}" type="radio" id="{{ name }}" name="{{ name }}" value="{{ value }}">
+{% endmacro %}
+
+{% macro simpleradiobuttonwithlabel(label, class, name, value, class2) %}
+{# class : default checkbox, option : checkbox inline #}
+<label class="{{ class }}">
+    <input class="{{ class2 }}" type="radio" name="{{ name }}" checked="{{ value }}">{{ label }}
+</label>
+{% endmacro %}
+
+
+{% macro inputtelephoneiconandpopover(name, icon, placement, class, value, type, placeholder, popovercontent, popovertitle, country) %}
+<div class="{{ placement }}">
+    
+    <span class="add-on"><i class="{{ icon }}"></i></span>
+    
+    <input id="{{ name }}" class="{{ class }} bfh-phone" data-number="{{ value }}" data-country="{{ country }}" type="{{ type|default('text') }}" name="{{ name }}" placeholder="{{ placeholder }}" value="{{ osc_output_string(value|e) }}" data-content="{{ popovercontent }}" data-original-title="{{ popovertitle }}" />
+
+</div> 
+<script>
+$(function ()
+{ $("#{{name}}").popover({trigger:'hover',placement:'top'}); 
+  $("#{{name}}").click(function(){var $phone = $(this);$phone.bfhphone($phone.data())});
+});
+</script>
+{% endmacro %}
+
+{% macro inputtelephonetwoiconandpopover(name, icon, iconappend, class, value, type, placeholder, popovercontent, popovertitle, country) %}
+<div class="input-prepend input-append">
+    
+    <span class="add-on"><i class="{{ icon }}"></i></span>
+    
+    <input id="{{ name }}" class="{{ class }}" data-number="{{ value }}" data-country="{{ country }}" type="{{ type|default('text') }}" name="{{ name }}" placeholder="{{ placeholder }}" value="{{ value }}" data-content="{{ popovercontent }}"  data-original-title="{{ popovertitle }}" />
+  
+    <span class="add-on"><i class="{{ iconappend }}"></i></span>    
+</div>
+<script>
+$(function ()
+{ $("#{{name}}").popover({trigger:'hover',placement:'top'}); 
+  $("#{{name}}").click(function(){var $phone = $(this);$phone.bfhphone($phone.data())});
+});
+</script>
+{% endmacro %}

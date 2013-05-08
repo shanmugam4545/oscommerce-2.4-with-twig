@@ -1,0 +1,51 @@
+{# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
+{# file: includes/apps/index/view/template/fullpage/main.html.twig #}
+{% extends "base.html.twig" %}
+{% block stylesheet %}
+<link href="public/template/fullpage/css/cslider.css" rel="stylesheet" />
+{% endblock %}
+{% block head_javascript %}
+<script src="ext/assets/js/Modernizr.js"></script>
+<script src="ext/jquery/jquery.cslider.js"></script>
+{% endblock %}
+{% block appcontent %}
+<div id="slider"><h2>Product of the Month: HTC One</h2>
+			<div id="da-slider" class="da-slider">
+				<div class="da-slide">
+                                   
+                                    <h2>Brought to life</h2>                                   
+					<p>Capturing a moment takes more than one image. That's why the new HTC One includes the HTC UltraPixel Camera. Press the shutter and the HTC One automatically captures up to 20 photos and a 3-second video-a picture that's alive. So your entire photo album becomes a living, breathing gallery.</p>
+					<a href="{{ link('products&id=8') |raw }}" class="da-link btn btn-primary"><i class="icon-fa-plus-sign"></i>  Read more</a>
+					<div class="da-img"><img src="images/htc/one/HTC-HomeLaunch-Gallery-11.jpg" alt="HTC-HomeLaunch-Gallery-11" /></div>
+				</div>
+				<div class="da-slide">
+					<h2>Your interactive TV guide</h2>
+					<p>Tired of remotes taking up valuable couch space? The new HTC One is ready to help you channel surf. With Sense TV, all it takes is a few simple steps and you'll be able to select TV channels, access program guides, adjust audio and more with your HTC One. Find your favorite shows, and it will notify you when they're on. Take control of your TV experience with your phone.</p>
+					<a href="{{ link('products&id=8') |raw }}" class="da-link btn btn-primary"><i class="icon-fa-plus-sign"></i> Read more</a>
+					<div class="da-img"><img src="images/htc/one/HTC-HomeLaunch-Gallery-15.jpg" alt="HTC-HomeLaunch-Gallery-15" /></div>
+				</div>
+				<div class="da-slide">
+					<h2>You're always up to date</h2>
+					<p>You don't need to dig to find out what's going on. Your live home screen can contain the latest updates on your friends, photos, social networks, calendar events, sports teams, music, news-and more.</p>
+					<a href="{{ link('products&id=8') |raw }}" class="da-link btn btn-primary"><i class="icon-fa-plus-sign"></i>  Read more</a>
+					<div class="da-img"><img src="images/htc/one/HTC-HomeLaunch-Gallery-29.jpg" alt="HTC-HomeLaunch-Gallery-29" /></div>
+				</div>
+				<div class="da-slide">
+                                    <h2>Clarity-even in a crowd</h2>
+					<p class="text-info">The world doesn't include a volume knob. So talking on the phone in any loud, crowded environment can be a challenge. The new HTC One solves that problem with Sense Voice. It includes dual built-in microphones that detect loud ambient noise and will then dynamically boost the in-call voice to compensate. Hurrah for clarity.</p>
+					<a href="{{ link('products&id=8') |raw }}" class="da-link btn btn-primary"><i class="icon-fa-plus-sign"></i> Read more</a>
+					<div class="da-img"><img src="images/htc/one/HTC-HomeLaunch-Gallery-02.jpg" alt="HTC-HomeLaunch-Gallery-02" /></div>
+				</div>
+				<nav class="da-arrows">
+					<span class="da-arrows-prev"></span>
+					<span class="da-arrows-next"></span>
+				</nav>
+			</div>
+                                    
+			
+
+
+                    
+</div>
+<script>$('#da-slider').cslider({autoplay: true,bgincrement: 50});</script> 
+{% endblock %}

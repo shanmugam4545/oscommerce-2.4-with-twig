@@ -1,0 +1,39 @@
+{# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
+{# file: includes/apps/account/view/template/classic/main.html.twig #}
+{% extends "base.html.twig" %}
+{% block appcontent %}
+<div id="bodyContent" class="span{{ GridContentWidth }}">
+    <h1 class="title-app">{{ constant('HEADING_TITLE') }}</h1>
+
+{{ messagestack('account') | raw }}
+
+<div>
+  <h4 class="text-info">{{ constant('MY_ACCOUNT_TITLE') }}</h4>
+
+  <div class="well">
+    <ul class="nav nav-list">
+      <li><a href="{{ link('account', 'edit', 'SSL') | raw}}"><i class="icon-fa-user"></i>  {{ constant('MY_ACCOUNT_INFORMATION') }}</a></li>
+      <li><a href="{{ link('account', 'address_book', 'SSL') | raw}}"><i class="icon-fa-book"></i>  {{ constant('MY_ACCOUNT_ADDRESS_BOOK') }}</a></li>
+      <li><a href="{{ link('account', 'password&change', 'SSL') | raw}}"><i class="icon-fa-lock"></i>  {{ constant('MY_ACCOUNT_PASSWORD') }}</a></li>
+    </ul>
+  </div>
+
+  <h4 class="text-info">{{ constant('MY_ORDERS_TITLE') | raw}}</h4>
+
+  <div class="well">
+    <ul class="nav nav-list">
+      <li><a href="{{ link('account', 'orders', 'SSL') | raw}}"><i class="icon-fa-shopping-cart"></i>  {{ constant('MY_ORDERS_VIEW') }}</a></li>
+    </ul>
+  </div>
+
+  <h4 class="text-info">{{ constant('EMAIL_NOTIFICATIONS_TITLE') | raw}}</h4>
+
+  <div class="well">
+    <ul class="nav nav-list">
+      <li><a href="{{ link('account', 'newsletters', 'SSL') | raw}}"><i class="icon-fa-envelope"></i>  {{ constant('EMAIL_NOTIFICATIONS_NEWSLETTERS') }}</a></li>
+      <li><a href="{{ link('account', 'notifications', 'SSL') | raw}}"><i class="icon-fa-bell"></i> {{ constant('EMAIL_NOTIFICATIONS_PRODUCTS') }}</a></li>
+    </ul>
+  </div>
+</div>
+</div>
+{% endblock %}

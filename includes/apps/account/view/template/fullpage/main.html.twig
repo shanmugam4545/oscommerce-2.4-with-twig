@@ -1,0 +1,67 @@
+{# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
+{# file: includes/apps/account/view/template/classic/main.html.twig #}
+{% extends "base.html.twig" %}
+{% block appcontent %}
+<h1 class="title-app">{{ constant('HEADING_TITLE') }}</h1>
+
+{{ messagestack('account') | raw }}
+<div class="row-fluid account-main">
+<div class="span4">
+<i class="icon-fa-user icon-fa-xxlarge text-info"></i>
+<h3 class="features-title muted"><span class="firstword">{{ constant('MY_ACCOUNT_TITLE') }}</span></h3><hr>
+<div class="media">
+    <i class="icon-fa-pencil icon-3x pull-left muted"></i>
+    <p class="features media-body"> 
+        {{ constant('MY_ACCOUNT_INFORMATION') }}
+        <a class="btn btn-primary btn-small pull-right" href="{{ link('account', 'edit', 'SSL') | raw}}">{{ constant('IMAGE_BUTTON_CONTINUE') }}</a>
+    </p>
+</div>
+<div class="media">
+    <i class="icon-fa-book icon-3x pull-left muted"></i>
+    <p class="features media-body"> 
+        {{ constant('MY_ACCOUNT_ADDRESS_BOOK') }}
+        <a class="btn btn-primary btn-small pull-right" href="{{ link('account', 'address_book', 'SSL') | raw}}">{{ constant('IMAGE_BUTTON_CONTINUE') }}</a>
+    </p>
+</div>
+<div class="media">
+    <i class="icon-fa-lock icon-3x pull-left muted"></i>
+    <p class="features media-body"> 
+        {{ constant('MY_ACCOUNT_PASSWORD') }}
+        <a class="btn btn-primary btn-small pull-right" href="{{ link('account', 'password&change', 'SSL') | raw}}">{{ constant('IMAGE_BUTTON_CONTINUE') }}</a>
+    </p>
+</div>
+</div>
+
+<div class="span4">
+<i class="icon-fa-shopping-cart icon-fa-xxlarge text-info"></i>
+<h3 class="features-title muted"><span class="firstword">{{ constant('MY_ORDERS_TITLE') | raw}}</span></h3><hr>
+<div class="media">
+    <i class="icon-fa-money icon-3x pull-left muted"></i>
+    <p class="features media-body"> 
+        {{ constant('MY_ORDERS_VIEW') }}
+        <a class="btn btn-primary btn-small pull-right" href="{{ link('account', 'orders', 'SSL') | raw}}">{{ constant('IMAGE_BUTTON_CONTINUE') }}</a>
+    </p>
+</div>
+</div>
+
+<div class="span4"> 
+<i class="icon-fa-envelope-alt icon-fa-xxlarge text-info"></i>
+<h3 class="features-title muted"><span class="firstword">{{ constant('EMAIL_NOTIFICATIONS_TITLE') | raw}}</span></h3><hr>
+<div class="media">
+    <i class="icon-fa-envelope icon-3x pull-left muted"></i>
+    <p class="features media-body"> 
+        {{ constant('EMAIL_NOTIFICATIONS_NEWSLETTERS') }}
+        <a class="btn btn-primary btn-small pull-right" href="{{ link('account', 'newsletters', 'SSL') | raw}}">{{ constant('IMAGE_BUTTON_CONTINUE') }}</a>
+    </p>
+</div>
+<div class="media">
+    <i class="icon-fa-bell icon-3x pull-left muted"></i>
+    <p class="features media-body"> 
+        {{ constant('EMAIL_NOTIFICATIONS_PRODUCTS') }}
+        <a class="btn btn-primary btn-small pull-right" href="{{ link('account', 'notifications', 'SSL') | raw}}">{{ constant('IMAGE_BUTTON_CONTINUE') }}</a>
+    </p>
+</div>
+</div>       
+        
+</div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
+{# file: includes/apps/account/view/template/classic/create_success.html.twig #}
+{% extends "base.html.twig" %}
+{% block appcontent %}
+<div id="bodyContent" class="span{{ GridContentWidth}}">
+<h1 class="title-app">{{ constant('HEADING_TITLE_CREATE_SUCCESS') }}</h1>
+
+<div class="contentContainer">
+  <div class="contentText">
+    {{ constant('SUCCESS_TEXT_ACCOUNT_CREATED') | raw }}
+  </div>
+
+  <div class="buttonSet">
+    <span class="buttonAction">{{ button(constant('IMAGE_BUTTON_CONTINUE') , 'ok-sign', origin_href) | raw }}</span>
+  </div>
+</div>
+</div>
+{% endblock %}

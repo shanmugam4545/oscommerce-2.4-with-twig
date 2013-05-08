@@ -1,0 +1,19 @@
+{# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
+{# file:  includes/apps/info/view/template/classic/main.html.twig #}
+{% extends "base.html.twig" %}
+{% block appcontent %}
+<div id="bodyContent" class="span{{ GridContentWidth}}">
+<h1 class="title-app">{{ constant('HEADING_TITLE') }}</h1>
+
+<div class="contentContainer">
+  <div class="contentText">
+    <ul class="thumbnails">
+      <li class="span3"><i class="icon-fa-truck icon-fa-xxlarge text-info"></i><a  href="{{ link('info', 'shipping') | raw }}">{{ constant('MODULE_BOXES_INFORMATION_BOX_SHIPPING') }}</a></li>
+      <li class="span3"><i class="icon-fa-lock icon-fa-xxlarge text-info"></i><a href="{{ link('info', 'privacy') | raw }}">{{ constant('MODULE_BOXES_INFORMATION_BOX_PRIVACY') }}</a></li>
+      <li class="span3"><i class="icon-fa-legal icon-fa-xxlarge text-info"></i><a href="{{ link('info', 'conditions') | raw}}">{{ constant('MODULE_BOXES_INFORMATION_BOX_CONDITIONS') }}</a></li>
+      <li class="span3"><i class="icon-fa-envelope-alt icon-fa-xxlarge text-info"></i><a href="{{ link('info', 'contact') | raw }}">{{ constant('MODULE_BOXES_INFORMATION_BOX_CONTACT') }}</a></li>
+    </ul>
+  </div>
+</div>
+</div>
+{% endblock %}

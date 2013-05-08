@@ -1,0 +1,178 @@
+{# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
+{# file: includes/modules/templates/fullpagecenter/content/base.html.twig #}
+<!DOCTYPE html>
+<html {{ constant('HTML_PARAMS') | raw }}>
+    <head>
+{% set GridContentWidth = 12 %}
+{% block head %}
+            <meta charset="{{ constant('CHARSET') }}" />
+            <title>{{ title }}</title>
+            <base href="{{ base_href }}" />
+            <link rel="icon" type="image/png" href="public/images/oscommerce_icon.png" />
+            <meta name="generator" content="osCommerce Online Merchant" />
+{% endblock %}
+        {# required in all applications #}
+            <link href="ext/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+            <link href="public/template/fullpagecenter/css/fullpagecenter.css" rel="stylesheet" />
+            <link href="ext/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">            
+            <link href="ext/bootstrap/css/font-awesome.min.css" rel="stylesheet" />
+            <link href="ext/bootstrap/css/bootstrap-modal.css" rel="stylesheet" />
+            <link href="ext/bootstrap/css/bootstrap-select.min.css" rel="stylesheet" />
+
+
+        {% block stylesheet %}
+        {# here call specific stylesheet files for your app #}
+        {% endblock %}
+            <script src="ext/jquery/jquery-1.9.1.min.js"></script>
+            <script src="ext/bootstrap/js/bootstrap.min.js"></script>
+            <script src="ext/bootstrap/js/bootstrap-select.min.js"></script>
+            <script src="ext/bootstrap/js/bootstrap-modalmanager.js"></script>
+            <script src="ext/bootstrap/js/bootstrap-modal.js"></script>
+        {% block head_javascript %}
+        {# here call specific javascript files for your app #}
+        {% endblock %}
+        {% block internetexplorer %}
+        <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+        <script src="ext/assets/js/html5shiv.js"></script>
+        <![endif]-->
+        {% endblock %}
+        {% block header_tags %}
+        {{ header_tags | raw}}
+        {% endblock %}
+     </head>
+        <body>
+
+{% block headermessage %}
+     {{ header_message() | raw }}
+{% endblock %}
+
+
+{% block header %}
+<header>
+    <div id="header">
+        <div class="container" id="header_upper">
+            <div class="row">
+                <span class="span4" id="logo"><a class="text-info" href="{{ link() | raw }}"><img src="{{ constant('DIR_WS_IMAGES') }}store_logo.png" alt="{{ constant('STORE_NAME') }}" /></a></span>
+                <div class="pull-right" id="header_cart"> 
+{% for boxe in boxes %}        
+{% if boxe.boxe != null and boxe.boxe == 'twig_bm_search' %}
+{% include [boxe.boxe, TwigExtension]|join with{'data': boxe.data } %}
+{% endif %}
+{% endfor %}
+                    {% if app_code != 'cart' %}<a class="muted" href="{{ link('cart') }}" id="popovercart"><i class="icon-fa-shopping-cart muted"></i> {{ constant('HEADER_TITLE_CART') }} {% if session.cart.count_contents > 0 %}({{ session.cart.count_contents}}){% endif %}</a>{% endif %}
+                    {% if session.customer.id != null %}
+                    <a class="muted" href="{{ link('account' , 'logoff' , 'SSL') | raw }}"><i class="icon-fa-unlock muted"></i> {{ constant('HEADER_TITLE_LOGOFF') }}</a>
+                    <a class="muted" href="{{ link('account') | raw }}"><i class="icon-fa-user muted"></i> {{ constant('HEADER_TITLE_MY_ACCOUNT') }}</a>
+                    {% else %}
+                    {% if app_content_file != 'login' %}
+                    <noscript>
+                    <a class="muted" href="{{ link('account' , 'login' , 'SSL') | raw }}"><i class="icon-fa-lock muted"></i> {{ constant('HEADER_TITLE_LOGIN') }}</a>
+                    </noscript>
+                    {% endif %}
+                    {% if app_content_file != 'create' %}
+                    <a id="login_link" class="muted hidden" data-toggle="modal" href="#login-box"><i class="icon-fa-lock muted"></i> {{ constant('HEADER_TITLE_LOGIN') }}</a>
+                    {% endif %}
+                    <script>$('#login_link').removeClass('hidden');</script>
+                    {% if app_content_file != 'create' %}
+                    <a class="muted" href="{{ link('account', 'create', 'SSL') | raw }}"><i class="icon-fa-signin muted"></i> {{ constant('HEADER_TITLE_SIGNUP') }}</a>
+                    {% endif %}
+{% endif %}
+                    
+{% for boxe in boxes %}        
+{% if boxe.boxe != null and boxe.boxe == 'twig_bm_shopping_cart' %}
+{% include [boxe.boxe, TwigExtension]|join with{'data': boxe.data } %}
+{% endif %}
+{% endfor %}
+                    
+               </div>
+            </div>
+        </div>
+
+{% block breadcrumb %}
+        <div class="navshop">
+            <div class="container">
+
+                <div id="breadcrumb" class="span8" style="margin-left:0px;">
+        {{ breadcrumb | raw }}
+                    </div>
+                    <div class="pull-right" style="margin-top: 5px;margin-left: 0px;">
+                        <span class="pull-left"><a class="brand-dropdown-link" href="">Our brands : </a></span>
+
+                        <select class="selectpicker span2">
+                            <option value="">Please select ...</option>
+                            <option value="htc">htc</option>
+                            <option value="nokia">nokia</option>
+                            <option value="samsung">samsung</option>
+                        </select>
+                        
+                    </div>
+
+                </div>  
+            </div> 
+{% endblock breadcrumb %}
+     
+{% block categorie_horizontal %}
+<div class="clearfix"></div>    
+{{ categorie_horizontal() | raw }}
+{% endblock %}
+
+ </div><!-- // header -->
+</header>
+{% endblock header %}
+            
+            
+<div id="content" class="container">
+
+
+{% block error_message %}
+{{ error_message() | raw }}
+{% endblock %}
+
+{% block info_message %}
+{{ info_message() | raw }}
+{% endblock %}
+
+
+
+
+<div class="row-fluid">
+{% block appcontent %}
+    
+    
+{% endblock %}
+</div><!-- //end row fluid -->
+
+
+
+</div><!-- // end bodywrapper -->
+
+<div class="push"></div>
+
+{% block footer %}
+<div id="footer">
+    <div class="container">		
+        <div class="row">
+{% for boxe in boxes %}        
+{% if boxe.boxe != null and boxe.boxe == 'twig_bm_information' or boxe.boxe == 'twig_bm_social' %}
+{% include [boxe.boxe, TwigExtension]|join with{'data': boxe.data, 'title' : boxe.title } %}
+{% endif %}
+{% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% for boxe in boxes %}        
+{% if boxe.boxe != null and boxe.boxe == 'twig_bm_login' and app_content_file != 'create' and app_content_file != 'login' %}
+{% include [boxe.boxe, TwigExtension]|join with{'data': boxe.data } %}
+{% endif %}
+{% endfor %}  
+
+{% block footerscript %}
+    {{ footer_script | raw}}
+{% endblock %}
+<script>$(function(){$('#header_cart').find('a').removeClass('hidden'); $('#popovercart').popover({ html: true,  placement: 'bottom', trigger: 'manual', content: function() { return $('#popover_content_wrapper').html(); } });$('#popovercart').hover(function(){$(this).popover('show');});});</script>              
+</body>
+</html>

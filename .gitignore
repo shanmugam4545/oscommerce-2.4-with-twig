@@ -1,0 +1,7 @@
+includes/local/configure.php
+admin/includes/local/configure.php
+includes/work/*
+docs/*
+nbproject/*
+pub/*
+admin/images/graphs/*.png

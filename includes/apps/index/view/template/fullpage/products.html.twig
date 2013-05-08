@@ -1,0 +1,165 @@
+{# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
+{# file: includes/apps/index/view/template/fullpage/product.html.twig #}
+{% extends "base.html.twig" %}
+{% block stylesheet %}
+<link rel="stylesheet" href="public/template/fullpage/css/products_listing.css" />
+<link rel="stylesheet" href="ext/bootstrap/css/bootstrap-lightbox.min.css" />
+{% endblock %}
+{% block head_javascript %}
+<script src="ext/jquery/isotope/js/jquery.isotope.min.js"></script>
+<script src="ext/bootstrap/js/bootstrap-lightbox.js"></script>
+{% endblock %}
+{% block appcontent %}
+<div id="bodyContent" class="span{{ GridContentWidth}}">
+    <div>    	
+        <h2 {% if display == 'column' %}style="margin-left: 10px"{% endif %}>{{ catname }}<img {% if display == 'column' %}style="margin-right: 30px"{% endif %} class="img-polaroid pull-right" src="{{ [constant('DIR_WS_IMAGES'), catimage]|join }}" alt="{{ catname }}" /></h2>
+    </div>
+        <div class="clearfix"></div>
+{% if total > 0 %}
+{{ form('filter', link(null,null, 'NONSSL', false) | raw , 'get') | raw}}
+{% if display == 'row' or display != 'column'%}
+{% set size = 12 %}{% set step = 1 %}
+{% else %}
+{% set size = 3 %}{% set step = 4 %}
+{% endif %}
+{% if page < number_of_page %}{% set result = to*page %}{% else %}{% set result = total %}{% endif %}
+    <section id="options">  
+        <div class="btn-toolbar" {% if display == 'column' %}style="margin-left:10px;margin-right: 30px"{% else %}style="margin-left:0px;margin-right: 0px;" {% endif %}>
+            <div class="btn-group pull-left" style="margin-left: 0px;">
+                <div class="btn {%if display == 'row' %} active{% endif %}"><a href="{{ link(['cPath=',cpath , '&display=row', '&per_page=', per_page, '&page=', page]|join) | raw}}"><i class="icon-fa-align-justify"></i></a></div>
+                <div class="btn {%if display == 'column' %} active{% endif %}"><a href="{{ link(['cPath=',cpath , '&display=column', '&per_page=', per_page, '&page=', page]|join) | raw}}"><i class="icon-fa-th"></i></a></div>
+{% if total > 4 %}
+                        <div class="btn dropdown-toggle" data-toggle="dropdown"><a href="#"><i class="icon-fa-cog"></i>  <span class="icon-fa-caret-down text-info"></span></a></div>
+                        <ul class="dropdown-menu">
+{% if (total / 4) > 3 %}{% set level = 3 %}{% else %}{% set level = 2 %}{% endif %}
+{% for i in range(1,level,1) %}                   
+                                <li {% if per_page == i * 4 %}class="active"{% endif %}><a href="{{ link(['cPath=',cpath , '&display=',display,'&per_page=', i * 4]|join) | raw}}">{{ i * 4 }} {{ constant('PRODUCTS_LISTING_PRODUCTS_PER_PAGE') }}</a></li>
+{% endfor %} 
+                                </ul>
+{% endif %}
+                            </div>
+{% if total > 1 %}
+                            <ul id="sort-by" class="option-set clearfix btn-group pull-right" data-option-key="sortBy">
+                                <li class="btn"><a href="#sortBy=original-order" data-option-value="original-order"><i class="icon-fa-refresh"></i></a></li>
+                                <li class="btn"><a href="#sortBy=name" data-option-value="name">{{ constant('PRODUCTS_LISTING_PRODUCT_NAME') }}</a></li>
+                                <li class="btn"><a href="#sortBy=price" data-option-value="price">{{ constant('PRODUCTS_LISTING_PRODUCT_PRICE') }}</a></li>
+                                <li class="btn"><a href="#sortBy=special" data-option-value="special">{{ constant('PRODUCTS_LISTING_PRODUCT_SPECIAL') }}</a></li>
+                                <li class="btn"><a href="#sortBy=rating" data-option-value="rating">{{ constant('PRODUCTS_LISTING_PRODUCT_RATING') }}</a></li>
+                                <li class="btn"><a href="#sortBy=brand" data-option-value="brand">{{ constant('PRODUCTS_LISTING_PRODUCT_BRAND') }}</a></li>      
+                            </ul>
+                            <ul id="sort-direction" class="option-set clearfix btn-group pull-right" data-option-key="sortAscending">
+                                <li class="btn active"><a href="#sortAscending=true" data-option-value="true">{{ constant('PRODUCTS_LISTING_PRODUCT_ASC') }}</a></li>
+                                <li class="btn"><a href="#sortAscending=false" data-option-value="false">{{ constant('PRODUCTS_LISTING_PRODUCT_DESC') }}</a></li>
+                            </ul>
+{% endif %}
+                        </div>
+</section>
+                    <div class="clearfix"></div>
+
+                    <div class="pagination" {% if display == 'column' %}style="margin-left:10px;margin-right: 30px"{% else %}style="margin-left:0px;margin-right: 0px;" {% endif %}>
+
+                        <ul>
+        {% if number_of_page > 1 %}
+{% if page > 1 %}<li><a href="{{ link(['cPath=',cpath , '&display=', display, '&per_page=', per_page,'&page=',page-1]|join) | raw}}">&laquo;</a></li>{% endif %}
+{% for i in 1..number_of_page %}         
+                                    <li {% if page == i  %}class="disabled"{% endif %}><a href="{{ link(['cPath=',cpath , '&display=', display, '&per_page=', per_page,'&page=',i]|join) | raw}}">{{ i }}</a></li>                    
+{% endfor %}
+    {% if page < number_of_page %}<li><a href="{{ link(['cPath=',cpath , '&display=', display, '&per_page=', per_page,'&page=',page+1]|join) | raw}}">&raquo;</a></li>{% endif %}
+
+{% endif %}
+        
+                                </ul><div class="pull-right">{{ constant('TEXT_RESULT_PAGE') }} {{ constant('TEXT_DISPLAY_NUMBER_OF_PRODUCTS') | format(from+1, result , total) | raw}}</div>
+                            </div>
+                            <div id="product_listing" class="isotope">
+                                <ul class="thumbnails">
+{% for product in data %}
+{% if product['images'] != null %}
+                                        <li>
+                                            <div id="Lightbox{{ product['product_id'] }}" class="lightbox hide fade" role="dialog" aria-hidden="true">
+                                                <div class="lightbox-header">
+                                                    <button type="button" class="close" data-dismiss="lightbox" aria-hidden="true">&times;</button>
+                                                </div>
+                                                <div class="lightbox-content"> 
+{% for img in product['images'] %} 
+{{ image([constant('DIR_WS_IMAGES'),img.image]|join, '', '', '') | raw}}
+{% endfor %}
+                                                        <div class="lightbox-caption"><p>{{product['product_name'] }}</p></div>
+                                                    </div>
+                                                </div>
+                                            </li>
+{% endif %}{{ value }}
+                                            <li class="span{{size}} element isotope-item well" {% if product['rating'] != null %}data-rating="{{ product['rating']| round_rating }}"{% else %}data-rating="0"{% endif %} data-special="{{ product['special_price'] }}" data-price="{{ product['price'] }}" {% if display == 'column' %}style="margin-left:10px;margin-right: 17px;"{% else %}style="margin-left:0px;margin-right: 0px;" {% endif %}>       
+                                                <a href="{{ link(['products', '&id=' , product['product_id']]|join) | raw}}"><h4 class="productname">{{ product['product_name'] }}</h4></a>
+                                                <div class="media">
+                                                    <a class="pull-left" href="{{ link(['products', '&id=' , product['product_id']]|join) | raw}}">
+                                                        <img class="media-object img-polaroid" alt="{{ product['product_name'] }}" src="{{ [constant('DIR_WS_IMAGES'), product['product_image']]|join }}"></a>
+                                                    <div class="media-body">
+                                                        <span>{{ constant('PRODUCTS_LISTING_PRODUCT_DISPLAY_PRICE') }}</span><span class="text-success"><strong>{{ product['price'] }}</strong></span><br />
+                                                        <span>{{ constant('PRODUCTS_LISTING_PRODUCT_DISPLAY_SPECIAL_PRICE') }}</span><span class="text-error"><strong>{% if product['special_price'] != 'no special' %}{{ product['special_price'] }}{% else %}<em>{{ constant('PRODUCTS_LISTING_PRODUCT_NO_SPECIAL') }}</em>{% endif %}</strong></span>
+                                                    </div>
+                                                    <div class="media-body">
+{% if display =='row' %}
+                                                            <br />{{ product['short_description'] | raw }}
+{% endif %}
+                                                                <span class="brand">{{ constant('PRODUCTS_LISTING_PRODUCT_DISPLAY_BRAND') }} {{ product['manufacturer'] }}</span><br />
+{% if product['rating'] != null %}
+                                                                <div class="productrating">{{ constant('PRODUCTS_LISTING_PRODUCT_DISPLAY_RATING') }} {{ constant(['TWIG_RATING_',product['rating'] | round_rating]|join) | raw}}</div>
+{% else %}
+                                                                <div class="productrating">{{ constant('PRODUCTS_LISTING_PRODUCT_DISPLAY_RATING') }} {{ constant('TWIG_RATING_EMPTY') | raw }}</div>
+{% endif %}
+                                                            </div>
+                                                            <br />
+{% if product['images'] != null %}
+                                                            <a class="btn btn-small" data-toggle="lightbox" href="#Lightbox{{ product['product_id'] }}"><i class=" icon-fa-picture"></i> {{ constant('PRODUCTS_LISTING_PRODUCT_BUTTON_OPEN_IMAGE') }}</a>
+{% endif %}
+                                                            <a class="btn btn-info btn-small pull-right" href="{{ link(['products', '&id=' , product['product_id']]|join) | raw}}"><i class="icon-fa-play"></i> {{ constant('PRODUCTS_LISTING_PRODUCT_BUTTON_SEE_DETAILS') }}</a>
+                                                        </div>
+                                                    </li>
+{% if loop.index is divisibleby(step) %}
+                                                </ul>
+                                                <ul class="thumbnails">
+{% endif %}
+{% endfor %}
+                                                    </ul>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <script>$(function() {
+                                                var $container = $('#product_listing');
+                                                $container.isotope({itemSelector: '.element', getSortData: {name: function($elem) {
+                                                            return $elem.find('.productname').text();
+                                                        }, price: function($elem) {
+                                                            return $elem.attr('data-price');
+                                                        }, special: function($elem) {
+                                                            return $elem.attr('data-special');
+                                                        }, rating: function($elem) {
+                                                            return $elem.attr('data-rating');
+                                                        }, brand: function($elem) {
+                                                            return $elem.find('.brand').text();
+                                                        }}});
+                                                var $optionSets = $('#options .option-set'), $optionLinks = $optionSets.find('li a');
+                                                $optionLinks.click(function() {
+                                                    var $this = $(this);
+                                                    if ($this.hasClass('active')) {
+                                                        return false;
+                                                    }
+                                                    var $optionSet = $this.parents('.option-set');
+                                                    $optionSet.find('.active').removeClass('active');
+                                                    $this.parents().addClass('active');
+                                                    var options = {}, key = $optionSet.attr('data-option-key'), value = $this.attr('data-option-value');
+                                                    value = value === 'false' ? false : value;
+                                                    options[ key ] = value;
+                                                    
+                                                    if (key === 'layoutMode' && typeof changeLayoutMode === 'function') {
+                                                        changeLayoutMode($this, options)
+                                                    } else {
+                                                        $container.isotope(options);
+                                                    }
+                                                    return false;
+                                                });
+                                            });</script>    
+{% else %}
+                                            <p>{{ constant('TEXT_NO_PRODUCTS') | raw }}</p>   
+                                        </div>
+{% endif %}  
+{% endblock %}

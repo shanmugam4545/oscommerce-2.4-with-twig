@@ -1,0 +1,88 @@
+{# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
+{# file: includes/apps/products/view/template/classic/product_base.html.twig #}
+{% extends "base.html.twig" %}
+{% block head_javascript %}
+<script src="ext/jquery/bxGallery/jquery.bxGallery.1.1.min.js"></script>
+<link rel="stylesheet" href="ext/jquery/fancybox/jquery.fancybox-1.3.4.css" />
+<script src="ext/jquery/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+{% endblock %}
+
+{% block appcontent %}
+<div id="bodyContent" class="span{{ GridContentWidth}}">
+{{ form('cart_quantity', link('cart',['add&cPath=', cpath ]|join ), 'post', null, true) | raw}}
+
+    <div itemscope itemtype="http://schema.org/Product">
+    <div><!-- price and name -->
+    {% block product_price %}
+      <h1 style="float: right;" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+          {% if special_price is null %}
+          <span itemprop="price">{{ product_price }} </span>
+          {% else %}
+          <del>{{ product_price }}</del> <span class="productSpecialPrice" itemprop="price">{{ special_price }} </span>
+          {% endif %}
+          {{ availability | raw }}
+          <meta itemprop="priceCurrency" content={{ session_currency }} />
+      </h1>
+    {% endblock %}
+
+    {% block product_title %}
+          <h1 class="page-header"><span itemprop="name">{{ product_name }}</span>
+          {% if product_model != null %}
+          <br /><small>[<span itemprop="model">{{ product_model}}</span>]</small>
+          {% endif %}
+          </h1>
+   {% endblock %}
+    </div><!-- // end of price and name -->
+
+        <div class="contentContainer">
+        <div class="contentText">
+
+{# here we load dynamic gallery templates #}
+{% block gallery %}
+            {% import 'products_gallery.html.twig' as display_gallery %}
+            {{ attribute(display_gallery,products_gallery,[gallery_data, gallery_size,product_image]) }}
+{% endblock %}
+
+
+{% block description %}
+    <div itemprop="description">
+      {{ product_description | raw }}
+    </div>
+{% endblock %}
+
+<div style="clear: both;"></div>
+
+{# here we load dynamic options templates #}
+{% if nb_product_attribute > 0 %}
+{% block product_attribute %}
+{% import 'products_options.html.twig' as display_options %}
+    <h4>{{ constant('TEXT_PRODUCT_OPTIONS') }}</h4>
+        {% for option in content %}
+         {{ attribute(display_options,  option.potemplate, [option.data,option.poname,option.id,option.selected_attribute,option.porequired] ) }}
+        {% endfor %}
+{% endblock %}
+{% endif %}
+
+    <div style="clear: both;"></div>
+
+{% if date_available != null %}
+{% block date_available %}
+<div class="well well-small">
+  <div id="date_available">{{ constant('TEXT_DATE_AVAILABLE_TWIG') | raw}} : {{ date_available }}</div>
+</div>
+{% endblock %}
+{% endif %}
+        </div>
+{% block button %}
+  <div class="buttonSet">
+    <span class="buttonAction">
+        {{ hiddenfield('products_id', product_id) | raw}}
+        {{ button(constant('IMAGE_BUTTON_IN_CART'), 'shopping-cart', null, 'success') | raw }}
+    </span>
+  </div>
+{% endblock %}
+        </div><!-- // end of contentContainer -->
+    </div><!-- // end of itemscope -->
+</form>
+</div>
+{% endblock %}

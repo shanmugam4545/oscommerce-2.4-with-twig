@@ -1,0 +1,8 @@
+{# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
+{# file: includes/modules/boxes/view/template/fullpage/twig_bm_search.html.twig #}
+{{ form('quick_find', link(), 'get', 'class="navbar-search form-search pull-right"') | raw }}{{ hiddenfield('search', '') | raw }}   
+   <div class="input-prepend">
+   <button type="submit" class="btn btn-inverse">{{ constant('IMAGE_BUTTON_SEARCH') }}</button>
+   {{ inputfield('q','','class="search-query span2"',constant('MODULE_BOXES_SEARCH_BOX_TITLE')) | raw }}{{ hide_session_id }}   
+   </div>
+</form>

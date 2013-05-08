@@ -1,0 +1,17 @@
+{# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
+{# file: includes/modules/boxes/view/template/classic/twig_bm_manufacturer_info.html.twig #}
+<div class="media">
+    <span class="pull-left">
+        <i class="icon-fa-barcode text-info"></i>
+    </span>
+    <div class="media-body">        
+    <h4 class="media-heading text-info">{{ title }}</h4>
+      <ul class="nav nav-list">
+        <li>{{ image([constant('DIR_WS_IMAGES') , data.manufacturers_image]|join, data.manufacturers_name,'','','class="img-polaroid"') | raw }}</li>
+        {% if data.manufacturers_url != null %}
+            <li><a href="{{ link(null, ['redirect&manufacturer=' , data.manufacturers_id]|join)}}" target="_blank">{{ constant('MODULE_BOXES_MANUFACTURER_INFO_BOX_HOMEPAGE') |format(data.manufacturers_name) }}</a></li>
+        {% endif %}
+        <li><a href="{{ link(null, ['manufacturers_id=' , data.manufacturers_id]|join) | raw }}">{{ constant('MODULE_BOXES_MANUFACTURER_INFO_BOX_OTHER_PRODUCTS') }}</a></li>
+      </ul>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+{# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
+{# file: includes/apps/checkout/view/template/classic/shipping.html.twig #}
+{% extends "base.html.twig" %}
+{% block appcontent %}
+<div id="bodyContent" class="span{{ GridContentWidth }}">
+   <div class="span3 pull-right primary-address"><h3><small>{{ constant('TITLE_SHIPPING_ADDRESS') }}</small></h3><address>{{ address | raw }}</address></div>
+   <h1>{{ constant('HEADING_TITLE_SHIPPING') }}</h1> 
+   <div class="span4 pull-right"><p class="text-right muted"><br />{{ constant('TEXT_CHOOSE_SHIPPING_DESTINATION') }}</p></div>
+                  
+
+        
+        <div class="clearfix"></div>
+        
+    {{ form('checkout_address', link('checkout', 'shipping&process', 'SSL'), 'post', '', true) | raw }}
+    
+    {{ dump(quote) }}
+    </form>
+</div>
+{% endblock %}

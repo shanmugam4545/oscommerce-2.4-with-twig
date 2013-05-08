@@ -1,0 +1,62 @@
+{# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
+{# file: includes/apps/products/view/template/fullpage/product_full_page.html.twig #}
+{% extends  "product_base.html.twig" %}
+{% set GridContentWidth = 10 %}
+{% block head_javascript %}
+ {# don't call fancy script : we don't need it ! #}
+{% endblock %}
+{% block gallery %}
+    {# exlude gallery #}
+{% endblock %}
+
+{% block product_title %}
+{% endblock %}
+{% block product_price %}
+{% endblock %}
+{% block button %}
+{% endblock %}
+{% block description %}
+<div class="span3 pull-right text-center">   
+    {% block product_price_full_page  %}
+      <h1 class="text-center text-info" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+          {% if special_price is null %}
+          <span itemprop="price"><strong>{{ product_price }} </strong></span>
+          {% else %}
+          <del>{{ product_price }}</del> <span class="productSpecialPrice" itemprop="price">{{ special_price }} </span>
+          {% endif %}
+          {{ availability | raw }}
+          <meta itemprop="priceCurrency" content={{ session_currency }} />
+      </h1>
+    {% endblock %}
+{% block buttonfullpage %}
+  
+    <span>
+        {{ hiddenfield('products_id', product_id) | raw}}
+        {{ button(constant('IMAGE_BUTTON_IN_CART'), 'shopping-cart', null, 'success') | raw }}
+    </span>
+        <hr>
+{% for boxe in boxes %}        
+{% if boxe.boxe != null and boxe.boxe == 'twig_bm_manufacturer_info' or boxe.boxe == 'twig_bm_product_notifications' %}
+{% include [boxe.boxe, TwigExtension]|join with{'data': boxe.data, 'title' : boxe.title } %}
+{% endif %}
+{% endfor %}  
+  
+{% endblock %}
+</div>
+
+<div itemprop="description" class="span9" style="margin-left:0;">
+    {% block full_tilte %}
+    <h1><span itemprop="name">{{ product_name }}</span>
+        {% if product_model != null %}
+          <br /><span class="smallText">[<span itemprop="model">{{ product_model}}</span>]</span>
+          {% endif %}
+     </h1>
+    {% endblock %}
+        <div class="clearfix"></div>
+    {{ product_description | raw }}
+    
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,16 @@
+{# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
+{# file: includes/modules/boxes/view/template/fullpage/twig_bm_login.html.twig #}
+{% import "forms.html.twig" as forms %}
+{% if session.customer.id == null and (app_content_file != 'create' and app_code != 'account') %}
+<div class="dropdown-menu" style="padding-top:15px;padding-left: 15px;padding-right: 15px;">
+{{ form('login', link('account', 'login&process', 'SSL'), 'post', 'id="loginBox" class="form-inline text-center"', 'true') | raw }}
+        <fieldset><label for="email_address">{{ constant('ENTRY_EMAIL_ADDRESS') }}</label>{{ forms.inputwithicon('email_address', 'icon-fa-envelope', 'input-prepend', 'input-large', '','text', constant('PLACEHOLDER_EMAIL_ADRESS') ) }}</fieldset>
+        <fieldset><label for="password">{{ constant('ENTRY_PASSWORD') }}</label>{{ forms.inputwithicon('password', 'icon-fa-lock', 'input-prepend', 'input-large', '', 'password' ) }}</fieldset>
+    <button class="btn btn-primary"><i class="icon-fa-user"></i>  {{ constant('MODULE_BOXES_LOGIN_BOX_TITLE') }}</button>
+    <p>{{ constant('NO_ACCOUNT_HERE') }}</p> 
+    <a href="{{ link('account','create') | raw }}"><i class="icon-fa-signin"></i><strong>  {{ constant('HEADER_TITLE_SIGNUP') }}</strong></a>
+    </form>
+    <button class="btn btn-info btn-block" type="button" id="sign-in-google">{{ constant('SIGN_IN_WITH_GOOGLE') | raw}}</button>
+    <button class="btn btn-info btn-block" type="button" id="sign-in-twitter">{{ constant('SIGN_IN_WITH_TWITTER') | raw}}</button>
+</div>
+{% endif %}

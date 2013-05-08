@@ -1,0 +1,286 @@
+{# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
+{# file: includes/apps/account/view/template/classic/address_book_process.html.twig #}
+{% extends "base.html.twig" %}
+{% block stylesheet %}
+<link rel="stylesheet" href="ext/bootstrap/css/datepicker.css" />
+<link rel="stylesheet" href="ext/bootstrap/css/bootstrap-formhelpers.css" />
+<link rel="stylesheet" href="ext/bootstrap/countries/css/bootstrap-formhelpers-countries.flags.css" />
+{% endblock %}
+{% block head_javascript %}
+<script src="ext/jquery/jquery.validate.js"></script>
+<script src="ext/bootstrap/js/bootstrap-formhelpers-selectbox.js"></script>
+<script src="ext/bootstrap/countries/js/bootstrap-formhelpers-countries.js"></script>
+<script src="ext/bootstrap/countries/js/bootstrap-formhelpers-countries.{{ constant('BOOTSTRAP_COUNTRIES_FORMAT') }}.js"></script>
+<script src="ext/bootstrap/states/js/bootstrap-formhelpers-states.js"></script>
+<script src="ext/bootstrap/states/js/bootstrap-formhelpers-states.{{ constant('BOOTSTRAP_STATES_FORMAT') }}.js"></script>
+<script src="ext/bootstrap/js/bootstrap-datepicker.js"></script>
+
+{% if constant('BOOTSTRAP_DATEPICKER_I18N_CODE') is not null %}
+<script src="ext/bootstrap/js/locales/bootstrap-datepicker.{{ constant('BOOTSTRAP_DATEPICKER_I18N_CODE')}}.js" charset="UTF-8"></script>
+{% endif %}
+{% endblock %}
+{% block appcontent %}
+{% import "forms.html.twig" as forms %}
+<div class="span{{ GridContentWidth}}">
+    <div class="row-fluid">
+        <div>
+            <div class="alert alert-error pull-right span3">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <span><i class="icon-fa-exclamation-sign text-error"></i></span> {{ constant('FORM_REQUIRED_INFORMATION') |slice(2)}}
+            </div>
+            <div class="page-header">
+                <h1 class="title-app">{% if data['id'] != null %}{{ constant('HEADING_TITLE_ADDRESS_BOOK_EDIT') }}{% else %}{{ constant('HEADING_TITLE_ADDRESS_BOOK_NEW') }}{% endif %}<br /><small>{{ constant('ADDRESS_BOOK_ENTRY') }}</small></h1>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+{{ messagestack('addressbook') | raw }}
+
+{% if data['id'] != null %}
+{{ form('addressbook', link('account', ['address_book&process&id=', data['id']]|join, 'SSL'), 'post', ' id="addressbook" class="form-horizontal"', true) | raw }}
+{% else %}
+{{ form('addressbook', link('account', 'address_book&process', 'SSL'), 'post', ' id="addressbook" class="form-horizontal"', true) | raw }}
+{% endif %}
+        <div class="contentContainer">  
+            <div class="span6" style="margin:0;">
+{% if constant('ACCOUNT_GENDER') == 'true' %}       
+                    <div  id="divgenderid" class="control-group">
+                        <label class="control-label" for="gender">{{ constant('ENTRY_GENDER') }}</label>
+                        <div class="controls">
+                            <div class="btn-group" style="margin-bottom: 10px;">                                   
+{% if data['gender'] == 'f' %}                                    
+                                    <label class="btn radio radio-label" id="radio-label-male">{{ radio('gender', 'm') | raw }}{{ constant('MALE') }}</label>
+                                    <label class="btn radio radio-label" id="radio-label-female">{{ radio('gender', 'f', true) | raw }}{{ constant('FEMALE') }}</label>
+{% else %}
+                                    <label class="btn radio radio-label" id="radio-label-male">{{ radio('gender', 'm',true) | raw }}{{ constant('MALE') }}</label>
+                                    <label class="btn radio radio-label" id="radio-label-female">{{ radio('gender', 'f' ) | raw }}{{ constant('FEMALE') }}</label>                                    
+{% endif %}
+{% if constant('ENTRY_GENDER_TEXT') != null %}<span class="btn"><i class="icon-fa-exclamation-sign text-error"></i></span>{% endif %}
+                                </div>
+                            </div>
+                            <noscript><span class="help-block"><span class="label label-info createaccount">{{ constant('INFO') }}</span> {{ constant('ENTRY_GENDER_ERROR') }}</span></noscript>
+                        </div>
+{% endif %}
+                        <div  id="divfirstname" class="control-group">
+                            <label class="control-label" for="firstname">{{ constant('ENTRY_FIRST_NAME') }}</label>
+                            <div class="controls">
+{% if constant('ENTRY_FIRST_NAME_TEXT') != null %}
+{{ forms.inputwithtwoiconandpopover('firstname', 'icon-fa-user', 'icon-fa-exclamation-sign text-error', 'input-large', data['firstname'], 'text', '', constant('ENTRY_FIRST_NAME_ERROR'), constant('ENTRY_FIRST_NAME')) }}   
+{% else %}
+{{ forms.inputwithiconandpopover('firstname', 'icon-fa-user', 'append', 'input-large', '', 'text', data['firstname'], constant('ENTRY_FIRST_NAME_ERROR'), constant('ENTRY_FIRST_NAME')) }}   
+{% endif %}
+                                </div>
+                                <noscript><span class="help-block"><span class="label label-info createaccount">{{ constant('INFO') }}</span> {{ constant('ENTRY_FIRST_NAME_ERROR') }}</span></noscript>
+                            </div>
+                            <div id="divlastname" class="control-group">
+                                <label class="control-label" for="lastname">{{ constant('ENTRY_LAST_NAME') }}</label>
+                                <div class="controls">
+{% if constant('ENTRY_LAST_NAME_TEXT') != null %}
+{{ forms.inputwithtwoiconandpopover('lastname', 'icon-fa-user', 'icon-fa-exclamation-sign text-error', 'input-large', data['lastname'], 'text', '', constant('ENTRY_LAST_NAME_ERROR'), constant('ENTRY_LAST_NAME')) }}   
+{% else %}
+{{ forms.inputwithiconandpopover('lastname', 'icon-fa-user', 'append', 'input-large', '', 'text', data['lastname'], constant('ENTRY_LAST_NAME_ERROR'), constant('ENTRY_LAST_NAME')) }}   
+{% endif %}
+                                    </div>
+                                    <noscript><span class="help-block"><span class="label label-info createaccount">{{ constant('INFO') }}</span> {{ constant('ENTRY_LAST_NAME_ERROR') }}</span></noscript>
+                                </div> 
+{% if constant('ACCOUNT_COMPANY') == true %}
+                                <div id="divcompany" class="control-group">
+                                    <label class="control-label" for="company">{{ constant('ENTRY_COMPANY') }}</label>
+                                    <div class="controls">
+{% if constant('ENTRY_COMPANY_TEXT') != null %}
+{{ forms.inputwithtwoicon('company', 'icon-fa-group', 'icon-fa-exclamation-sign text-error', 'input-large', '', 'text', constant('PLACEHOLDER_ENTRY_COMPANY')) }}   
+{% else %}
+{{ forms.inputwithicon('company', 'icon-fa-group', 'input-prepend', 'input-large', '', 'text', constant('PLACEHOLDER_ENTRY_COMPANY')) }}   
+{% endif %}
+                                        </div>
+                                    </div> 
+{% endif %}
+                                </div><!-- end left -->
+                                <div class="pull-right span6">
+                                    <div id="divstreet_address" class="control-group">
+                                        <label class="control-label" for="street_address">{{ constant('ENTRY_STREET_ADDRESS') }}</label>
+                                        <div class="controls">
+{% if constant('ENTRY_STREET_ADDRESS_TEXT') != null %}
+{{ forms.inputwithtwoiconandpopover('street_address', 'icon-fa-road', 'icon-fa-exclamation-sign text-error', 'input-large', address.entry_street_address, 'text', constant('PLACEHOLDER_ENTRY_STREET_ADDRESS'), constant('ENTRY_STREET_ADDRESS_ERROR'), constant('ENTRY_STREET_ADDRESS')) }}   
+{% else %}
+{{ forms.inputwithiconandpopover('street_address', 'icon-fa-road', 'input-prepend', 'input-large', address.entry_street_address , 'text', constant('PLACEHOLDER_ENTRY_STREET_ADDRESS'), constant('ENTRY_STREET_ADDRESS_ERROR'), constant('ENTRY_STREET_ADDRESS')) }}   
+{% endif %}
+                                            </div>
+                                            <noscript><span class="help-block"><span class="label label-info createaccount">{{ constant('INFO') }}</span> {{ constant('ENTRY_STREET_ADDRESS_ERROR') }}</span></noscript>
+                                        </div>
+{% if constant('ACCOUNT_SUBURB') == true %}       
+                                        <div id="divsuburb" class="control-group">
+                                            <label class="control-label" for="suburb">{{ constant('ENTRY_SUBURB') }}</label>
+                                            <div class="controls">
+{% if constant('ENTRY_SUBURB_TEXT') != null %}
+{{ forms.inputwithtwoiconandpopover('suburb', 'icon-fa-road', 'icon-fa-exclamation-sign text-error', 'input-large', address.entry_suburb, 'text', constant('PLACEHOLDER_ENTRY_SUBURB'), constant('ENTRY_SUBURB_ERROR'), constant('ENTRY_SUBURB')) }}   
+{% else %}
+{{ forms.inputwithiconandpopover('suburb', 'icon-fa-road', 'input-prepend', 'input-large', address.entry_suburb, 'text', constant('PLACEHOLDER_ENTRY_SUBURB'), constant('ENTRY_SUBURB_ERROR'), constant('ENTRY_SUBURB')) }}   
+{% endif %}
+                                                </div>
+                                                <noscript><span class="help-block"><span class="label label-info createaccount">{{ constant('INFO') }}</span> {{ constant('ENTRY_SUBURB_ERROR') }}</span></noscript>
+                                            </div>
+                                            <div id="divpostcode" class="control-group">
+                                                <label class="control-label" for="postcode">{{ constant('ENTRY_POST_CODE') }}</label>
+                                                <div class="controls">
+{% if constant('ENTRY_POST_CODE_TEXT') != null %}
+{{ forms.inputwithtwoiconandpopover('postcode', 'icon-fa-road', 'icon-fa-exclamation-sign text-error', 'input-large', address.entry_postcode, 'text', constant('PLACEHOLDER_ENTRY_POSTCODE'), constant('ENTRY_POST_CODE_ERROR'), constant('ENTRY_POST_CODE')) }}   
+{% else %}
+{{ forms.inputwithiconandpopover('postcode', 'icon-fa-road', 'input-prepend', 'input-large', address.entry_postcode, 'text', constant('PLACEHOLDER_ENTRY_POSTCODE'), constant('ENTRY_POST_CODE_ERROR'), constant('ENTRY_POST_CODE')) }}   
+{% endif %}
+                                                    </div>
+                                                    <noscript><span class="help-block"><span class="label label-info createaccount">{{ constant('INFO') }}</span> {{ constant('ENTRY_POST_CODE_ERROR') }}</span></noscript>
+                                                </div>
+{% endif %}
+                                            <div id="divcity" class="control-group">
+                                                <label class="control-label" for="city">{{ constant('ENTRY_CITY') }}</label>
+                                                <div class="controls">                                        
+{% if constant('ENTRY_CITY_TEXT') != null %}
+{{ forms.inputwithtwoiconandpopover('city', 'icon-fa-road', 'icon-fa-exclamation-sign text-error', 'input-large', address.entry_city, 'text', constant('PLACEHOLDER_ENTRY_CITY'), constant('ENTRY_CITY_ERROR'), constant('ENTRY_CITY')) }}   
+{% else %}
+{{ forms.inputwithiconandpopover('city', 'icon-fa-road', 'input-prepend', 'input-large', address.entry_city, 'text', constant('PLACEHOLDER_ENTRY_CITY'), constant('ENTRY_CITY_ERROR'), constant('ENTRY_CITY')) }}   
+{% endif %}
+                                                    </div>
+                                                    <noscript><span class="help-block"><span class="label label-info createaccount">{{ constant('INFO') }}</span> {{ constant('ENTRY_CITY_ERROR') }}</span></noscript>
+                                                </div>
+
+                                                <div id="divcountry" class="control-group">
+                                                    <label class="control-label" for="country">{{ constant('ENTRY_COUNTRY') }}</label>	
+                                                    <div class="controls">	
+                                                        <div id="country" class="input-prepend input-append" data-country="{% if address.entry_country_id != null %}{{ address.entry_country_id }}{% else %}74{% endif %}" data-flags="true">
+{{ hiddenfield('country') | raw }}
+                                                                <span class="add-on"><i class="icon-fa-globe"></i></span>
+                                                                <a class="bfh-selectbox-toggle hidden" role="button" data-toggle="bfh-selectbox" href="#" data-placement="top" data-content="{{ constant('ENTRY_COUNTRY_ERROR') | raw }}" data-original-title=" {{ constant('ENTRY_COUNTRY') }}">
+                                                                    <span id="idcountry" class="bfh-selectbox-option input-large" data-option=""></span>
+                                                                    <b class="caret"></b>
+                                                                </a>
+                                                                <div class="bfh-selectbox-options hidden">
+                                                                    <input type="text" class="bfh-selectbox-filter input-large">
+                                                                    <div role="listbox" id="listbox">
+                                                                        <ul role="option">
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                                <noscript>{#{{ get_country_list('country') | raw }}#}</noscript>
+                                                                <span class="add-on"><i class="icon-fa-exclamation-sign text-error"></i></span>
+                                                            </div>
+                                                            <span id="countryerror"></span>
+                                                            <noscript><span class="help-block"><span class="label label-info createaccount">{{ constant('INFO') }}</span>{{ constant('ENTRY_COUNTRY_ERROR') | raw }}</span></noscript>
+
+                                                            <script>
+                                                                $(function() {
+                                                                    $('#country').addClass('bfh-selectbox bfh-countries');
+                                                                    $('.bfh-selectbox-toggle').removeClass('hidden');
+                                                                    $(".bfh-selectbox-options").removeClass('hidden');
+                                                                    $('#listbox').hover(function() {
+                                                                        $('.bfh-selectbox-toggle').popover('hide');
+                                                                    });
+                                                                    $('.bfh-selectbox-toggle').popover({trigger: 'hover', delay: {show: 500, hide: 100}});
+                                                                });
+                                                                </script>
+                                                            </div> 
+                                                        </div>
+{% if constant('ACCOUNT_STATE') == true %}
+                                                        <div id="divstate" class="control-group">    
+                                                            <label class="control-label" for="states">{{ constant('ENTRY_STATE') }}</label>
+                                                            <div class="controls"><div id="state" 
+{% if constant('ENTRY_STATE_TEXT') != null %}
+                                                                                       data-country="country" data-state="{{ address.entry_state }}" class="input-prepend input-append">
+{% else %}
+                                                                                               data-country="country" data-state="{{ address.entry_state }}" class="input-prepend">
+{% endif %}
+                                                                                               <span class="add-on"><i class="icon-fa-map-marker"></i></span>
+
+{{ hiddenfield('state',address.entry_state) | raw }}
+                                                                                               <a class="bfh-selectbox-toggle hidden" role="button" data-toggle="bfh-selectbox" href="#" data-placement="top" data-content="{{ constant('ENTRY_COUNTRY_ERROR') | raw }}" data-original-title=" {{ constant('ENTRY_COUNTRY') }}">
+                                                                                                       <span id="idstate" class="bfh-selectbox-option input-large" data-option=""></span>
+                                                                                                  
+                                                                                                       <b class="caret"></b>
+                                                                                                       </a>                                                                                 
+                                                                                                   <div class="bfh-selectbox-options hidden">
+                                                                                                       <input type="text" class="bfh-selectbox-filter input-large">
+                                                                                                       <div role="listbox" id="listboxstate">
+                                                                                                           <ul role="option">
+                                                                                                           </ul>
+                                                                                                       </div>
+                                                                                                   </div>
+{% if constant('ENTRY_STATE_TEXT') != null %}<span class="add-on"><i class="icon-fa-exclamation-sign text-error"></i></span>{% endif %}
+                                                                                               </div>
+                                                                                           </div>
+                                                                                       </div>
+                                                                                       <script>
+                                                                                           $(function() {
+                                                                                               $('#state').addClass('bfh-selectbox bfh-states');  
+                                                                                               $('.bfh-selectbox-toggle').removeClass('hidden');                              
+                                                                                               $(".bfh-selectbox-options").removeClass('hidden');
+                                                                                               $('.bfh-selectbox-toggle').popover({trigger: 'hover', delay: {show: 500, hide: 100}});
+                                                                                               $('#listboxstate').hover(function() {
+                                                                                                   $('.bfh-selectbox-toggle').popover('hide');
+                                                                                               });
+
+                                                                                           });
+                                                                                           </script>
+{% endif %}
+                                                                                       </div><!-- end right -->
+
+                                                                </div><!-- end container -->
+
+                                                                <div class="clearfix"></div>
+
+                                                                <div class="form-actions">
+                                                                    <div class="controls">
+                                                                        <button type="submit" class="btn btn-primary pull-right"><i class="icon-fa-user icon-white"></i>  {{ constant('IMAGE_BUTTON_CONTINUE') }}</button>
+                                                                    </div>
+                                                                </div>
+                                                                </form>
+                                                            </div>
+                                                        </div> 
+                                    <div id="form-errors" class="modal hide fade">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h3 class="text-error"><i class="icon-fa-warning-sign"></i> {{ constant('FORM_ERROR_TITLE') }}</h3>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p id="summary"></p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" data-dismiss="modal" aria-hidden="true" class="btn">Close</button>
+                                        </div>
+                                    </div><!-- end modal -->
+                                    <script>
+                                    var validator = $("#addressbook").bind("invalid-form.validate", function() {
+                                        $("#summary").html("<strong>{{ constant('FORM_ERROR') }}" + validator.numberOfInvalids() + "{{ constant('FORM_ERROR_NUMBERS') | raw }}</strong>");
+                                                $("#form-errors").modal('show');
+                                                }).validate({
+                                        errorClass: 'alert alert-danger',
+                                                rules:{
+                                                gender: {required:{% if constant('ENTRY_GENDER_TEXT') != null %} true {% else %} false {% endif %}},
+                                                firstname : {required:{% if constant('ENTRY_FIRST_NAME_TEXT') != null %} true {% else %} false {% endif %}, minlength: {{ constant('ENTRY_FIRST_NAME_MIN_LENGTH') }}},
+                                                lastname : {required:{% if constant('ENTRY_LAST_NAME_TEXT') != null %} true {% else %} false {% endif %}, minlength: {{ constant('ENTRY_LAST_NAME_MIN_LENGTH') }}},
+                                                company : {required:{% if constant('ENTRY_COMPANY_TEXT') != null %} true {% else %} false {% endif %}},
+                                                street_address : {required:{% if constant('ENTRY_STREET_ADDRESS_TEXT') != null %} true {% else %} false {% endif %}, minlength: {{ constant('ENTRY_STREET_ADDRESS_MIN_LENGTH') }}},
+                                                postcode : {required:{% if constant('ENTRY_POST_CODE_TEXT') != null %} true {% else %} false {% endif %}, minlength: {{constant('ENTRY_POSTCODE_MIN_LENGTH') }}},
+                                                city : {required:{% if constant('ENTRY_CITY_TEXT') != null %} true {% else %} false {% endif %}, minlength: {{ constant('ENTRY_CITY_MIN_LENGTH') }}},
+                                                country : {required:{% if constant('ENTRY_COUNTRY_TEXT') != null %} true {% else %} false {% endif %}},
+                                                state : {required:{% if constant('ENTRY_STATE_TEXT') != null %} true {% else %} false {% endif %}, minlength: {{ constant('ENTRY_STATE_MIN_LENGTH') }}}
+                                        },
+                                        messages:{
+                                                gender : {required:'{{ constant('ENTRY_GENDER_ERROR') }}'},
+                                                firstname : {required: '{{ constant('FORM_REQUIRED_INFORMATION') }}', minlength : '{{ constant('ENTRY_FIRST_NAME_ERROR') }}'},
+                                                lastname : {required: '{{ constant('FORM_REQUIRED_INFORMATION') }}', minlength : '{{ constant('ENTRY_LAST_NAME_ERROR') }}'},
+                                                company : {required: '{{ constant('FORM_REQUIRED_INFORMATION') }}'},
+                                                street_address : {required: '{{ constant('FORM_REQUIRED_INFORMATION') }}', minlength: '{{ constant('ENTRY_STREET_ADDRESS_ERROR') }}'},
+                                                postcode : {required: '{{ constant('FORM_REQUIRED_INFORMATION') }}', minlength : '{{ constant('ENTRY_POST_CODE_ERROR') }}'},
+                                                city : {required: '{{ constant('FORM_REQUIRED_INFORMATION') }}', minlength : '{{ constant('ENTRY_CITY_ERROR') }}'},
+                                                country : {required: '{{ constant('ENTRY_COUNTRY_ERROR') }}'},
+                                                state : {required: '{{ constant('FORM_REQUIRED_INFORMATION') }}', minlength : '{{ constant('ENTRY_STATE_ERROR') }}'}
+                                                },
+                                                errorPlacement: function(error, element) {
+                                        $('[type=radio]').removeClass('alert alert-danger');
+                                                if (element.attr("name") == "gender") {
+                                        error.insertAfter("#genderid");
+                                                } else{
+                                        error.insertAfter("#div" + element.attr("name"));
+                                                }
+                                        }
+                                        });</script>
+{% endblock %}

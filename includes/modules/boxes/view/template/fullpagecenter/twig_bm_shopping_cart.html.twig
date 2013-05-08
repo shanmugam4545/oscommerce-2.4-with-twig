@@ -1,0 +1,12 @@
+{# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
+{# file: includes/modules/boxes/view/template/fullpagecenter/twig_bm_shopping_cart.html.twig #}
+<div class="popover" id="popover_content_wrapper">
+    <div class="arrow"></div>    
+    <h3 class="popover-title"><i class="icon-fa-shopping-cart"></i>  {{ constant('MODULE_BOXES_SHOPPING_CART_BOX_TITLE') }}</h3>
+    <div class="popover-content">   
+        <ul class="unstyled text-left">         
+          {{ data | raw }}               
+            </ul>   
+        </div>    
+</div>
+<script>$(document).ready().click(function(){ $('#popovercart').popover('hide');})</script>

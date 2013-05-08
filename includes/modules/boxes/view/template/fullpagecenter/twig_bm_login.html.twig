@@ -1,0 +1,23 @@
+{# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
+{# file: includes/modules/boxes/view/template/fullpagecenter/twig_bm_login.html.twig #}
+{% import "forms.html.twig" as forms %}
+<div id="login-box" class="modal container hide fade" tabindex="-1" style="display: none; margin-top: -119.5px;" aria-hidden="true">
+{{ form('login', link('account', 'login&process', 'SSL'), 'post', 'id="loginBox" class="form-inline  text-center"', 'true') | raw }}
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icon-fa-remove-sign"></i>  </button>
+    <h3 class="text-info text-left">{{ constant('HEADER_TITLE_LOGIN') }}</h3>
+  </div>
+<div class="modal-body" style="">
+<label for="email_address">{{ constant('ENTRY_EMAIL_ADDRESS') }}</label>{{ forms.inputwithicon('email_address', 'icon-fa-envelope', 'input-prepend', 'input-large', '','text', constant('PLACEHOLDER_EMAIL_ADRESS') ) }}
+<label for="password">{{ constant('ENTRY_PASSWORD') }}</label>{{ forms.inputwithicon('password', 'icon-fa-lock', 'input-prepend', 'input-large', '', 'password' ) }}
+   <p class="text-left">{{ constant('NO_ACCOUNT_HERE') }}<br />
+    <a href="{{ link('account','create') | raw }}">
+        <i class="icon-fa-signin"></i><strong>  {{ constant('HEADER_TITLE_SIGNUP') }}</strong></a>
+    </p> 
+</div>
+  <div class="clearfix modal-footer"> 
+    <button type="button" class="btn btn pull-left" data-dismiss="modal"><i class="icon-fa-remove-sign"></i>  {{ constant('SMALL_IMAGE_BUTTON_CLOSE') }}</button>
+    <button type="submit" class="btn btn-primary"><i class="icon-fa-user"></i>  {{ constant('MODULE_BOXES_LOGIN_BOX_TITLE') }}</button>
+  </div>
+</form>
+</div>

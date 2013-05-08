@@ -1,0 +1,182 @@
+{# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
+{# file: includes/apps/account/view/template/classic/edit.html.twig #}
+{% extends "base.html.twig" %}
+{% block stylesheet %}
+<link rel="stylesheet" href="ext/bootstrap/css/datepicker.css" />
+{% endblock %}
+{% block head_javascript %}
+<script src="ext/jquery/jquery.validate.js"></script>
+<script src="ext/bootstrap/js/bootstrap-datepicker.js"></script>
+<script src="ext/bootstrap/js/bootstrap-formhelpers-phone.js"></script>
+<script src="ext/bootstrap/js/bootstrap-formhelpers-phone.format.js"></script>
+{% if constant('BOOTSTRAP_DATEPICKER_I18N_CODE') is not null %}
+<script src="ext/bootstrap/js/locales/bootstrap-datepicker.{{ constant('BOOTSTRAP_DATEPICKER_I18N_CODE')}}.js" charset="UTF-8"></script>
+{% endif %}
+{% endblock %}
+{% block appcontent %}
+{% import "forms.html.twig" as forms %}
+<div class="span{{ GridContentWidth}}">
+<div class="row-fluid">
+    <div class="contentContainer">
+        <div class="alert alert-error pull-right span3">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <span><i class="icon-fa-exclamation-sign text-error"></i></span> {{ constant('FORM_REQUIRED_INFORMATION') |slice(2)}}
+        </div>
+        <h1 class="title-app">{{ constant('HEADING_TITLE_EDIT') }}</h1>
+    </div>
+{{ messagestack('account_edit') | raw }}
+    <div class="clearfix"></div>
+    <div class="contentContainer">    
+{{ form('account_edit', link('account', 'edit&process', 'SSL'), 'post', 'id="account_edit" class="form-horizontal"', true) | raw}}
+            <div class="span6" style="margin:0;">
+{% if constant('ACCOUNT_GENDER') == 'true' %}       
+                    <div  id="divgenderid" class="control-group">
+                        <label class="control-label" for="gender">{{ constant('ENTRY_GENDER') }}</label>
+                        <div class="controls">
+                            <div class="btn-group" style="margin-bottom: 10px;">                                   
+{% if data['customers_gender'] == 'f' %}                                    
+                                    <label class="btn radio radio-label" id="radio-label-male">{{ radio('gender', 'm') | raw }}{{ constant('MALE') }}</label>
+                                    <label class="btn radio radio-label" id="radio-label-female">{{ radio('gender', 'f', true) | raw }}{{ constant('FEMALE') }}</label>
+{% else %}
+                                    <label class="btn radio radio-label" id="radio-label-male">{{ radio('gender', 'm',true) | raw }}{{ constant('MALE') }}</label>
+                                    <label class="btn radio radio-label" id="radio-label-female">{{ radio('gender', 'f' ) | raw }}{{ constant('FEMALE') }}</label>                                    
+{% endif %}
+{% if constant('ENTRY_GENDER_TEXT') != null %}<span class="btn"><i class="icon-fa-exclamation-sign text-error"></i></span>{% endif %}
+                                </div>
+                            </div>
+                            <noscript><span class="help-block"><span class="label label-info createaccount">{{ constant('INFO') }}</span> {{ constant('ENTRY_GENDER_ERROR') }}</span></noscript>
+                        </div>
+{% endif %}
+                        <div  id="divfirstname" class="control-group">
+                            <label class="control-label" for="firstname">{{ constant('ENTRY_FIRST_NAME') }}</label>
+                            <div class="controls">
+{% if constant('ENTRY_FIRST_NAME_TEXT') != null %}
+{{ forms.inputwithtwoiconandpopover('firstname', 'icon-fa-user', 'icon-fa-exclamation-sign text-error', 'input-large', data['customers_firstname'], 'text', '', constant('ENTRY_FIRST_NAME_ERROR'), constant('ENTRY_FIRST_NAME')) }}   
+{% else %}
+{{ forms.inputwithiconandpopover('firstname', 'icon-fa-user', 'append', 'input-large', '', 'text', data['customers_firstname'], constant('ENTRY_FIRST_NAME_ERROR'), constant('ENTRY_FIRST_NAME')) }}   
+{% endif %}
+                                </div>
+                                <noscript><span class="help-block"><span class="label label-info createaccount">{{ constant('INFO') }}</span> {{ constant('ENTRY_FIRST_NAME_ERROR') }}</span></noscript>
+                            </div>
+                            <div id="divlastname" class="control-group">
+                                <label class="control-label" for="lastname">{{ constant('ENTRY_LAST_NAME') }}</label>
+                                <div class="controls">
+{% if constant('ENTRY_LAST_NAME_TEXT') != null %}
+{{ forms.inputwithtwoiconandpopover('lastname', 'icon-fa-user', 'icon-fa-exclamation-sign text-error', 'input-large', data['customers_lastname'], 'text', '', constant('ENTRY_LAST_NAME_ERROR'), constant('ENTRY_LAST_NAME')) }}   
+{% else %}
+{{ forms.inputwithiconandpopover('lastname', 'icon-fa-user', 'append', 'input-large', '', 'text', data['customers_lastname'], constant('ENTRY_LAST_NAME_ERROR'), constant('ENTRY_LAST_NAME')) }}   
+{% endif %}
+                                    </div>
+                                    <noscript><span class="help-block"><span class="label label-info createaccount">{{ constant('INFO') }}</span> {{ constant('ENTRY_LAST_NAME_ERROR') }}</span></noscript>
+                                </div>
+{% if constant('ACCOUNT_DOB') == 'true' %}
+                                <div id="divdobid" class="control-group">
+                                    <label class="control-label" for="dob">{{ constant('ENTRY_DATE_OF_BIRTH') }}</label>
+                                    <div class="controls">
+{% if constant('ENTRY_DATE_OF_BIRTH_TEXT') != null %}
+{{ forms.inputwithtwoiconandpopover('dob', 'icon-fa-calendar', 'icon-fa-exclamation-sign text-error', 'input-large', dob, 'text', '', constant('ENTRY_DATE_OF_BIRTH_ERROR'), constant('ENTRY_DATE_OF_BIRTH')) }}   
+{% else %}
+{{ forms.inputwithiconandpopover('dob', 'icon-fa-calendar', 'append', 'input-large', '', 'text', dob, constant('ENTRY_DATE_OF_BIRTH_ERROR'), constant('ENTRY_DATE_OF_BIRTH')) }}   
+{% endif %}
+                                        </div>
+                                        <script type="text/javascript">$('#dob').datepicker({format: '{{ constant('BOOTSTRAP_DATEPICKER_FORMAT') }}', language : '{{ constant('BOOTSTRAP_DATEPICKER_I18N_CODE') }}' });</script>
+                                        <noscript><span class="help-block"><span class="label label-info createaccount">{{ constant('INFO') }}</span> {{ constant('ENTRY_DATE_OF_BIRTH_ERROR') }}</span></noscript>
+                                    </div>
+{% endif %}
+                                    <div id="divemail_address" class="control-group">
+                                        <label class="control-label" for="email_address">{{ constant('ENTRY_EMAIL_ADDRESS') }}</label>
+                                        <div class="controls">
+{% if constant('ENTRY_EMAIL_ADDRESS_TEXT') != null %}
+{{ forms.inputwithtwoiconandpopover('email_address', 'icon-fa-envelope', 'icon-fa-exclamation-sign text-error', 'input-large', data['customers_email_address'], 'text', '', constant('ENTRY_EMAIL_ADDRESS_ERROR'), constant('ENTRY_EMAIL_ADDRESS')) }}
+{% else %}
+{{ forms.inputwithiconandpopover('email_address', 'icon-fa-envelope', 'append', 'input-large', '', 'text', data['customers_email_address'], constant('ENTRY_EMAIL_ADDRESS_ERROR'), constant('ENTRY_EMAIL_ADDRESS')) }}   
+{% endif %}
+                                            </div>
+                                            <noscript><span class="help-block"><span class="label label-info createaccount">{{ constant('INFO') }}</span> {{ constant('ENTRY_EMAIL_ADDRESS_ERROR') }}</span></noscript>
+                                        </div>
+                                    </div><!-- // end left -->
+{% if data['customers_default_address_id'] != null %}
+                                    <div class="pull-right span6">
+                                        <div  id="divtelephone" class="control-group">
+                                            <label class="control-label" for="telephone">{{ constant('ENTRY_TELEPHONE_NUMBER') }}</label>
+                                            <div class="controls">
+{% if constant('ENTRY_TELEPHONE_NUMBER_TEXT') != null %}
+{{ forms.inputtelephonetwoiconandpopover('telephone', 'icon-fa-phone', 'icon-fa-exclamation-sign text-error', '', data['customers_telephone'], 'text', '', constant('ENTRY_TELEPHONE_NUMBER_ERROR'), constant('ENTRY_TELEPHONE_NUMBER'), entry.countries_iso_code_2) }}   
+{% else %}
+{{ forms.inputtelephoneiconandpopover('telephone', 'icon-fa-phone', 'append', 'input-large', '', 'text', data['customers_telephone'], constant('ENTRY_TELEPHONE_NUMBER_ERROR'), constant('ENTRY_TELEPHONE_NUMBER'), entry.countries_iso_code_2) }}   
+{% endif %}
+                                                </div>
+                                                <noscript><span class="help-block"><span class="label label-info createaccount">{{ constant('INFO') }}</span> {{ constant('ENTRY_TELEPHONE_NUMBER_ERROR') }}</span></noscript>
+                                            </div>
+                                            <div  id="divfax" class="control-group">
+                                                <label class="control-label" for="fax">{{ constant('ENTRY_FAX_NUMBER') }}</label>
+                                                <div class="controls">
+{% if constant('ENTRY_FAX_NUMBER_TEXT') != null %}
+{{ forms.inputwithtwoiconandpopover('fax', 'icon-fa-print', 'icon-fa-exclamation-sign text-error', 'input-large', data['customers_fax'], 'text', '') }}   
+{% else %}
+{{ forms.inputwithiconandpopover('fax', 'icon-fa-print', 'input-prepend', 'input-large', '', 'text', data['customers_fax']) }}   
+{% endif %}
+                                                    </div> 
+                                                </div>
+                                            </div><!-- end right -->
+                                            <div id="form-errors" class="modal hide fade">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                    <h3 class="text-error"><i class="icon-fa-warning-sign"></i> {{ constant('CREATE_ACCOUNT_FORM_ERROR_TITLE') }}</h3>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p id="summary"></p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" data-dismiss="modal" aria-hidden="true" class="btn">Close</button>
+                                                </div>
+                                            </div><!-- end modal -->
+{% endif %}
+                                            <div class="clearfix"></div>
+                                            <div class="form-actions">                                               
+                                                <button type="submit" class="btn btn-primary pull-right"><i class="icon-fa-user icon-white"></i>  {{ constant('IMAGE_BUTTON_CONTINUE') }}</button>
+                                                <a href="{{ link('account','','SSL') | raw }}" class="btn"><i class="icon-fa-chevron-left icon-white"></i>  {{ constant('IMAGE_BUTTON_BACK') }}</a>
+                                            </div>
+                                            </form>
+                                        </div>
+                                    </div>
+    </div>
+                                    <script>
+                                                var validator = $("#account_edit").bind("invalid-form.validate", function() {
+                                        $("#summary").html("<strong>{{ constant('FORM_ERROR') }}" + validator.numberOfInvalids() + "{{ constant('FORM_ERROR_NUMBERS') | raw }}</strong>");
+                                                $("#form-errors").modal('show');
+                                                }).validate({
+                                        errorClass: 'alert alert-danger',
+                                                rules:{
+                                        gender: {required:{% if constant('ENTRY_GENDER_TEXT') != null %} true {% else %} false {% endif %}},
+                                                firstname : {required:{% if constant('ENTRY_FIRST_NAME_TEXT') != null %} true {% else %} false {% endif %}, minlength: {{ constant('ENTRY_FIRST_NAME_MIN_LENGTH') }}},
+                                                lastname : {required:{% if constant('ENTRY_LAST_NAME_TEXT') != null %} true {% else %} false {% endif %}, minlength: {{ constant('ENTRY_LAST_NAME_MIN_LENGTH') }}},
+                                                dob : {required:{% if constant('ENTRY_DATE_OF_BIRTH_TEXT') != null %} true {% else %} false {% endif %}, date:true},
+                                                email_address : {required:{% if constant('ENTRY_EMAIL_ADDRESS_TEXT') != null %} true {% else %} false {% endif %}, minlength: {{ constant('ENTRY_EMAIL_ADDRESS_MIN_LENGTH') }}, email:true}
+                                    {% if data['customers_default_address_id'] != null %}
+                                        ,
+                                                telephone: {required:{% if constant('ENTRY_TELEPHONE_NUMBER_TEXT') != null %} true {% else %} false {% endif %}, minlength: {{ constant('ENTRY_TELEPHONE_MIN_LENGTH') }} }
+                                    {% endif %}
+                                        },
+                                                messages:{
+                                        gender : {required:'{{ constant('ENTRY_GENDER_ERROR') }}'},
+                                                firstname : {required: '{{ constant('ALL_FORM_REQUIRED_INFORMATION') }}', minlength : '{{ constant('ENTRY_FIRST_NAME_ERROR') }}'},
+                                                lastname : {required: '{{ constant('ALL_FORM_REQUIRED_INFORMATION') }}', minlength : '{{ constant('ENTRY_LAST_NAME_ERROR') }}'},
+                                                dob : {required: '{{ constant('ALL_FORM_REQUIRED_INFORMATION') }}', minlength : '{{ constant('ENTRY_DATE_OF_BIRTH_ERROR') }}'},
+                                                email_address : {required: '{{ constant('ALL_FORM_REQUIRED_INFORMATION') }}', minlength: '{{ constant('ENTRY_EMAIL_ADDRESS_ERROR') }}', email: '{{ constant('ENTRY_EMAIL_ADDRESS_CHECK_ERROR') }}'}
+                                    {% if data['customers_default_address_id'] != null %}
+                                        ,
+                                                telephone : {required: '{{ constant('ALL_FORM_REQUIRED_INFORMATION') }}', minlength: '{{ constant('ENTRY_TELEPHONE_NUMBER_ERROR') }}'}
+                                    {% endif %}
+                                        },
+                                                errorPlacement: function(error, element) {
+                                        $('[type=radio]').removeClass('alert alert-danger');
+                                                if (element.attr("name") == "gender") {
+                                        error.insertAfter("#genderid");
+                                                } else{
+                                        error.insertAfter("#div" + element.attr("name"));
+                                                }
+                                        }
+                                        });
+                                        </script>
+{% endblock %}

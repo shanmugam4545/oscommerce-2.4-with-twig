@@ -1,0 +1,13 @@
+{# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
+{# file: includes/modules/templates/fullpagecenter/content/template_error.html.twig #}
+{% extends "base.html.twig" %}
+{% block appcontent %}
+<div class="span{{ GridContentWidth}}">
+  <div class="hero-unit">
+    <h1 class="page-header">{{ constant('TWIG_PAGE_NOT_FOUND') | raw }}</h1>
+    <br />
+{{ constant('TWIG_PAGE_NOT_FOUND_TEXT') | raw }}
+    <a href="{{ link() | raw }}" class="btn btn-large btn-info"><i class="icon-fa-home icon-white"></i> {{ constant('TWIG_PAGE_NOT_FOUND_BUTTON') }}</a>
+  </div>
+</div> <!-- /container -->
+{% endblock %}

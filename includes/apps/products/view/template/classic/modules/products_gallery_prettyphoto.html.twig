@@ -1,0 +1,25 @@
+{# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
+{# file: includes/apps/products/view/template/classic/modules/products_gallery_prettyphoto.html.twig #}
+{% extends "product_base.html.twig" %}
+{% block stylesheet %}
+<link href="ext/jquery/prettyPhoto/css/prettyPhoto.css" rel="stylesheet" />
+{% endblock %}
+{% block head_javascript %}
+<script src="ext/jquery/prettyPhoto/js/jquery.prettyPhoto.js"></script>
+{% endblock %}
+{% block gallery %}
+{% if gallery_data != null %}
+<div class="container-fluid span3 pull-right well" style="margin-left: 10px;">
+<h4 class="text-center">Gallery</h4>
+<ul class="gallery thumbnails">
+{% for key in gallery_data %}
+        <li class="thumbnail"><a href="{{ [constant('HTTP_SERVER'),constant('DIR_WS_HTTP_CATALOG'),constant('DIR_WS_IMAGES'),key.image]|join }}" title="{{ key.image }}" data-rel="prettyPhoto[gallery]">{{ image([constant('HTTP_SERVER'),constant('DIR_WS_HTTP_CATALOG'),constant('DIR_WS_IMAGES'),key.thumb]|join) | raw}}</a>
+{% endfor %}
+</ul>
+</div>
+<script>
+$(document).ready(function(){
+$(".gallery a[data-rel^='prettyPhoto']").prettyPhoto({hook:'data-rel',allow_resize: true,animation_speed:'normal',theme:'pp_default',slideshow:3000, autoplay_slideshow: false,social_tools: false});
+});</script>
+{% endif %}
+{% endblock %}

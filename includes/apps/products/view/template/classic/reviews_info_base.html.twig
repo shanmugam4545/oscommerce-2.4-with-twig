@@ -1,0 +1,60 @@
+{# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
+{# file: includes/apps/products/view/template/classic/reviews_info_base.html.twig #}
+{% extends "base.html.twig" %}
+{% block appcontent %}
+<div id="bodyContent" class="span{{ GridContentWidth}}">
+	<div class="row">
+		<div>
+			{% block specialprice %}
+			{% if review_special_price != null %}
+			<span class="pull-right">
+				<h2><strong>{{ review_product_price | raw}}</strong></h2>
+			</span>
+			{% else %}
+			<span class="pull-right">
+				<h2><strong>{{ review_product_price }}</strong></h2>
+			</span>
+			{% endif %}
+			{% endblock %}
+			{% block title %}
+			<h2><strong><a href="{{ link('products', ['id=' , review.products_id]|join) }}">{{ product_name }}</a></strong></h2>
+			{% endblock %}
+			{% if product_model != null %}
+			<span class="pull-left"><h4>[{{ review.products_model }}]</h4></span>
+			{% endif %}
+		</div>
+	</div>
+	<div class="row">
+		{% block image %}
+		<div class="span2">
+			<span class="thumbnail">
+				{{ image([constant('DIR_WS_IMAGES'),review.products_image]|join) | raw}}
+			</span>
+		</div>
+		{% endblock %}
+		<div>
+			{% block review_text %}
+			<p class="offset2 well">
+				{{ review.reviews_text }}
+			</p>
+			{% endblock %}
+			{% block review_button %}
+			<p class="pull-right">{{ button(constant('IMAGE_BUTTON_IN_CART'), 'shopping-cart', link('cart', ['add&id=', id , '&formid=' , md5]|join), 'btn') | raw }}</p>
+			{% endblock %}
+		</div>
+	</div>
+	<div class="row">
+		<div>
+			<p class="nav nav-list active pull-right">
+				<i class="icon-user"></i> {{ constant('TEXT_REVIEW_BY') |format(review.customers_name) }} |
+				<i class="icon-eye-open"></i> {{ constant('TEXT_REVIEWS_SEE') | format(review.reviews_read) }} |
+				<i class="icon-calendar"></i> {{ constant('TEXT_REVIEW_DATE_ADDED') | format(review.date_added |date("m/d/Y")) }}
+			</p>
+			<div class="buttonSet">
+				<span class="buttonAction">{{ button(constant('IMAGE_BUTTON_WRITE_REVIEW'), 'comment', link('products', ['reviews&new&id=' , id ]|join), 'warning') | raw}}</span>
+				{{ button(constant('IMAGE_BUTTON_BACK'), 'arrow-left', link('products', ['reviews&id=','id']|join) ) | raw }}
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,94 @@
+{# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
+{# file:  includes/apps/info/view/template/classic/contact.html.twig #}
+{% extends "base.html.twig" %}
+{% block head_javascript %}
+<script src="ext/jquery/jquery.validate.js"></script>
+{% endblock %}
+{% import "forms.html.twig" as forms %}
+{% block appcontent %}
+<div id="bodyContent" class="span{{ GridContentWidth}}">
+{{ form('contact_us', link('info', 'contact&process'), 'post', 'class="well" id="contact_us"', true) | raw }}
+                <div class="alert alert-error pull-right span3">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <span><i class="icon-fa-exclamation-sign text-error"></i></span> {{ constant('FORM_REQUIRED_INFORMATION') |slice(2)}}
+                </div>
+<h1 class="title-app">{{ constant('HEADING_TITLE_CONTACT') }}</h1>
+{{ messagestack('contact') | raw }}
+<div class="clearfix"></div>
+
+<div class="row-fluid">
+  <div class="span4">
+    <div id="divfirstname">
+    <label for="firstname">{{ constant('ENTRY_CONTACT_INPUT_FIRSTNAME') }}</label>
+    {% if constant('ENTRY_CONTACT_FIRSTNAME') != null %}
+    {{ forms.inputwithtwoiconandpopover('firstname','icon-fa-user','icon-fa-exclamation-sign text-error','input-xlarge','','text',constant('ENTRY_CONTACT_PLACEHOLDER_FIRSTNAME'),constant('ENTRY_CONTACT_FIRSTNAME_ERROR'),constant('ENTRY_CONTACT_INPUT_FIRSTNAME')) }}
+    {% else %}
+    {{ forms.inputwithiconandpopover('firstname', 'icon-fa-user', 'append', 'input-large', '', 'text', '', constant('ENTRY_CONTACT_PLACEHOLDER_FIRSTNAME'),constant('ENTRY_CONTACT_FIRSTNAME_ERROR'),constant('ENTRY_CONTACT_INPUT_FIRSTNAME')) }}   
+    {% endif %}
+    </div>
+    <div id="divlastname">
+    <label for="lastname">{{ constant('ENTRY_CONTACT_INPUT_LASTNAME') }}</label>
+    {% if constant('ENTRY_CONTACT_LASTNAME') != null %}
+    {{ forms.inputwithtwoiconandpopover('lastname','icon-fa-user','icon-fa-exclamation-sign text-error','input-xlarge','','text',constant('ENTRY_CONTACT_PLACEHOLDER_LASTNAME'),constant('ENTRY_CONTACT_LASTNAME_ERROR'),constant('ENTRY_CONTACT_INPUT_LASTNAME')) }}
+    {% else %}
+    {{ forms.inputwithiconandpopover('lastname', 'icon-fa-user', 'append', 'input-large', '', 'text', '', constant('ENTRY_CONTACT_PLACEHOLDER_LASTNAME'),constant('ENTRY_CONTACT_LASTNAME_ERROR'),constant('ENTRY_CONTACT_INPUT_LASTNAME')) }}   
+    {% endif %}
+    </div>
+    <div id="divemail">
+    <label for="email">{{ constant('ENTRY_CONTACT_INPUT_EMAIL') }}</label>
+    {% if constant('ENTRY_CONTACT_EMAIL') != null %} 
+    {{ forms.inputwithtwoiconandpopover('email','icon-fa-envelope','icon-fa-exclamation-sign text-error','input-xlarge','','text',constant('ENTRY_CONTACT_PLACEHOLDER_EMAIL'),constant('ENTRY_CONTACT_EMAIL_ERROR'),constant('ENTRY_CONTACT_INPUT_EMAIL')) }}
+    {% else %}
+    {{ forms.inputwithiconandpopover('email', 'icon-fa-envelope', 'append', 'input-large', '', 'text', '', constant('ENTRY_CONTACT_PLACEHOLDER_EMAIL'),constant('ENTRY_CONTACT_EMAIL_ERROR'),constant('ENTRY_CONTACT_INPUT_EMAIL')) }}   
+    {% endif %}
+    </div>
+  </div>
+  <div class="span8">   
+      <div id="divenquiry">
+      <label for="enquiry">{{ constant('ENTRY_ENQUIRY') }}</label>
+      {{ textareafield('enquiry', 'soft', 50, 15,null, 'class="input-xlarge span10"') | raw }}   
+      </div>
+  </div>
+
+</div>
+<div class="form-actions">
+<button type="submit" class="btn btn-primary pull-right"><i class="icon-fa-ok-sign icon-white"></i>  {{ constant('IMAGE_BUTTON_CONTINUE') }}</button>
+<a class="btn" href="{{ link('info') | raw }}"><i class="icon-fa-chevron-left"></i>  {{ constant('IMAGE_BUTTON_BACK')}}</a>
+</div>
+</form>
+</div>
+                                    <div id="form-errors" class="modal hide fade">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h3 class="text-error"><i class="icon-fa-warning-sign"></i> {{ constant('CONTACT_US_FORM_ERROR_TITLE') }}</h3>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p id="summary"></p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" data-dismiss="modal" aria-hidden="true" class="btn">Close</button>
+                                        </div>
+                                    </div><!-- end modal -->
+<script>
+var validator = $("#contact_us").bind("invalid-form.validate", function() {
+                                        $("#summary").html("<strong>{{ constant('CONTACT_US_FORM_ERROR') }}" + validator.numberOfInvalids() + "{{ constant('CONTACT_US_FORM_ERROR_NUMBERS') | raw }}</strong>");
+                                                $("#form-errors").modal('show');
+                                                }).validate({
+                                        errorClass: 'alert alert-danger',
+                                                rules:{                                        
+                                                firstname : {required:{% if constant('ENTRY_CONTACT_FIRSTNAME') != null %} true {% else %} false {% endif %}, minlength: {{ constant('ENTRY_CONTACT_FIRSTNAME_MIN_LENGTH') }}},
+                                                lastname : {required:{% if constant('ENTRY_CONTACT_LASTNAME') != null %} true {% else %} false {% endif %}, minlength: {{ constant('ENTRY_CONTACT_LASTNAME_MIN_LENGTH') }}},                                                
+                                                email : {required:{% if constant('ENTRY_CONTACT_EMAIL') != null %} true {% else %} false {% endif %}, minlength: {{ constant('ENTRY_CONTACT_EMAIL_MIN_LENGTH') }}, email:true},
+                                        enquiry: {required:true, minlength: {{ constant('ENTRY_CONTACT_ENQUIRY_MIN_LENGTH') }}}
+                                        },
+                                                messages:{                                        
+                                                firstname : {required: '{{ constant('ENTRY_CONTACT_REQUIRED') }}', minlength : '{{ constant('ENTRY_CONTACT_FIRSTNAME_ERROR') }}'},
+                                                lastname : {required: '{{ constant('ENTRY_CONTACT_REQUIRED') }}', minlength : '{{ constant('ENTRY_CONTACT_LASTNAME_ERROR') }}'},                                                
+                                                email : {required: '{{ constant('ENTRY_CONTACT_REQUIRED') }}', minlength: '{{ constant('ENTRY_CONTACT_EMAIL_ERROR') }}', email: '{{ constant('ENTRY_CONTACT_EMAIL_CHECK_ERROR') }}'},
+                                                enquiry:{required: '{{ constant('ENTRY_CONTACT_REQUIRED') }}', minlength: '{{ constant('ENTRY_CONTACT_ENQUIRY_ERROR') }}'}
+                                                },
+                                                errorPlacement: function(error, element) {                 
+                                        error.insertAfter("#div" + element.attr("name"));                                               
+                                        }
+                                        });</script>
+{% endblock %}

@@ -1,0 +1,108 @@
+{# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
+{# file: includes/apps/cart/view/template/classic/main.html.twig #}
+{% extends "base.html.twig" %}
+{% block appcontent %}
+<div id="bodyContent" class="span{{ GridContentWidth }}">
+{% block shoppingcarttitle %}
+        <h1 class="title-app">{{ constant('HEADING_TITLE') }}</h1>
+{% endblock %}
+{{ form('cart_quantity', link('cart', 'update'), 'post', null, true) | raw }}
+{% for hf in hidden_field %} 
+{{ hf | raw}}
+{% endfor %}
+        <table class="table table-bordered table-hover">
+            <thead class="center_text">
+                <tr>
+                    <th class="center_text text_black"><i class="icon-fa-picture"></i> {{ constant('TWIG_PRODUCT_IMAGE') }}</th>
+                    <th class="center_text text_black"><i class="icon-fa-th-large"></i> {{ constant('TWIG_PRODUCT_NAME') }}</th>
+                    <th class="center_text text_black"><i class="icon-fa-barcode"></i>  {{ constant('TWIG_PRODUCT_MODEL') }}</th>
+                    <th class="center_text text_black"><i class="icon-fa-inbox"></i>  {{ constant('TWIG_PRODUCT_QTY') }}</th>
+                    <th class="center_text text_black"><i class="icon-fa-money"></i>  {{ constant('TWIG_PRODUCT_UNIT_PRICE') }}</th>
+                    <th class="center_text text_black"><i class="icon-fa-money"></i> {{ constant('TWIG_PRODUCT_TOTAL_PRICE') }}</th>
+                    <th class="center_text text_black"><i class="icon-fa-trash"></i>  {{ constant('TWIG_PRODUCT_REMOVE') }}</th>
+                </tr>
+            </thead>
+            <tbody>                
+{% for product in data %}
+{% set row = 1 %}  
+{% if  product['attributes']|length == 1 %}
+{% set row = 3 %}                    
+{% else %}
+{% endif %}                    
+{% if product['attributes']|length > 1  %}
+{% set row = product['attributes']|length * product['attributes']|length    %}
+{% endif %}
+                    <tr>
+                        <td {% if row > 0 %}rowspan="{{row}}"{% endif %} class="muted center_text"><a href="{{ link('products', ['id=',product['id']]|join) | raw }}"><img class="img-polaroid" src="{{ [constant('DIR_WS_IMAGES'),product['image']]|join }}" alt="{{ product['name'] }}"></a></td>
+                        <td class="center_text"><a href="{{ link('products', ['id=',product['id']]|join) | raw }}">{{ product['name'] }}</a></td>
+                        <td class="center_text">{{ product['model'] }}</td>
+                        <td class="center_text"><div class="form-search"><div class="input-append">{{ inputfield('cart_quantity[]', product['quantity'], 'class="input-mini"','','number') | raw }}{{ hiddenfield('products_id[]', product['id']) | raw}}<button class="btn btn-primary" type="submit"><i class="icon-fa-refresh"></i>  {{constant('IMAGE_BUTTON_UPDATE') }}</button></div></div></td>
+                        <td class="center_text">{{ product['unit_price'] }}</td>
+                        <td class="center_text">{{ product['calculate_price'] }}</td>
+                        <td class="center_text"><a class="btn btn-danger" href="{{ link('cart', ['remove&id=',product['id'],'&formid=',token]|join) | raw}}"><i class="icon-fa-trash"></i>  {{ constant('TEXT_REMOVE') }}</a></td>
+{% if product['attributes']|length > 0 %}
+                    <tr>
+                        <th colspan="1" class="center_text text-info text_black"><i class="icon-fa-barcode"></i> {{ constant('TWIG_PRODUCT_OPTION_NAME') }}</th>
+                        <th colspan="2" class="center_text text_black text-info"><i class="icon-fa-filter"></i> {{ constant('TWIG_PRODUCT_OPTION_VALUE') }}</th>
+                        <th colspan="2" class="center_text text_black text-info"><i class="icon-fa-money"></i> {{ constant('TWIG_PRODUCT_OPTION_UNIT_PRICE') }}</th>
+                        <th colspan="1" class="center_text text_black text-info"><i class="icon-fa-money"></i> {{ constant('TWIG_PRODUCT_OPTION_TOTAL_PRICE') }}</th>
+                    </tr>
+{% endif %}
+{% for key in product['attributes']|keys %}
+                    <tr>
+                  
+{% for key,value in product[key] %}
+{% if key == 'products_options_name' and value == null %}
+{% set optional = true %}
+{% endif %}
+{% if key == 'products_options_name' and optional == false %}
+                            <td colspan="1" class="center_text">{{ value }}</td>
+{% endif %} 
+{% if key == 'products_options_values_name' and optional == false %} 
+                            <td colspan="2" class="center_text">{{ value }}</td>
+{% endif %}
+{% if key == 'options_values_unit_price'  and optional == false %}
+                            <td colspan="2" class="center_text">
+{% if value|slice(0,1) == '+' %}
+                                    <span class="label label-success">
+{% else %}
+                                            <span class="label label-warning">
+{% endif %}
+{{ value }}
+                                                </span>
+                                        </td>
+{% endif %} 
+{% if key == 'options_values_final_price' and optional == false %}
+                                        <td colspan="1" class="center_text">{{ value  | raw}}</td>
+{% endif %} 
+{% endfor %}
+                                    </tr>
+{% endfor %}
+                                    <tr class="text_black">
+                                        <td colspan="7" class="center_text text-error">
+{% if product['out_of_stock'] == true and constant('STOCK_ALLOW_CHECKOUT') == true %} 
+{{ constant('TWIG_OUT_OF_STOCK_CANT_CHECKOUT') | raw }}
+{% endif %}
+{% if product['out_of_stock'] == true and constant('STOCK_ALLOW_CHECKOUT') == false %} 
+{{ constant('TWIG_OF_STOCK_CAN_CHECKOUT') | raw }}
+{% endif %}
+                                            </td></tr>
+{% endfor %}
+                                        
+                                    </tbody>
+                                </table>
+                                <div class="well"><span class="pull-right"><strong>{{ constant('SUB_TITLE_SUB_TOTAL') }}</strong>  {{ subtotal }}</span>
+                                    <div class="clearfix"></div>
+                                    <div class="form-actions">
+                                        <div class="controls pull-right">
+{{ button(constant('IMAGE_BUTTON_CHECKOUT'), 'play', link('checkout', '', 'SSL') | raw, 'success') | raw}}
+                                            </div>
+                                            <span class="pull-left">    
+{% for mod in payment_modules.checkout_initialization_method %}
+{{ mod | raw }}
+{% endfor %}
+                                                </span></div>
+                                        </div> 
+                                    </form>
+                                </div>
+{% endblock %}

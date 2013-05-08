@@ -1,0 +1,42 @@
+/**
+ * osCommerce Online Merchant
+ *
+ * @copyright Copyright (c) 2013 osCommerce; http://www.oscommerce.com
+ * @copyright Copyright (c) 2013 FoxP2; http://www.oscommerce.fr
+ * @license GNU General Public License; http://www.oscommerce.com/gpllicense.txt
+ */
+
+#sort-by a, #sort-direction a {
+text-decoration: none;
+}
+.isotope-item {
+-moz-transition-duration: 0.8s;
+-ms-transition-duration: 0.8s;
+-o-transition-duration: 0.8s;
+transition-duration: 0.8s;
+-webkit-transition-duration: 0.8s;
+z-index: 2;
+}
+.element.transition {
+background: #0F8;
+background: hsl( 144, 100%, 50%);
+}
+.element {
+overflow: hidden;
+position: aboslute;
+margin-left: 0px;
+}
+.isotope .isotope-item {
+-webkit-transition-property: -webkit-transform, opacity;
+-moz-transition-property: -moz-transform, opacity;
+-ms-transition-property: -ms-transform, opacity;
+-o-transition-property: -o-transform, opacity;
+transition-property: transform, opacity;
+}
+.isotope, .isotope .isotope-item {
+-webkit-transition-duration: 0.8s;
+-moz-transition-duration: 0.8s;
+-ms-transition-duration: 0.8s;
+-o-transition-duration: 0.8s;
+transition-duration: 0.8s;
+}

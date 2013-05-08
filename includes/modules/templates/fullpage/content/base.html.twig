@@ -1,0 +1,166 @@
+{# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
+{# file: includes/modules/templates/fullpage/content/base.html.twig #}
+<!DOCTYPE html>
+<html {{ constant('HTML_PARAMS') | raw }}>
+    <head>
+{% set GridContentWidth = 12 %}
+{% block head %}
+            <meta charset="{{ constant('CHARSET') }}" />
+            <title>{{ title }}</title>
+            <base href="{{ base_href }}" />
+            <link rel="icon" type="image/png" href="public/images/oscommerce_icon.png" />
+            <meta name="generator" content="osCommerce Online Merchant" />
+{% endblock %}
+        {# required in all applications #}
+            
+            <link href="ext/bootstrap/css/bootstrap.min.css" rel="stylesheet">            
+            <link href="public/template/gosling/css/general.css" rel="stylesheet" />            
+            <link href="ext/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">            
+            <link href="ext/bootstrap/css/font-awesome.min.css" rel="stylesheet"/>            
+            <link href="ext/bootstrap/css/bootstrap-select.min.css" rel="stylesheet" />
+            <link href="public/template/fullpage/css/fullpage.css" rel="stylesheet" />
+            
+
+
+        {% block stylesheet %}
+        {# here call specific stylesheet files for your app #}
+        {% endblock %}
+            <script src="ext/jquery/jquery-1.9.1.min.js"></script>
+            <script src="ext/bootstrap/js/bootstrap.min.js"></script>
+            <script src="ext/bootstrap/js/bootstrap-select.min.js"></script>
+        {% block head_javascript %}
+        {# here call specific javascript files for your app #}
+        {% endblock %}
+        {% block internetexplorer %}
+        <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+        <script src="ext/assets/js/html5shiv.js"></script>
+        <![endif]-->
+        {% endblock %}
+        {% block header_tags %}
+        {{ header_tags | raw}}
+        {% endblock %}
+     </head>
+        <body>
+            <div id="bodyWrapper" class="container-fluid">
+
+{% block headermessage %}
+     {{ header_message() | raw }}
+{% endblock %}
+
+
+{% block header %}
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+      <div class="container-fluid">
+        <a data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <a href="{{ link() |raw }}" class="brand">osCommerce 2.4</a>
+        <div  class="nav-collapse">
+          <ul id="cat_menu" class="nav">
+           {{ categorie_menu() | raw }}
+          </ul>
+        </div>
+        <script>
+     jQuery('.submenu').hover(function () {
+        jQuery(this).children('ul').removeClass('submenu-hide').addClass('submenu-show');
+    }, function () {
+        jQuery(this).children('ul').removeClass('.submenu-show').addClass('submenu-hide');
+    });
+    </script>
+        <div class="nav-collapse">
+<ul class="nav pull-right">
+{% if session.customer.id != null %}
+            <li class="dropdown">
+                <a href="#" {% if app_code == 'account' %} id="account-nav"{% endif %} class="dropdown-toggle" data-toggle="dropdown"><i class="icon-fa-user icon-white"></i> {{ constant('HEADER_TITLE_MY_ACCOUNT') }} <b class="caret icon-white"></b></a>
+                <ul class="dropdown-menu">
+                <li{% if app_content_file == 'main' and app_code == 'account' %} class="active"{% endif %}>{{ app_action }}<a href="{{ link('account','main','SSL') | raw}}"><i class="icon-fa-user"></i> {{ constant('HEADER_TITLE_MY_ACCOUNT') }}</a></li>
+                <li{% if app_content_file == 'edit' %} class="active"{% endif %}><a href="{{ link('account', 'edit', 'SSL') | raw }}"><i class="icon-fa-user"></i>  {{ constant('NAV_ACCOUNT_INFORMATION') }}</a></li>
+                <li{% if app_content_file == 'address_book' or app_content_file == 'address_book_process'%} class="active"{% endif %}><a href="{{ link('account', 'address_book', 'SSL') | raw}}"><i class="icon-fa-book"></i>  {{ constant('NAV_ACCOUNT_ADDRESS_BOOK') }}</a></li>
+                <li{% if app_content_file == 'password&change' %} class="active"{% endif %}><a href="{{ link('account', 'password&change', 'SSL') | raw}}"><i class="icon-fa-lock"></i>  {{ constant('NAV_ACCOUNT_PASSWORD') }}</a></li>
+                <li class="divider"></li>
+                <li{% if app_content_file == 'orders' %} class="active"{% endif %}><a href="{{ link('account', 'orders', 'SSL') | raw}}"><i class="icon-fa-shopping-cart"></i>  {{ constant('NAV_ORDERS_VIEW') }}</a></li>
+                <li class="divider"></li>
+                <li{% if app_content_file == 'newsletters' %} class="active"{% endif %}><a href="{{ link('account', 'newsletters', 'SSL') | raw}}"><i class="icon-fa-envelope"></i>  {{ constant('NAV_EMAIL_NOTIFICATIONS_NEWSLETTERS') }}</a></li>
+                <li{% if app_content_file == 'notifications' %} class="active"{% endif %}><a href="{{ link('account', 'notifications', 'SSL') | raw}}"><i class="icon-fa-bell"></i> {{ constant('NAV_EMAIL_NOTIFICATIONS_PRODUCTS') }}</a></li>
+                <li class="divider"></li>
+                <li{% if app_content_file == 'logoff' %} class="active"{% endif %}><a href="{{ link('account','logoff','SSL') | raw}}" class="navbar-link" style="color:red"><i class="icon-fa-lock text-error"></i>  {{ constant('HEADER_TITLE_LOGOFF') }}</a></li>
+
+                </ul>
+            </li>
+{% endif %}
+            {% if session.customer.id == null %}
+                    <li class="dropdown"><a class="dropdown-toggle muted" data-toggle="dropdown" href="{{ link('account' , 'login' , 'SSL') | raw }}"><i class="icon-fa-lock"></i> {{ constant('HEADER_TITLE_LOGIN') }}</a>
+                    {% for boxe in boxes %} 
+                    {% if boxe.boxe != null and boxe.boxe == 'twig_bm_login' %}
+                    {% include [boxe.boxe, TwigExtension]|join with{'data': boxe.data, 'title' : boxe.title} %}
+                    {% endif %}
+                    {% endfor %}
+                    </li>                    
+                    <li{% if app_content_file == 'create' and app_code == 'account' %} class="active"{% endif %}><a class="muted" href="{{ link('account', 'create', 'SSL') | raw }}"><i class="icon-fa-signin"></i> {{ constant('HEADER_TITLE_SIGNUP') }}</a></li>
+        {% endif %}
+                    <li{% if app_code == 'cart' %} class="active"{% endif %}><a class="muted" href="{{ link('cart') }}" id="popovercart"><i class="icon-fa-shopping-cart"></i> {{ constant('HEADER_TITLE_CART') }} {% if session.cart.count_contents > 0 %}({{ session.cart.count_contents}}){% endif %}</a></li>
+        </ul>
+{% for boxe in boxes %}        
+{% if boxe.boxe != null and boxe.boxe == 'twig_bm_search' %}
+{% include [boxe.boxe, TwigExtension]|join with{'data': boxe.data, 'title' : boxe.title , 'hide_session_id' : hide_session_id} %}
+{% endif %}
+{% endfor %}
+            </div>
+      </div>
+    </div>
+{% for boxe in boxes %}        
+{% if boxe.boxe != null and boxe.boxe == 'twig_bm_shopping_cart' %}
+{% include [boxe.boxe, TwigExtension]|join with{'data': boxe.data, 'title' : boxe.title} %}
+{% endif %}
+{% endfor %}
+
+{% block breadcrumb %}
+<div id="breadcrumb" class="row-fluid">
+        {{ breadcrumb  | raw}}
+</div>
+{% endblock %}
+</div>
+{% endblock %}
+
+
+
+{% block error_message %}
+{{ error_message() | raw }}
+{% endblock %}
+
+{% block info_message %}
+{{ info_message() | raw }}
+{% endblock %}
+
+<div class="row-fluid" style="margin-top:80px">               
+
+{% block appcontent %}
+{% endblock %}
+
+
+</div><!-- //end row fluid -->
+
+</div><!-- // end bodywrapper -->
+{% block footer %}
+<hr>
+<div id="footer" class="span12">
+       
+{% for boxe in boxes %}        
+{% if boxe.boxe != null and boxe.boxe == 'twig_bm_information' or boxe.boxe == 'twig_bm_social' %}
+{% include [boxe.boxe, TwigExtension]|join with{'data': boxe.data, 'title' : boxe.title } %}
+{% endif %}
+{% endfor %}
+</div><!-- end footer -->
+{% endblock %}
+
+
+{% block footerscript %}
+    {{ footer_script | raw}}
+{% endblock %}
+
+</body>
+</html>

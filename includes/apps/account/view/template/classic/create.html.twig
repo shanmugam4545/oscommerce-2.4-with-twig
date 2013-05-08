@@ -1,0 +1,227 @@
+{# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
+{# file: includes/apps/account/view/template/classic/create.html.twig #}
+{% extends "base.html.twig" %}
+{% block stylesheet %}
+<link rel="stylesheet" href="ext/bootstrap/css/datepicker.css" />
+{% endblock %}
+{% block head_javascript %}
+<script src="ext/jquery/jquery.validate.js"></script>
+<script src="ext/bootstrap/js/bootstrap-datepicker.js"></script>
+{% if constant('BOOTSTRAP_DATEPICKER_I18N_CODE') is not null %}
+<script src="ext/bootstrap/js/locales/bootstrap-datepicker.{{ constant('BOOTSTRAP_DATEPICKER_I18N_CODE')}}.js" charset="UTF-8"></script>
+{% endif %}
+{% endblock %}
+{% block appcontent %}
+<div id="account" class="span{{ GridContentWidth}}">
+    <div class="row-fluid">
+{{ messagestack('create_account') | raw }}
+            <h1 class="title-app">{{ constant('HEADING_TITLE_CREATE') }}</h1>
+            <div class="alert alert-warning">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <span>{{ constant('TEXT_ORIGIN_LOGIN') | format(link('account', 'login', 'SSL')) | raw}}</span>
+            </div>
+            <div class="contentContainer">
+                <div id="form-helper" class="alert alert-info pull-left span6">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <span class="label badge-info"><i class="icon-fa-question-sign icon-white"></i></span> {{ constant('FORM_HELPER') }}    
+                </div>
+                <div class="alert alert-error pull-right span6">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <span><i class="icon-fa-exclamation-sign text-error"></i></span> {{ constant('FORM_REQUIRED_INFORMATION') |slice(2)}}
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="contentContainer">
+{{ form('create_account', link('account', 'create&process', 'SSL'), 'post', 'id="create_account"', true) | raw}}
+                    <div class="span6" style="margin:0;">
+                        <h3 class="text-info">{{ constant('CATEGORY_PERSONAL') }}</h3>
+{% if constant('ACCOUNT_GENDER') == 'true' %}
+                        <div class="contentText">
+                            <fieldset>
+                                <legend>{{ constant('ENTRY_GENDER') }}</legend>
+                                <a id="genderpopover" style="margin-top:10px;" class="label label-info pull-right popsover" data-toogle="popover" data-placement="left" data-content="{{ constant('ENTRY_GENDER_ERROR') }}" data-original-title="{{ constant('ENTRY_GENDER') }}"><i class="icon-fa-question-sign icon-white"></i></a>
+                                <div id="genderid" class="btn-group" style="margin-bottom: 10px;">
+                                    <label class="btn radio radio-label" id="radio-label-male">
+{{ radio('gender', 'm') | raw }}{{ constant('MALE') }}
+                                        </label>
+                                        <label class="btn radio radio-label" id="radio-label-female">  
+{{ radio('gender', 'f') | raw }}{{ constant('FEMALE') }}
+                                            </label>
+{% if constant('ENTRY_GENDER_TEXT') != null %}<span class="btn"><i class="icon-fa-exclamation-sign text-error"></i></span>{% endif %}
+                                        </div>	 
+                                    </fieldset>
+                                    <noscript><span class="help-block"><span class="label label-info createaccount">{{ constant('CREATE_ACCOUNT_INFO') }}</span> {{ constant('ENTRY_GENDER_ERROR') }}</span></noscript>
+                                </div>
+{% endif %}
+                                <br />
+                                <div class="contentText">
+                                    <fieldset>
+                                        <legend>{{ constant('ENTRY_FIRST_NAME') }}</legend>
+                                        <a id="firstnamepopover" class="label label-info pull-right popsover" data-toogle="popover" data-placement="left" data-content="{{ constant('ENTRY_FIRST_NAME_ERROR') }}" data-original-title="{{ constant('ENTRY_FIRST_NAME') }}"><i class="icon-fa-question-sign icon-white"></i></a>
+{% if constant('ENTRY_FIRST_NAME_TEXT') != null %}<div id="firstname" class="input-prepend input-append">{% else %}<div id="firstname" class="input-prepend">{% endif %}			
+                                                <span class="add-on"><i class="icon-fa-user"></i></span>
+{{ inputfield('firstname') | raw }}
+{% if constant('ENTRY_FIRST_NAME_TEXT') != null %}<span class="add-on"><i class="icon-fa-exclamation-sign text-error"></i></span></div>{% else %}</div>{% endif %}
+                                        <noscript><span class="help-block"><span class="label label-info createaccount">{{ constant('CREATE_ACCOUNT_INFO') }}</span> {{ constant('ENTRY_FIRST_NAME_ERROR') }}</span></noscript>
+                                    </fieldset>
+                                </div>
+                                <br />
+                                <div class="contentText">
+                                    <fieldset>
+                                        <legend>{{ constant('ENTRY_LAST_NAME') }}</legend>
+                                        <a id="lastnamepopover" class="label label-info pull-right popsover" data-toogle="popover" data-placement="left" data-content="{{ constant('ENTRY_LAST_NAME_ERROR') }}" data-original-title="{{ constant('ENTRY_LAST_NAME') }}"><i class="icon-fa-question-sign icon-white"></i></a>
+{% if constant('ENTRY_LAST_NAME_TEXT') != null %}<div id="lastname" class="input-prepend input-append">{% else %}<div id="lastname" class="input-prepend">{% endif %}		
+                                                <span class="add-on"><i class="icon-fa-user"></i></span>
+{{ inputfield('lastname') | raw }}
+{% if constant('ENTRY_LAST_NAME_TEXT') != null %}<span class="add-on"><i class="icon-fa-exclamation-sign text-error"></i></span></div>{% else %}</div>{% endif %}
+                                        <noscript><span class="help-block"><span class="label label-info createaccount">{{ constant('CREATE_ACCOUNT_INFO') }}</span> {{ constant('ENTRY_LAST_NAME_ERROR') }}</span></noscript>
+                                    </fieldset>
+                                </div>
+                                <br />
+{% if constant('ACCOUNT_DOB') == 'true' %}			
+                                <div class="contentText">
+                                    <fieldset>
+                                        <legend>{{ constant('ENTRY_DATE_OF_BIRTH') }}</legend>
+                                        <a class="label label-info pull-right popsover" id="birthdaypopover" data-toogle="popover" data-placement="left" data-content="{{ constant('ENTRY_DATE_OF_BIRTH_ERROR') }}" data-original-title="{{ constant('ENTRY_DATE_OF_BIRTH') }}"><i class="icon-fa-question-sign icon-white"></i></a>        
+{% if constant('ENTRY_DATE_OF_BIRTH_TEXT') != null %}<div id="dobid" class="input-prepend input-append">{% else %}<div id="dobid" class="input-prepend">{% endif %}        
+                                                <span class="add-on"><i class="icon-fa-calendar"></i></span>
+{{ inputfield('dob', '', 'id="dob" data-toogle="popover" data-placement="left" data-content="test" data-original-title="test"') | raw}}<script type="text/javascript">$('#dob').datepicker({format: '{{ constant('BOOTSTRAP_DATEPICKER_FORMAT') }}', language : '{{ constant('BOOTSTRAP_DATEPICKER_I18N_CODE') }}' });</script>
+{% if constant('ENTRY_DATE_OF_BIRTH_TEXT') != null %}<span class="add-on"><i class="icon-fa-exclamation-sign text-error"></i></span></div>{% else %}</div>{% endif %}        
+                                        <noscript><span class="help-block"><span class="label label-info createaccount">{{ constant('CREATE_ACCOUNT_INFO') }}</span> {{ constant('ENTRY_DATE_OF_BIRTH_ERROR') }}</span></noscript>
+                                    </fieldset>
+                                </div>
+{% endif %}
+                            </div><!-- // end left -->
+                            <div class="pull-right span6">
+                                <h3 class="text-info">{{ constant('CATEGORY_LOGIN') }}</h3>
+                                <div class="contentText">
+                                    <fieldset>
+                                        <legend>{{ constant('ENTRY_EMAIL_ADDRESS') }}</legend>
+                                        <a class="label label-info pull-right popsover" data-toogle="popover" data-placement="left" data-content="{{ constant('ENTRY_EMAIL_ADDRESS_ERROR') }}" data-original-title="{{ constant('ENTRY_EMAIL_ADDRESS') }}"><i class="icon-fa-question-sign icon-white"></i></a>
+{% if constant('ENTRY_EMAIL_ADDRESS_TEXT') != null %}<div id="email_address" class="input-prepend input-append">{% else %}<div id="email_address" class="input-prepend">{% endif %}	 
+                                                <span class="add-on"><i class="icon-fa-envelope"></i></span>
+{{ inputfield('email_address','','','email') | raw }}
+{% if constant('ENTRY_EMAIL_ADDRESS_TEXT') != null %}<span class="add-on"><i class="icon-fa-exclamation-sign text-error"></i></span></div>{% else %}</div>{% endif %}			 
+                                        <noscript><span class="help-block"><span class="label label-info createaccount">{{ constant('CREATE_ACCOUNT_INFO') }}</span> {{ constant('ENTRY_EMAIL_ADDRESS_ERROR') }}</span></noscript>
+                                    </fieldset>
+                                </div>
+                                <div class="contentText">
+                                    <fieldset>
+                                        <legend>{{ constant('ENTRY_PASSWORD') }}</legend>
+                                        <a class="label label-info pull-right popsover" data-toogle="popover" data-placement="left" data-content="{{ constant('ENTRY_PASSWORD_ERROR') }}" data-original-title="{{ constant('ENTRY_PASSWORD') }}"><i class="icon-fa-question-sign icon-white"></i></a>
+{% if constant('ENTRY_PASSWORD_TEXT') != null %}<div class="input-prepend input-append">{% else %}<div id="passwordid" class="input-prepend">{% endif %}			 
+                                                <span class="add-on"><i class="icon-fa-lock"></i></span>
+{{ password('password','','id="password"') | raw }}<a href="#" id="showpassword" class="btn hidden" data-placement="top" data-toggle="tooltip" data-original-title="{{ constant('ENTRY_SHOW_PASSWORD') }}"><i class="icon-fa-check-empty"></i></a>
+{% if constant('ENTRY_PASSWORD_TEXT') != null %}<span class="add-on"><i class="icon-fa-exclamation-sign text-error"></i></span></div><span id="passwordid"></span>{% else %}</div><span id="passwordid"></span>{% endif %}
+                                        <noscript><span class="help-block"><span class="label label-info createaccount">{{ constant('CREATE_ACCOUNT_INFO') }}</span>{{ constant('ENTRY_PASSWORD_ERROR') }}</span></noscript>
+                                    </fieldset>
+                                </div>
+                                <div class="contentText">
+                                    <fieldset>
+                                        <legend>{{ constant('ENTRY_PASSWORD_CONFIRMATION') }}</legend>
+                                        <a class="label label-info pull-right popsover" data-toogle="popover" data-placement="left" data-content="{{ constant('ENTRY_PASSWORD_ERROR_NOT_MATCHING') }}" data-original-title="{{ constant('ENTRY_PASSWORD_CONFIRMATION') }}"><i class="icon-fa-question-sign icon-white"></i></a>
+{% if constant('ENTRY_PASSWORD_CONFIRMATION_TEXT') != null %}<div id="confirmationid" class="input-prepend input-append">{% else %}<div id="confirmationid" class="input-prepend">{% endif %}			 
+                                                <span class="add-on"><i class="icon-fa-lock"></i></span>
+{{ password('confirmation','','id="confirmation"') | raw }}<a href="#" id="showconfirmation" class="btn hidden" data-placement="top" data-toggle="tooltip" data-original-title="{{ constant('ENTRY_SHOW_PASSWORD') }}"><i class="icon-fa-check-empty"></i></a>
+{% if constant('ENTRY_PASSWORD_CONFIRMATION_TEXT') != null %}<span class="add-on"><i class="icon-fa-exclamation-sign text-error"></i></span></div><span id="idconfirmation"></span>{% else %}</div><span id="idconfirmation"></span>{% endif %}
+                                        <noscript><span class="help-block"><span class="label label-info createaccount">{{ constant('CREATE_ACCOUNT_INFO') }}</span> {{ constant('ENTRY_PASSWORD_ERROR_NOT_MATCHING') }}</span></noscript>
+                                    </fieldset>
+                                </div>
+                                <div class="contentText">
+                                    <fieldset>
+                                        <legend>{{ constant('ENTRY_NEWSLETTER') }}</legend>
+                                        <a class="label label-info pull-right popsover" data-toogle="popover" data-placement="left" data-content="{{ constant('ENTRY_NEWSLETTER_ERROR') }}" data-original-title="{{ constant('ENTRY_NEWSLETTER') }}"><i class="icon-fa-question-sign icon-white"></i></a>
+                                        <div class="btn-group" style="margin-bottom: 10px;">
+                                            <label class="btn checkbox radio-label" id="checkbox-label-newsletter">
+{{ checkboxe('newsletter', '1') | raw }} {{ constant('ENTRY_NEWSLETTER_TEXT') }}
+                                                </label>
+                                            </div>
+                                            <noscript><span class="help-block"><span class="label label-info createaccount">Info</span> {{ constant('ENTRY_NEWSLETTER_ERROR') }}</span></noscript>
+                                        </fieldset>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div><!-- end right -->
+                                <div class="buttonSet">
+                                    <button type="submit" class="btn btn-primary pull-right"><i class="icon-fa-user icon-white"></i>  {{ constant('IMAGE_BUTTON_CONTINUE') }}</button>
+                                </div>
+                                </form>
+                            </div><!-- end container -->
+                        </div><!-- end rowfluid -->
+                    </div><!-- end of account -->
+                    <div id="form-errors" class="modal hide fade">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h3 class="text-error"><i class="icon-fa-warning-sign"></i> {{ constant('CREATE_ACCOUNT_FORM_ERROR_TITLE') }}</h3>
+                        </div>
+                        <div class="modal-body">
+                            <p id="summary"></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" data-dismiss="modal" aria-hidden="true" class="btn">Close</button>
+                        </div>
+                    </div><!-- end modal -->
+                    <script>
+                                $(function (){
+                        $(".popsover").each(function() { var $el = $(this); $el.css('display', 'block').popover({'trigger':'hover'}); });
+                                $('#helper, #showpassword, #showconfirmation').removeClass('hidden'); $('#form-helper').css('display', 'block');
+                                $('#showpassword').click(function(e){
+                        e.preventDefault();
+                                if ($(this).children('i').hasClass('icon-fa-check-empty')) {
+                        $(this).children('i').removeClass('icon-fa-check-empty').addClass('icon-fa-check');
+                                $('#password').removeAttr('type').attr('type', 'text');
+                                } else{
+                        $(this).children('i').removeClass('icon-fa-check').addClass('icon-fa-check-empty');
+                                $('#password').removeAttr('type').attr('type', 'password');
+                                }
+                        }).hover(function(){$(this).tooltip('show')});
+                                $('#showconfirmation').click(function(e){
+                        e.preventDefault();
+                                if ($(this).children('i').hasClass('icon-fa-check-empty')) {
+                        $(this).children('i').removeClass('icon-fa-check-empty').addClass('icon-fa-check');
+                                $('#confirmation').removeAttr('type').attr('type', 'text');
+                                } else{
+                        $(this).children('i').removeClass('icon-fa-check').addClass('icon-fa-check-empty');
+                                $('#confirmation').removeAttr('type').attr('type', 'password');
+                                }
+                        }).hover(function(){$(this).tooltip('show')});
+                                var validator = $("#create_account").bind("invalid-form.validate", function() {
+                        $("#summary").html("<strong>{{ constant('CREATE_ACCOUNT_FORM_ERROR') }}" + validator.numberOfInvalids() + "{{ constant('CREATE_ACCOUNT_FORM_ERROR_NUMBERS') | raw }}</strong>");
+                                $("#form-errors").modal('show');
+                                }).validate({
+                        errorClass: 'alert alert-danger',
+                                rules:{
+                        gender: {required:{% if constant('ENTRY_GENDER_TEXT') != null %} true {% else %} false {% endif %}},
+                                firstname : {required:{% if constant('ENTRY_FIRST_NAME_TEXT') != null %} true {% else %} false {% endif %}, minlength: {{ constant('ENTRY_FIRST_NAME_MIN_LENGTH') }}},
+                                lastname : {required:{% if constant('ENTRY_LAST_NAME_TEXT') != null %} true {% else %} false {% endif %}, minlength: {{ constant('ENTRY_LAST_NAME_MIN_LENGTH') }}},
+                                dob : {required:{% if constant('ENTRY_DATE_OF_BIRTH_TEXT') != null %} true {% else %} false {% endif %}, date:true},
+                                email_address : {required:{% if constant('ENTRY_EMAIL_ADDRESS_TEXT') != null %} true {% else %} false {% endif %}, minlength: {{ constant('ENTRY_EMAIL_ADDRESS_MIN_LENGTH') }}, email:true},
+                                password : {required:{% if constant('ENTRY_PASSWORD_TEXT') != null %} true {% else %} false {% endif %}, minlength: {{constant('ENTRY_PASSWORD_MIN_LENGTH') }}},
+                                confirmation : {required:{% if constant('ENTRY_PASSWORD_CONFIRMATION_TEXT') != null %} true {% else %} false {% endif %}, minlength: {{ constant('ENTRY_PASSWORD_MIN_LENGTH') }}, equalTo:'#password'}
+                        },
+                                messages:{
+                        gender : {required:'{{ constant('ENTRY_GENDER_ERROR') }}'},
+                                firstname : {required: '{{ constant('CREATE_ACCOUNT_FIELD_REQUIRED') }}', minlength : '{{ constant('ENTRY_FIRST_NAME_ERROR') }}'},
+                                lastname : {required: '{{ constant('CREATE_ACCOUNT_FIELD_REQUIRED') }}', minlength : '{{ constant('ENTRY_LAST_NAME_ERROR') }}'},
+                                dob : {required: '{{ constant('CREATE_ACCOUNT_FIELD_REQUIRED') }}', minlength : '{{ constant('ENTRY_DATE_OF_BIRTH_ERROR') }}'},
+                                email_address : {required: '{{ constant('CREATE_ACCOUNT_FIELD_REQUIRED') }}', minlength: '{{ constant('ENTRY_EMAIL_ADDRESS_ERROR') }}', email: '{{ constant('ENTRY_EMAIL_ADDRESS_CHECK_ERROR') }}'},
+                                password : {required: '{{ constant('CREATE_ACCOUNT_FIELD_REQUIRED') }}', minlength : '{{ constant('ENTRY_PASSWORD_ERROR') }}'},
+                                confirmation : {required: '{{ constant('CREATE_ACCOUNT_FIELD_REQUIRED') }}', minlength : '{{ constant('ENTRY_PASSWORD_ERROR') }}', equalTo: '{{ constant('ENTRY_PASSWORD_ERROR_NOT_MATCHING') }}'},
+                                },
+                                errorPlacement: function(error, element) {
+                        $('[type=radio]').removeClass('alert alert-danger');
+                                if (element.attr("name") == "gender") {
+                        error.insertAfter("#genderid");
+                                } else if (element.is("#password")) {
+                        error.insertAfter("#passwordid");
+                                } else if (element.is("#confirmation")) {
+                        error.insertAfter("#idconfirmation");
+                                } else if (element.is("#dob")) {
+                        error.insertAfter("#dobid");
+                                } else{
+                        error.insertAfter("#" + element.attr("name"));
+                                }
+                        }
+                        });
+                                });
+                        </script>
+{% endblock %}

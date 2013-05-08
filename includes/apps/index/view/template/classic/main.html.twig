@@ -1,0 +1,27 @@
+{# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
+{# file: includes/apps/index/view/template/classic/main.html.twig #}
+{% extends "base.html.twig" %}
+{% block appcontent %}
+<div id="bodyContent" class="span{{GridContentWidth}}">
+    <h1 class="title-app">{{ constant('HEADING_TITLE') }}</h1>
+    <div class="contentContainer">
+  {% block customer_greeting %}
+            <div class="contentText">
+    {{ osc_customer_greeting | raw }}
+                </div>
+  {% endblock %}
+  {% if text_main != null %}
+  {% block text_main %}
+                <div class="contentText">
+    {{ constant('TEXT_MAIN') | raw }}
+                    </div>
+  {% endblock %}
+  {% endif %}
+<div class="row-fluid">
+{% set cid =  new_products_category_id %}
+{{ moduleproductsnew(cid) | raw}}
+</div>
+                    
+</div>
+</div>
+{% endblock %}

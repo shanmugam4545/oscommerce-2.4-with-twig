@@ -1,0 +1,36 @@
+{# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
+{# file: includes/apps/products/view/template/classic/modules/products_gallery.html.twig #}
+{% macro fancy(gallery_data,gallery_size,product_image) %}
+{% if gallery_data != null %}
+        <div id="piGal" style="float: right;">
+          <ul class="unstyled">
+{% for key in gallery_data %}
+{% if loop.index == 1 %}{% set data = 'itemprop="image"' %}{% else %}{% set data = '' %}{% endif %}
+            <li><a href="{% if key.htmlcontent != null %}{{ ['#','piGalimg_', loop.index ]|join }}{% else %}{{ [constant('HTTP_SERVER'),constant('DIR_WS_HTTP_CATALOG'),constant('DIR_WS_IMAGES'),key.image]|join }}{% endif %}" target="_blank" data-fancy-target="fancybox">{{ image([constant('DIR_WS_IMAGES') , key.image]|join, '', '', '', data ) | raw}}</a>
+{% if key.htmlcontent != null %}<div style="display: none;"><div id="piGalimg_{{ loop.index}}">{{ key.htmlcontent | raw}}</div></div>{% endif %}</li>
+{% endfor %}
+          </ul>
+        </div>
+
+<script>
+$('#piGal ul').bxGallery({
+  maxwidth: 300,
+  maxheight: 200,
+  thumbwidth:{% if gallery_size > 1 %}75{% else %}0{% endif %},
+  thumbcontainer: 300,
+  load_image: 'ext/jquery/bxGallery/spinner.gif'
+});
+</script>
+{% else %}
+    <div id="piGal" style="float: right;">
+      <a href="{{ [constant('HTTP_SERVER'),constant('DIR_WS_HTTP_CATALOG'),constant('DIR_WS_IMAGES'),product_image]|join }}" target="_blank" data-fancy-target="fancybox">{{ image([constant('DIR_WS_IMAGES'), product_image]|join, product_name, null, null, 'hspace="5" vspace="5" itemprop="image"') | raw}}</a>
+    </div>
+{% endif %}
+<script>
+$("#piGal a[data-fancy-target='fancybox']").fancybox({
+  cyclic: true
+});
+</script>
+{% endmacro %}
+
+
