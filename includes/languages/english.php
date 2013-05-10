@@ -343,4 +343,20 @@ define('PRODUCTS_LISTING_PRODUCT_DISPLAY_RATING', 'Rating :');
 define('PRODUCTS_LISTING_PRODUCT_DISPLAY_BRAND', 'Brand :');
 define('PRODUCTS_LISTING_PRODUCT_BUTTON_OPEN_IMAGE', 'Open image');
 define('PRODUCTS_LISTING_PRODUCT_BUTTON_SEE_DETAILS', 'See detail');
+
+if ($_SESSION['template'] == 'classic') {
+    define('TWIG_MAX_DISPLAY_SEARCH_RESULTS',(int)6);
+    define('TWIG_MIN_DISPLAY_SEARCH_RESULTS', (int)2);
+    
+}
+/*if (TWIG_STORE_TEMPLATE == 'fullpagecenter') {*/
+if ($_SESSION['template'] == 'fullpagecenter') {
+    define('TWIG_MAX_DISPLAY_SEARCH_RESULTS', (int)9);
+    define('TWIG_MIN_DISPLAY_SEARCH_RESULTS', (int)3);
+}
+/*if (TWIG_STORE_TEMPLATE == 'fullpage') {*/
+if ($_SESSION['template'] == 'fullpage') {
+    define('TWIG_MAX_DISPLAY_SEARCH_RESULTS', (int)12);
+    define('TWIG_MIN_DISPLAY_SEARCH_RESULTS', (int)4);
+}
 ?>
