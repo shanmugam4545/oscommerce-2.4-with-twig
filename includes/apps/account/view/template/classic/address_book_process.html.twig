@@ -44,7 +44,7 @@
             <div class="span6" style="margin:0;">
 {% if constant('ACCOUNT_GENDER') == 'true' %}       
                     <div  id="divgenderid" class="control-group">
-                        <label class="control-label" for="gender">{{ constant('ENTRY_GENDER') }}</label>
+                        <label class="control-label">{{ constant('ENTRY_GENDER') }}</label>
                         <div class="controls">
                             <div class="btn-group" style="margin-bottom: 10px;">                                   
 {% if data['gender'] == 'f' %}                                    
@@ -144,7 +144,7 @@
                                                 </div>
 
                                                 <div id="divcountry" class="control-group">
-                                                    <label class="control-label" for="country">{{ constant('ENTRY_COUNTRY') }}</label>	
+                                                    <label class="control-label">{{ constant('ENTRY_COUNTRY') }}</label>	
                                                     <div class="controls">	
                                                         <div id="country" class="input-prepend input-append" data-country="{% if address.entry_country_id != null %}{{ address.entry_country_id }}{% else %}74{% endif %}" data-flags="true">
 {{ hiddenfield('country') | raw }}
@@ -155,8 +155,8 @@
                                                                 </a>
                                                                 <div class="bfh-selectbox-options hidden">
                                                                     <input type="text" class="bfh-selectbox-filter input-large">
-                                                                    <div role="listbox" id="listbox">
-                                                                        <ul role="option">
+                                                                    <div id="listbox">
+                                                                        <ul role="listbox">
                                                                         </ul>
                                                                     </div>
                                                                 </div>
@@ -181,7 +181,7 @@
                                                         </div>
 {% if constant('ACCOUNT_STATE') == true %}
                                                         <div id="divstate" class="control-group">    
-                                                            <label class="control-label" for="states">{{ constant('ENTRY_STATE') }}</label>
+                                                            <label class="control-label">{{ constant('ENTRY_STATE') }}</label>
                                                             <div class="controls"><div id="state" 
 {% if constant('ENTRY_STATE_TEXT') != null %}
                                                                                        data-country="country" data-state="{{ address.entry_state }}" class="input-prepend input-append">
@@ -198,8 +198,8 @@
                                                                                                        </a>                                                                                 
                                                                                                    <div class="bfh-selectbox-options hidden">
                                                                                                        <input type="text" class="bfh-selectbox-filter input-large">
-                                                                                                       <div role="listbox" id="listboxstate">
-                                                                                                           <ul role="option">
+                                                                                                       <div id="listboxstate">
+                                                                                                           <ul role="listbox">
                                                                                                            </ul>
                                                                                                        </div>
                                                                                                    </div>

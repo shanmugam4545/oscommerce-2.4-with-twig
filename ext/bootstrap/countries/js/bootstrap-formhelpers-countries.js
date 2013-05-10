@@ -79,16 +79,16 @@
       
       $input = this.$element.find('input[type="hidden"][name="country"]')
       $toggle = this.$element.find('.bfh-selectbox-option')
-      $options = this.$element.find('[role=option]')
+      $options = this.$element.find('[role=listbox]')
       
       $options.html('')
       //$options.append('<li><a tabindex="-1" href="#" data-option=""></a></li>')
       for (var country in BFHCountriesList) {
          
         if (this.options.flags == true) {
-          $options.append('<li><a class="selectcountry" tabindex="-1" href="#" data-code="' + BFHCountriesList[country]['code'] + '" data-option="' + country + '"><i class="icon-flag-' + BFHCountriesList[country]['code'] + '"></i>' + BFHCountriesList[country]['name'] + '</a></li>')
+          $options.append('<li role="option"><a class="selectcountry" tabindex="-1" href="#" data-code="' + BFHCountriesList[country]['code'] + '" data-option="' + country + '"><i class="icon-flag-' + BFHCountriesList[country]['code'] + '"></i>' + BFHCountriesList[country]['name'] + '</a></li>')
         } else {
-          $options.append('<li><a tabindex="-1" href="#" data-option="' + country + '">' + this.countryList[country]['name'] + '</a></li>')
+          $options.append('<li role="option"><a tabindex="-1" href="#" data-option="' + country + '">' + this.countryList[country]['name'] + '</a></li>')
         }
       }
       

@@ -50,7 +50,7 @@
       if (!isActive) {
         $parent.toggleClass('open')
         
-        $parent.find('[role=option] > li > [data-option="' + $this.find('.bfh-selectbox-option').data('option') + '"]').focus()
+        $parent.find('[role=listbox] > li > [data-option="' + $this.find('.bfh-selectbox-option').data('option') + '"]').focus()
       }
 
       return false
@@ -65,7 +65,7 @@
     
     $parent = $this.closest('.bfh-selectbox')
     
-    $items = $('[role=option] li a', $parent)
+    $items = $('[role=listbox] li a', $parent)
     
     $items.hide()
     
@@ -95,11 +95,11 @@
 
       if (!isActive || (isActive && e.keyCode == 27)) return $this.click()
 
-      $items = $('[role=option] li a', $parent).filter(':visible')
+      $items = $('[role=listbox] li a', $parent).filter(':visible')
 
       if (!$items.length) return
 
-      $('body').off('mouseenter.bfh-selectbox.data-api', '[role=option] > li > a', BFHSelectBox.prototype.mouseenter)
+      $('body').off('mouseenter.bfh-selectbox.data-api', '[role=listbox] > li > a', BFHSelectBox.prototype.mouseenter)
       
       index = $items.index($items.filter(':focus'))
 
@@ -118,7 +118,7 @@
         .eq(index)
         .focus()
         
-      $('body').on('mouseenter.bfh-selectbox.data-api', '[role=option] > li > a', BFHSelectBox.prototype.mouseenter)
+      $('body').on('mouseenter.bfh-selectbox.data-api', '[role=listbox] > li > a', BFHSelectBox.prototype.mouseenter)
     }
     
     , mouseenter: function (e) {
@@ -230,9 +230,9 @@
       .on('click.bfhselectbox.data-api', clearMenus)
     $('body')
       .on('click.bfhselectbox.data-api touchstart.bfhselectbox.data-api'  , toggle, BFHSelectBox.prototype.toggle)
-      .on('keydown.bfhselectbox.data-api', toggle + ', [role=option]' , BFHSelectBox.prototype.keydown)
-      .on('mouseenter.bfhselectbox.data-api', '[role=option] > li > a', BFHSelectBox.prototype.mouseenter)
-      .on('click.bfhselectbox.data-api', '[role=option] > li > a', BFHSelectBox.prototype.select)  
+      .on('keydown.bfhselectbox.data-api', toggle + ', [role=listbox]' , BFHSelectBox.prototype.keydown)
+      .on('mouseenter.bfhselectbox.data-api', '[role=listbox] > li > a', BFHSelectBox.prototype.mouseenter)
+      .on('click.bfhselectbox.data-api', '[role=listbox] > li > a', BFHSelectBox.prototype.select)  
       .on('click.bfhselectbox.data-api', '.bfh-selectbox-filter', function (e) { return false })
       .on('propertychange.bfhselectbox.data-api change.bfhselectbox.data-api input.bfhselectbox.data-api paste.bfhselectbox.data-api', '.bfh-selectbox-filter', BFHSelectBox.prototype.filter)
   })

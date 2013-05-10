@@ -106,13 +106,13 @@
       var value = this.options.state
       $input = this.$element.find('input[type="hidden"]')      
       $toggle = this.$element.find('.bfh-selectbox-option')
-      $options = this.$element.find('[role=option]')     
+      $options = this.$element.find('[role=listbox]')     
       
       $options.html('')
       
       //$options.append('<li><a tabindex="-1" href="#" data-zone="" data-option=""></a></li>')
       for (var state in BFHStatesList[country]) {    
-            $options.append('<li><a class="selectstate" tabindex="-1" href="#" data-option="' + BFHStatesList[country][state]['name'] + '">' + BFHStatesList[country][state]['name'] + '</a></li>')
+            $options.append('<li role="option"><a class="selectstate" tabindex="-1" href="#" data-option="' + BFHStatesList[country][state]['name'] + '">' + BFHStatesList[country][state]['name'] + '</a></li>')
 
       }
       
