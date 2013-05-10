@@ -10,23 +10,23 @@
 /* move these settings in database */
 
 /* modified for demo 
-if (TWIG_STORE_TEMPLATE == 'classic') {*/
-if ($_SESSION['template'] == 'classic') {
+if (TWIG_STORE_TEMPLATE == 'classic') {
+
     define('TWIG_MAX_DISPLAY_SEARCH_RESULTS',(int)6);
-    define('TWIG_MIN_DISPLAY_SEARCH_RESULTS', (int)4);
+    define('TWIG_MIN_DISPLAY_SEARCH_RESULTS', (int)2);
     
 }
-/*if (TWIG_STORE_TEMPLATE == 'fullpagecenter') {*/
-if ($_SESSION['template'] == 'fullpagecenter') {
+if (TWIG_STORE_TEMPLATE == 'fullpagecenter') {
+
     define('TWIG_MAX_DISPLAY_SEARCH_RESULTS', (int)9);
     define('TWIG_MIN_DISPLAY_SEARCH_RESULTS', (int)3);
 }
-/*if (TWIG_STORE_TEMPLATE == 'fullpage') {*/
-if ($_SESSION['template'] == 'fullpage') {
+if (TWIG_STORE_TEMPLATE == 'fullpage') {
+
     define('TWIG_MAX_DISPLAY_SEARCH_RESULTS', (int)12);
     define('TWIG_MIN_DISPLAY_SEARCH_RESULTS', (int)4);
 }
-
+*/
 class products {
 
     protected static $_template = "products";
