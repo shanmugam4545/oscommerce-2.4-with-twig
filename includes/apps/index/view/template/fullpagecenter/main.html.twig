@@ -3,6 +3,8 @@
 {% extends "base.html.twig" %}
 {% block appcontent %}
 <div class="container">
-{% include 'twig_products_features.html.twig' %}
+    
+{{ modulefeatureproducts(35) | raw}}    
+
 </div>
 {% endblock %}
