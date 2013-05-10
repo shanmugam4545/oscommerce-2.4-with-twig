@@ -47,7 +47,7 @@
 {% block description %}
     <div itemprop="description">
       {{ product_description | raw }}
-    </div>
+    </div>    
 {% endblock %}
 
 <div style="clear: both;"></div>
@@ -74,15 +74,16 @@
 {% endif %}
         </div>
 {% block button %}
-  <div class="buttonSet">
-    <span class="buttonAction">
+   <div class="form-actions">
+    
         {{ hiddenfield('products_id', product_id) | raw}}
         {{ button(constant('IMAGE_BUTTON_IN_CART'), 'shopping-cart', null, 'success') | raw }}
-    </span>
+    
   </div>
 {% endblock %}
         </div><!-- // end of contentContainer -->
     </div><!-- // end of itemscope -->
 </form>
 </div>
+
 {% endblock %}

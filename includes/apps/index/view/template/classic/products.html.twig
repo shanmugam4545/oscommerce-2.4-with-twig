@@ -26,14 +26,20 @@
 <section id="options">  
 <div class="btn-toolbar" {% if display == 'column' %}style="margin-left:0px;margin-right: 20px"{% else %}style="margin-left:0px;margin-right: 0px;" {% endif %}>
     <div class="btn-group pull-left" style="margin-left: 0px;">
-                <div class="btn {%if display == 'row' %} active{% endif %}"><a href="{{ link(['cPath=',cpath , '&display=row', '&per_page=', per_page, '&page=', page]|join) | raw}}"><i class="icon-fa-align-justify"></i></a></div>
-                <div class="btn {%if display == 'column' %} active{% endif %}"><a href="{{ link(['cPath=',cpath , '&display=column', '&per_page=', per_page, '&page=', page]|join) | raw}}"><i class="icon-fa-th"></i></a></div>
+                <div class="btn {%if display == 'row' %} active{% endif %}">
+                        <a href="{{ link([path , '&display=row', '&per_page=', per_page, '&page=', page]|join) | raw}}"><i class="icon-fa-align-justify"></i></a>    
+                 </div>
+                <div class="btn {%if display == 'column' %} active{% endif %}">
+                        <a href="{{ link([path , '&display=column', '&per_page=', per_page, '&page=', page]|join) | raw}}"><i class="icon-fa-th"></i></a>                            
+                </div>
 {% if total > 4 %}
                         <div class="btn dropdown-toggle" data-toggle="dropdown"><a href="#"><i class="icon-fa-cog"></i>  <span class="icon-fa-caret-down text-info"></span></a></div>
                         <ul class="dropdown-menu">
 {% if (total / 2) > 6 %}{% set level = 4 %}{% else %}{% set level = 2 %}{% endif %}
 {% for i in range(1,level,1) %}                     
-                                <li {% if per_page == i * 2 %}class="active"{% endif %}><a href="{{ link(['cPath=',cpath , '&display=',display,'&per_page=', i * 2]|join) | raw}}">{{ i * 2 }} {{ constant('PRODUCTS_LISTING_PRODUCTS_PER_PAGE') }}</a></li>
+                                <li {% if per_page == i * 2 %}class="active"{% endif %}>
+                                        <a href="{{ link([path , '&display=',display,'&per_page=', i * 2]|join) | raw}}">{{ i * 2 }} {{ constant('PRODUCTS_LISTING_PRODUCTS_PER_PAGE') }}</a>
+                                 </li>                                    
 {% endfor %} 
                                 </ul>
 {% endif %}
@@ -60,12 +66,22 @@
 <div class="pagination">
 
                         <ul>
-        {% if number_of_page > 1 %}
-{% if page > 1 %}<li><a href="{{ link(['cPath=',cpath , '&display=', display, '&per_page=', per_page,'&page=',page-1]|join) | raw}}">&laquo;</a></li>{% endif %}
+{% if number_of_page > 1 %}
+{% if page > 1 %}
+   <li>
+    <a href="{{ link([path , '&display=', display, '&per_page=', per_page,'&page=',page-1]|join) | raw}}">&laquo;</a>
+    </li>
+{% endif %}
 {% for i in 1..number_of_page %}         
-                                    <li {% if page == i  or number_of_page < 1 %}class="disabled"{% endif %}><a href="{{ link(['cPath=',cpath , '&display=', display, '&per_page=', per_page,'&page=',i]|join) | raw}}">{{ i }}</a></li>                    
+    <li {% if page == i  or number_of_page < 1 %}class="disabled"{% endif %}>
+        <a href="{{ link([path , '&display=', display, '&per_page=', per_page,'&page=',i]|join) | raw}}">{{ i }}</a>
+    </li>                    
 {% endfor %}
-    {% if page < number_of_page %}<li><a href="{{ link(['cPath=',cpath , '&display=', display, '&per_page=', per_page,'&page=',page+1]|join) | raw}}">&raquo;</a></li>{% endif %}
+{% if page < number_of_page %}
+    <li>
+       <a href="{{ link([path , '&display=', display, '&per_page=', per_page,'&page=',page+1]|join) | raw}}">&raquo;</a>
+    </li>
+{% endif %}
 
 {% endif %}
 </ul>
