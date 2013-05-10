@@ -28,9 +28,10 @@ require(DIR_WS_MODULES . 'boxes/bm_templates.php');
             
           $hidden_get_variables = '';
           reset($_GET);
-          while (list($key, $value) = each($_GET)) {
-            if ( is_string($value) && ($key != 'template') && ($key != session_name()) && ($key != 'x') && ($key != 'y') ) {
+          while (list($key, $value) = each($_GET)) {              
+            if ( is_string($value) && ($key != 'template') && ($key != session_name()) && ($key != 'x') && ($key != 'y') && ($key != 'per_page') && ($key != 'page')) {
               $hidden_get_variables .= osc_draw_hidden_field($key, $value);
+              
             }
           }
             
