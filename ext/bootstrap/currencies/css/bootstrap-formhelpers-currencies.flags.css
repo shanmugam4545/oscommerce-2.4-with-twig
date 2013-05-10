@@ -9,7 +9,7 @@
  */
 
 .icon-flag-AUD, .icon-flag-CHF, .icon-flag-DKK, .icon-flag-EUR, .icon-flag-XAF, .icon-flag-XCD, .icon-flag-XOF, .icon-flag-XPF, .icon-flag-ZAR{
-	background: url(../img/bootstrap-formhelpers-currencies.flags.png) no-repeat;
+	background: url(../../img/bootstrap-formhelpers-currencies.flags.png) no-repeat;
 }
 
 .selectbox-options > .icon-flag-AUD, .icon-flag-CHF, .icon-flag-DKK, .icon-flag-EUR, .icon-flag-XAF, .icon-flag-XCD, .icon-flag-XOF, .icon-flag-XPF, .icon-flag-ZAR {

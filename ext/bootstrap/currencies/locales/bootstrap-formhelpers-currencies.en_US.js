@@ -161,7 +161,7 @@ var BFHCurrenciesList = {
 'TZS':{'label':'Tanzanian shilling','currencyflag':'','symbol':'Sh'},
 'UAH':{'label':'Ukrainian hryvnia','currencyflag':'','symbol':'₴'},
 'UGX':{'label':'Ugandan shilling','currencyflag':'','symbol':'Sh'},
-'USD':{'label':'United States dollar','currencyflag':'','symbol':'$'},
+'USD':{'label':'Dollar US','currencyflag':'','symbol':'$'},
 'UYU':{'label':'Uruguayan peso','currencyflag':'','symbol':'$'},
 'UZS':{'label':'Uzbekistani som','currencyflag':'','symbol':'лв'},
 'VEF':{'label':'Venezuelan bolívar','currencyflag':'','symbol':'Bs F'},

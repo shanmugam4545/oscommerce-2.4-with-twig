@@ -14,7 +14,10 @@
         {# required in all applications #}
             <link href="ext/bootstrap/css/bootstrap.min.css" rel="stylesheet">
             <link href="public/template/fullpagecenter/css/fullpagecenter.css" rel="stylesheet" />
-            <link href="ext/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">            
+            <link href="ext/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+            <link href="ext/bootstrap/css/bootstrap-formhelpers.css" rel="stylesheet" />
+            <link href="ext/bootstrap/countries/css/bootstrap-formhelpers-countries.flags.css" rel="stylesheet" />
+            <link href="ext/bootstrap/currencies/css/bootstrap-formhelpers-currencies.flags.css" rel="stylesheet" />            
             <link href="ext/bootstrap/css/font-awesome.min.css" rel="stylesheet" />
             <link href="ext/bootstrap/css/bootstrap-modal.css" rel="stylesheet" />
             <link href="ext/bootstrap/css/bootstrap-select.min.css" rel="stylesheet" />
@@ -25,6 +28,9 @@
         {% endblock %}
             <script src="ext/jquery/jquery-1.9.1.min.js"></script>
             <script src="ext/bootstrap/js/bootstrap.min.js"></script>
+            <script src="ext/bootstrap/js/bootstrap-formhelpers-selectbox.js"></script>          
+            <script src="ext/bootstrap/currencies/js/bootstrap-formhelpers-currencies.js"></script>            
+            <script src="ext/bootstrap/currencies/locales/bootstrap-formhelpers-currencies.{{ constant('BOOTSTRAP_CURRENCIES_FORMAT') }}.js"></script>           
             <script src="ext/bootstrap/js/bootstrap-select.min.js"></script>
             <script src="ext/bootstrap/js/bootstrap-modalmanager.js"></script>
             <script src="ext/bootstrap/js/bootstrap-modal.js"></script>
@@ -155,7 +161,7 @@
     <div class="container">		
         <div class="row">
 {% for boxe in boxes %}        
-{% if boxe.boxe != null and boxe.boxe == 'twig_bm_information' or boxe.boxe == 'twig_bm_social' or boxe.boxe == 'twig_bm_templates' %}
+{% if boxe.boxe != null and boxe.boxe == 'twig_bm_information' or boxe.boxe == 'twig_bm_social' or boxe.boxe == 'twig_bm_currencies' or boxe.boxe == 'twig_bm_templates' %}
 {% include [boxe.boxe, TwigExtension]|join with{'data': boxe.data } %}
 {% endif %}
 {% endfor %}

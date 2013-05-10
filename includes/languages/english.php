@@ -30,6 +30,7 @@ define('BOOTSTRAP_DATEPICKER_FORMAT', 'mm/dd/yyyy');
 
 define('BOOTSTRAP_COUNTRIES_FORMAT', 'en_US');
 define('BOOTSTRAP_STATES_FORMAT', 'en_US');
+define('BOOTSTRAP_CURRENCIES_FORMAT', 'en_US');
 
 ////
 // Return date in raw format

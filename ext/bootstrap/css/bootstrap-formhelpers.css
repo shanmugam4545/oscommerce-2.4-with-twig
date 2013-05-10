@@ -46,7 +46,7 @@
   z-index: 1000;
   display: none;
   float: left;
-  min-width: 300px;
+  min-width: 170px;
   padding: 5px 0;
   margin: 2px 0 0;
   background-color: #ffffff;
@@ -67,7 +67,7 @@
 
 .bfh-selectbox-options ul {
   list-style: none;
-  min-width: 300px;
+  min-width: 170px;
 }
 
 .bfh-selectbox-options.pull-right {
@@ -180,7 +180,7 @@
   overflow-x: hidden;
   overflow-y: auto;
   margin: 5px 0 0 0;
-  width: 240px;
+  width: 150px;
 }
 /*.bfh-selectbox-options ul li:hover {
   background-color: #0088cc;

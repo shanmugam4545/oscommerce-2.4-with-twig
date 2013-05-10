@@ -15,16 +15,20 @@
             <link href="public/template/gosling/css/general.css" rel="stylesheet" />            
             <link href="ext/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" />
             <link href="ext/bootstrap/css/bootstrap-select.min.css" rel="stylesheet" />
-            <link href="ext/bootstrap/css/font-awesome.min.css" rel="stylesheet" />
+            <link href="ext/bootstrap/css/bootstrap-formhelpers.css" rel="stylesheet" />
+            <link href="ext/bootstrap/countries/css/bootstrap-formhelpers-countries.flags.css" rel="stylesheet" />
+            <link href="ext/bootstrap/currencies/css/bootstrap-formhelpers-currencies.flags.css" rel="stylesheet" />
             <link href="public/template/classic/css/classic.css" rel="stylesheet" />
-
-
+            <link href="ext/bootstrap/css/font-awesome.min.css" rel="stylesheet" />
         {% block stylesheet %}
         {# here call specific stylesheet files for your app #}
         {% endblock %}
             <script src="ext/jquery/jquery-1.9.1.min.js"></script>
             <script src="ext/bootstrap/js/bootstrap.min.js"></script>
             <script src="ext/bootstrap/js/bootstrap-select.min.js"></script>
+            <script src="ext/bootstrap/js/bootstrap-formhelpers-selectbox.js"></script>          
+            <script src="ext/bootstrap/currencies/js/bootstrap-formhelpers-currencies.js"></script>            
+            <script src="ext/bootstrap/currencies/locales/bootstrap-formhelpers-currencies.{{ constant('BOOTSTRAP_CURRENCIES_FORMAT') }}.js"></script>
         {% block head_javascript %}
         {# here call specific javascript files for your app #}
         {% endblock %}

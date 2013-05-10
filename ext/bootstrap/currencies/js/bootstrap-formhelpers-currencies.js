@@ -81,11 +81,11 @@
 
       $input = this.$element.find('input[type="hidden"]')
       $toggle = this.$element.find('.bfh-selectbox-option')
-      $options = this.$element.find('[role=option]')
+      $options = this.$element.find('[role=listbox]')
 
 
       $options.html('')
-      $options.append('<li><a tabindex="-1" href="#" data-option=""></a></li>')
+      //$options.append('<li><a tabindex="-1" href="#" data-option=""></a></li>')
       for (var currency in this.currencyList) {
         if(this.currencyList[currency]['currencyflag']) {
             this.flag = this.currencyList[currency]['currencyflag']
@@ -93,9 +93,9 @@
             this.flag = currency.substr(0,2)
         }
         if (this.options.flags == true) {
-          $options.append('<li><a tabindex="-1" href="#" data-option="' + currency +  '"><i class="icon-flag-' + this.flag + '"></i>' + this.currencyList[currency]['label'] + '</a></li>')
+          $options.append('<li role="option"><a id="'+ currency +'" tabindex="-1" href="#" class="cur" data-option="' + currency +  '"><i class="icon-flag-' + this.flag + '"></i>' + this.currencyList[currency]['label'] + '</a></li>')
         } else {
-          $options.append('<li><a tabindex="-1" href="#" data-option="' + currency + '">' + this.currencyList[currency]['label'] + '</a></li>')
+          $options.append('<li role="option"><a id="'+ currency +'" tabindex="-1" href="#" class="cur" data-option="' + currency + '">' + this.currencyList[currency]['label'] + '</a></li>')
         }
       }
 
@@ -113,7 +113,7 @@
           $toggle.html(this.currencyList[value]['label'])
         }
       }
-
+      $('.cur').click(function() { window.location = getQuery(window.location.href, "currency", $(this).attr("id"))})
       $input.val(value)
     }
 
@@ -171,3 +171,18 @@
 
 
 }(window.jQuery);
+
+function getQuery (uri, key, value) {
+ var re = new RegExp("([?|&])" + key + "=.*?(&|#|$)", "i");
+   if (uri.match(re)) {
+    return uri.replace(re, '$1' + key + "=" + value + '$2');
+  } else {
+    var hash =  '';
+    var separator = uri.indexOf('?') !== -1 ? "&" : "?";
+    if( uri.indexOf('#') !== -1 ){
+      hash = uri.replace(/.*#/, '#');
+      uri = uri.replace(/#.*/, '');
+    }
+  return uri + separator + key + "=" + value + hash;
+  }
+}
