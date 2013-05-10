@@ -343,7 +343,7 @@
   require(DIR_WS_CLASSES . 'template.php');
   $OSCOM_Template = new template();
   
-  if (TWIG_ACTIVATION === 'True') {
+  if (TWIG_ACTIVATION === 'True' && is_dir(DIR_FS_CATALOG. '/lib/lib/Twig')) { // check if git submodule is included !
       
   require_once(DIR_FS_CATALOG. '/lib/lib/Twig/Autoloader.php');
   Twig_Autoloader::register();

@@ -9,7 +9,7 @@
 
   require('includes/application_top.php'); 
   
-  if (TWIG_ACTIVATION === 'True') {
+  if (is_dir(DIR_FS_CATALOG. '/lib/lib/Twig') && TWIG_ACTIVATION === 'True') { // check if git submodule is included !
 
     echo $OSCOM_TwigTemplate->render();
     
