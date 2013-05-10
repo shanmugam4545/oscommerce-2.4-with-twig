@@ -7,7 +7,7 @@
  * @license GNU General Public License; http://www.oscommerce.com/gpllicense.txt
  */
 
-  require('includes/application_top.php');
+  require('includes/application_top.php'); 
   
   if (TWIG_ACTIVATION === 'True') {
 
