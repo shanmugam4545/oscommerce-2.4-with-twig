@@ -348,10 +348,24 @@
   require_once(DIR_FS_CATALOG. '/lib/Twig/Autoloader.php');
   Twig_Autoloader::register();
   
+  // this code is just for demo !
+  if ( !isset($_SESSION['template']) ) {
+
+        $_SESSION['template'] = TWIG_STORE_TEMPLATE;
+        
+    } else {
+
+        $templates = array('classic', 'fullpage', 'fullpagecenter');
+        
+        if (isset($_GET['template']) && in_array($_GET['template'],$templates)) {
+            
+            $_SESSION['template'] = $_GET['template'];
+            
+        } 
+    } // end demo 
+  
   require(DIR_WS_CLASSES . 'TwigTemplate.php');
   $OSCOM_TwigTemplate = new TwigTemplate();
   
   }
-
-
 ?>

@@ -150,7 +150,7 @@
 <div id="footer" class="span12">
        
 {% for boxe in boxes %}        
-{% if boxe.boxe != null and boxe.boxe == 'twig_bm_information' or boxe.boxe == 'twig_bm_social' %}
+{% if boxe.boxe != null and boxe.boxe == 'twig_bm_information' or boxe.boxe == 'twig_bm_social' or boxe.boxe == 'twig_bm_templates' %}
 {% include [boxe.boxe, TwigExtension]|join with{'data': boxe.data, 'title' : boxe.title } %}
 {% endif %}
 {% endfor %}

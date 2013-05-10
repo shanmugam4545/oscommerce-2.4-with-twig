@@ -22,7 +22,7 @@ class TwigTemplate
 
     protected $_parent_template = "classic";
     
-    protected $_template = TWIG_STORE_TEMPLATE;   
+    //protected $_template = TWIG_STORE_TEMPLATE; /* desactivate for demo /* 
     
     protected $_template_cache = TWIG_CACHE_ACTIVATION;
     
@@ -52,7 +52,7 @@ class TwigTemplate
 
     public function __construct() {
         global $OSCOM_APP;      
-
+        
         $loader = new Twig_Loader_Filesystem(DIR_WS_MODULES . 'templates/' . $this->getTemplate() . '/content');
 
         if (is_dir(DIR_WS_INCLUDES . 'apps/' . $OSCOM_APP->getCode() . '/view/template/' . $this->getTemplate())) {
@@ -70,11 +70,6 @@ class TwigTemplate
             $loader->addPath(DIR_WS_MODULES . 'boxes' . '/view/template/' . $this->getTemplate());
         }
         $loader->addPath(DIR_WS_MODULES . 'boxes' . '/view/template/' . $this->getParentTemplate());
-
-        if (is_dir(DIR_WS_MODULES . 'twig_modules/view/template/' . $this->getTemplate())) {
-            $loader->addPath(DIR_WS_MODULES . 'twig_modules/view/template/' . $this->getTemplate());
-        }
-        $loader->addPath(DIR_WS_MODULES . 'twig_modules/view/template/' . $this->getParentTemplate());
 
         $this->_twig = new Twig_Environment($loader, 
                 array('cache' => $this->getTemplateCache(),
@@ -111,8 +106,16 @@ class TwigTemplate
         }
     }
     
-    protected function getTemplate() {
-        return $this->_template;
+    public function getTemplate() 
+    {        
+       //return $this->_template; desactivate for demo
+       return $_SESSION['template'];
+        
+    }
+    
+    public function setTemplate ($template)
+    {
+        $this->_template = $template;
     }
 
     protected function getParentTemplate() {
@@ -229,8 +232,7 @@ class TwigTemplate
             'app_content_file' => $this->getAppContentFile(),
             'header_tags' => $this->getHeadertags(),
             'breadcrumb' => $this->getBreadcrumb(),
-            'boxes' => $this->getBoxes(),
-            'twig_modules' => $this->getTwigModules(),
+            'boxes' => $this->getBoxes(),           
             'footer_script' => $this->getFooterscript(),
             'isLoggedOn' => $this->getUserstatus());
     }
@@ -305,38 +307,8 @@ class TwigTemplate
                 }
             }
         }
-    }
-    
-    private function getTwigModules()
-    {
-        
-        $twig_module_key = 'MODULE_TWIG_MODULES_INSTALLED';
-        
-        $twig_modules = array();
-        
-        if (defined($twig_module_key) && osc_not_null(constant($twig_module_key))) {
-            
-            $twig_modules_array = explode(';', constant($twig_module_key));
-            
-            foreach ($twig_modules_array as $twig_module) {
-                
-                $twig_module_class = substr($twig_module, 0, strrpos($twig_module, '.'));
-                
-                if (!class_exists($twig_module_class)) {
-                    
-                    include(DIR_WS_LANGUAGES . $_SESSION['language'] . '/modules/twig_modules/' . $twig_module);
-                    
-                    include(DIR_WS_MODULES . 'twig_modules/model/' . $twig_module_class . '.php');
-                    
-                }
-                
-            }
-            
-        }
-        
-        
-    }
-    
+    }    
+   
     private function getBoxes() {
 
         $module_key = 'MODULE_BOXES_INSTALLED';

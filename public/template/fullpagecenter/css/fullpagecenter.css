@@ -46,6 +46,8 @@
 #blockactive a:hover { background: #e6e6e6; }
 
 #form-helper{display:none;}
+/* boxe template footer */
+#templates_pulldown { width: 50%;}
 /* application shopping cart */
 .table td.center_text, .table th.center_text { text-align: center; vertical-align: middle;}
 .table th.text_black{background: #e5e5e5}
