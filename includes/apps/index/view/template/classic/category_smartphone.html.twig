@@ -1,32 +1,6 @@
 {# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
 {# file: includes/apps/index/view/template/classic/category_smartphone.html.twig #}
-{% extends "base.html.twig" %}
+{% extends "categories_base.html.twig" %}
 {% block appcontent %}
-<div id="bodyContent" class="span10">
-{% set row = 3 %} {# 1. 3 #}
-<div class="row-fluid">
-<img class="img-polaroid image_categorie" src="{{ [constant('DIR_WS_IMAGES'), cat_image]|join }}" alt="{{ cat_name }}" />	
-<h2>{{ cat_name }}</h2>
-</div>
-<hr>
-<div class="span2 pull-right">test</div>
-<ul class="thumbnails row-fluid">
-{% for i in data %}
-<li class="span{{ 9 / row }}">
-    <div class="thumbnail">
-        <h5 class="text-center">{{ i['cat_name'] }}</h5>
-         <div class="row-fluid">
-             <img src="{{ [constant('DIR_WS_IMAGES'), i['cat_image'] ]|join }}" alt="{{ i['cat_name'] }}" />
-         </div>
-        <hr><p class="text-center"><a href="{{link(null, i['cat_link']) | raw }}" class="btn btn-info btn-mini"><i class="icon-fa-play"></i> See our products</a></p> 
-    </div>
-</li>
-{% if loop.index is divisibleby(row) %}
-</ul><ul class="thumbnails row-fluid">
-{% endif %}
-{% endfor %}
-</ul>
-</div>
-{% endblock %}
-{% block columnright %}
+{{ parent() }}
 {% endblock %}

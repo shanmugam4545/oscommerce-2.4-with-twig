@@ -9,8 +9,8 @@
 {% endblock %}
 {% block gallery %}
 {% if gallery_data != null %}
-<div class="container-fluid span12 pull-left gallery well text-center">
-<h4>Gallery</h4>
+<div class="container-fluid span4 pull-right well gallery text-center">
+<h4 class="">Gallery</h4>
 {% for key in gallery_data %}
         <span><a href="{{ [constant('HTTP_SERVER'),constant('DIR_WS_HTTP_CATALOG'),constant('DIR_WS_IMAGES'),key.image]|join }}" title="{{ key.image }}" data-rel="prettyPhoto[gallery]">{{ image([constant('HTTP_SERVER'),constant('DIR_WS_HTTP_CATALOG'),constant('DIR_WS_IMAGES'),key.thumb]|join) | raw}}</a></span>
 {% endfor %}
@@ -18,6 +18,6 @@
 <script>
 $(document).ready(function(){
 $(".gallery a[data-rel^='prettyPhoto']").prettyPhoto({hook:'data-rel',allow_resize: true,animation_speed:'normal',theme:'pp_default',slideshow:3000, autoplay_slideshow: false,social_tools: false});
-});</script><div class="clearfix"></div>
+});</script>
 {% endif %}
 {% endblock %}
