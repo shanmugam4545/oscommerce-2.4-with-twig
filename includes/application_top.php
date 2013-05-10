@@ -345,7 +345,7 @@
   
   if (TWIG_ACTIVATION === 'True') {
       
-  require_once(DIR_FS_CATALOG. '/lib/Twig/Autoloader.php');
+  require_once(DIR_FS_CATALOG. '/lib/lib/Twig/Autoloader.php');
   Twig_Autoloader::register();
   
   // this code is just for demo !
