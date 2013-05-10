@@ -1,7 +1,7 @@
 {# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
 {# file: includes/modules/boxes/view/template/fullpage/twig_bm_login.html.twig #}
 {% import "forms.html.twig" as forms %}
-{% if session.customer.id == null and (app_content_file != 'create' and app_code != 'account') %}
+{% if session.customer.id == null and (app_content_file != 'create' and app_content_file != 'login') %}
 <div class="dropdown-menu" style="padding-top:15px;padding-left: 15px;padding-right: 15px;">
 {{ form('login', link('account', 'login&process', 'SSL'), 'post', 'id="loginBox" class="form-inline text-center"', 'true') | raw }}
         <fieldset><label for="email_address">{{ constant('ENTRY_EMAIL_ADDRESS') }}</label>{{ forms.inputwithicon('email_address', 'icon-fa-envelope', 'input-prepend', 'input-large', '','text', constant('PLACEHOLDER_EMAIL_ADRESS') ) }}</fieldset>
