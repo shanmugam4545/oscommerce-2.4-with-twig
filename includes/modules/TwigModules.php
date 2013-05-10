@@ -145,7 +145,7 @@ function twig_module_products_new($cid)
 
             $string .= '<h3>' . $products[$i]['products_name'] . '</h3>' . "\n";
 
-            $string .= '<h4>' . $currencies->display_price($products[$i]['products_price'], osc_get_tax_rate($products[$i]['products_tax_class_id'])) . '</h4><br /><p class="sub-text">' . strip_tags(substr($products[$i]['products_short_description'], 0, 300)) . '<br /><strong><en>...</em></strong></p>' . "\n";
+            $string .= '<h4>' . $currencies->display_price($products[$i]['products_price'], osc_get_tax_rate($products[$i]['products_tax_class_id'])) . '</h4><br /><p class="sub-text">' . strip_tags(substr($products[$i]['products_short_description'], 0, 300)) . '<br /><strong><em>...</em></strong></p>' . "\n";
 
             $string .= '<span class="pull-right">' . osc_draw_button(IMAGE_BUTTON_BUY_NOW, 'play', osc_href_link('products', 'id=' . $products[$i]['products_id']), 'primary') . '</span><br /><br />' . "\n";
 
