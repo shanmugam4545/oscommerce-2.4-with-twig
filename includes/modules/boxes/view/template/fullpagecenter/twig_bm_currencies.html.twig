@@ -1,7 +1,5 @@
 {# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
 {# file: includes/modules/boxes/view/template/fullpagecenter/twig_bm_currencies.html.twig #}
-<div class="span4" id="bm-currencies">
-    <h4 class="text-info"><i class="icon-fa-money"></i> {{ constant('MODULE_BOXES_CURRENCIES_TITLE') }}</h4>
-        {{ data | raw }}     
-</div>
+<h4 class="text-info"><i class="icon-fa-money"></i> {{ constant('MODULE_BOXES_CURRENCIES_TITLE') }}</h4>
+{{ data | raw }}
 <script>$("#cur").removeClass("hidden");</script>

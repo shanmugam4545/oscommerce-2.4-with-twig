@@ -33,7 +33,9 @@
             <script src="ext/bootstrap/js/bootstrap-select.min.js"></script>
             <script src="ext/bootstrap/js/bootstrap-formhelpers-selectbox.js"></script>          
             <script src="ext/bootstrap/currencies/js/bootstrap-formhelpers-currencies.js"></script>            
-            <script src="ext/bootstrap/currencies/locales/bootstrap-formhelpers-currencies.{{ constant('BOOTSTRAP_CURRENCIES_FORMAT') }}.js"></script>
+            <script src="ext/bootstrap/currencies/js/locales/bootstrap-formhelpers-currencies.{{ constant('BOOTSTRAP_CURRENCIES_FORMAT') }}.js"></script>
+            <script src="ext/bootstrap/languages/js/bootstrap-formhelpers-languages.js"></script> 
+            <script src="ext/bootstrap/languages/js/bootstrap-formhelpers-languages.codes.js"></script>
         {% block head_javascript %}
         {# here call specific javascript files for your app #}
         {% endblock %}
@@ -153,15 +155,32 @@
 </div><!-- // end bodywrapper -->
 {% block footer %}
 <hr>
-<div id="footer" class="span12">
+<div id="footer" class="span12 row-fluid">
        
-{% for boxe in boxes %}        
-{% if boxe.boxe != null and boxe.boxe == 'twig_bm_information' or boxe.boxe == 'twig_bm_social' or boxe.boxe == 'twig_bm_currencies' or boxe.boxe == 'twig_bm_templates' %}
-{% include [boxe.boxe, TwigExtension]|join with{'data': boxe.data, 'title' : boxe.title } %}
+{% for boxe in boxes %}  
+{% if boxe.boxe != null and boxe.boxe == 'twig_bm_information' or boxe.boxe == 'twig_bm_social' %}
+{% include [boxe.boxe, TwigExtension]|join with{'data': boxe.data } %}
 {% endif %}
 {% endfor %}
-</div><!-- end footer -->
+                <div class="span3" id="bm-lng-and-cur"> 
+{% for boxe in boxes %}  
+{% if boxe.boxe != null and boxe.boxe == 'twig_bm_currencies' or boxe.boxe == 'twig_bm_languages' %}            
+{% include [boxe.boxe, TwigExtension]|join with{'data': boxe.data } %}              
+{% endif %} 
+{% endfor %}
+                    </div>
+                    <div class="span3" id="bm_template"> 
+{% for boxe in boxes %}  
+{% if boxe.boxe != null and boxe.boxe  == 'twig_bm_templates'%} 
+{% include [boxe.boxe, TwigExtension]|join with{'data': boxe.data } %}  
+
+{% endif %} 
+{% endfor %}
+                        </div> 
+                    </div>
+
 {% endblock %}
+
 
 
 {% block footerscript %}

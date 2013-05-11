@@ -239,9 +239,12 @@
     } else {
       $lng->get_browser_language();
     }
+    
 
     $_SESSION['language'] = $lng->language['directory'];
     $_SESSION['languages_id'] = $lng->language['id'];
+    $_SESSION['languages_code'] = $lng->language['code'];// added for BootstrapFormHelper
+    
   }
 
 // include the language translations
@@ -343,8 +346,8 @@
   require(DIR_WS_CLASSES . 'template.php');
   $OSCOM_Template = new template();
   
-  if (TWIG_ACTIVATION === 'True' && is_dir(DIR_FS_CATALOG. '/lib/lib/Twig')) { // check if git submodule is included !
-      
+  if (TWIG_ACTIVATION === 'True' && is_dir(DIR_FS_CATALOG. '/lib/lib/Twig')) { // check if git submodule is included !      
+    
   require_once(DIR_FS_CATALOG. '/lib/lib/Twig/Autoloader.php');
   Twig_Autoloader::register();
   

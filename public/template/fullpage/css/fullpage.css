@@ -21,7 +21,9 @@
 #cat_menu li a:hover{ background: #000;}
 #account-nav{color: rgb(255, 255, 255);background-color: rgb(17, 17, 17);}
 #footer{height: auto;width: 100%;background-color: rgb(27, 27, 27);background-image: linear-gradient(to bottom, rgb(34, 34, 34), rgb(17, 17, 17));background-repeat: repeat-x;border-color: rgb(37, 37, 37);margin: 0;padding-top: 10px;padding-bottom: 10px;}
-#bm-informations a, #bm-social a{ text-decoration: none;}
+#bm-informations, #bm-social, #bm-lng-and-cur, #bm-templates{padding-left: 20px;}#bm-informations a, #bm-social a{ text-decoration: none;}
+/* boxe template footer */
+#templates_pulldown { width: 50%;}
 #date_available{  margin-right: auto; margin-left: auto; text-align: center;}
 .reduce70right{ max-height: 70%; max-width: 70%; float: right;}
 .reduce85left{ max-height: 85%; max-width: 85%; float: left;}
@@ -31,8 +33,7 @@
 #shopping-cart-switcher {background: #fff;width: 300px;height: auto;position: absolute;right: 0px;z-index: 940;display: none;top: 73px;border-radius: 0 0 0px 10px;margin-top: 0px;-webkit-box-shadow: -4px 4px 8px rgba(50, 50, 50, 0.34);-moz-box-shadow: -4px 4px 8px rgba(50, 50, 50, 0.34);box-shadow: -4px 4px 8px rgba(50, 50, 50, 0.34);}
 #shopping-cart-switcher li{text-align: center;}
 #shopping-cart-switcher-button{margin-left: 80px;}
-/* boxe template footer */
-#templates_pulldown { width: 50%;}
+
 /* boxes in product page */
 .product-boxe {border: 1px solid #e3e3e3;background-color: #fff;border-bottom: 1px solid #ccc;border-left: 4px solid #2790B0;border-radius: 0px;border-right: 1px solid #ccc;border-top: 1px solid #ccc;box-shadow: 0px 5px 12px rgba(50, 50, 50, 0.15);margin-bottom: 20px;min-height: 20px;-moz-border-radius: 0px;-moz-box-shadow: 0px 5px 12px rgba(50, 50, 50, 0.15);padding: 19px;position: relative;-webkit-border-radius: 0px;-webkit-box-shadow: 0px 5px 12px rgba(50, 50, 50, 0.15);}
 .product-boxe:before {border-bottom: 9px solid transparent;border-left: 9px solid #2790B0;border-top: 9px solid transparent;content: '';display: inline-block;left: 0px;position: absolute;top: 40%;}

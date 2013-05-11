@@ -95,6 +95,12 @@ margin:0px;
 .socialIcons li:hover {
   background-position: 0 -32px;
 }
+#bm-informations a, #bm_social a {
+    text-decoration: none;
+    font-weight: bold;
+}
+
+
 
 
 
@@ -164,10 +170,7 @@ margin:0px;
 
 
 #footer{background:#e9e9e9;padding: 28px 0;}
-#footer a{color: #222121;}
-#footer_links li{display: inline;margin-right: 40px;font-size: 12px;font-weight: bold;position: relative;}
 
-#footer_links li:last-child:after{content: '';}
 #footer_social{text-align: right;}
 #footer_social li{display: inline;margin-left: 3px;}
 

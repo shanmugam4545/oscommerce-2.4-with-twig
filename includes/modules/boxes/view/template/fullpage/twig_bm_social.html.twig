@@ -1,10 +1,10 @@
 {# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
 {# file: includes/modules/boxes/view/template/fullpage/twig_bm_social.html.twig #}
-<div class="span4" id="bm-social">
+<div class="span3" id="bm-social">
     <h4 class="media-heading muted"><i class="icon-fa-share muted"></i> {{ constant('TWIG_MODULE_BOXES_SOCIAL_DESCRIPTION') }}</h4>
       <ul class="unstyled features-social">        
         {% for link in data %}
-          <li class="text-warning"><i class="{{ link['icon'] }} icon-white"></i><a class="text-warning" href="{{ link['link'] }}" target="_blank">  {{ link['label'] }}</a></li>
+          <li class="text-warning"><span class="icon-fa-stack"><i class="icon-fa-circle icon-fa-stack-base"></i><i class="{{ link['icon'] }} icon-fa-light icon-white"></i></span><a class="text-warning" href="{{ link['link'] }}" target="_blank">  {{ link['label'] }}</a></li>
         {% endfor %}
       </ul>
 </div>
