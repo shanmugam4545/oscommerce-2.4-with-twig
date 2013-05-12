@@ -95,7 +95,7 @@ var validator = $("#contact_us").bind("invalid-form.validate", function() {
                                         $("#summary").html("<strong>{{ constant('CONTACT_US_FORM_ERROR') }}" + validator.numberOfInvalids() + "{{ constant('CONTACT_US_FORM_ERROR_NUMBERS') | raw }}</strong>");
                                                 $("#form-errors").modal('show');
                                                 }).validate({
-                                        errorClass: 'alert alert-danger',
+                                        errorClass: 'text-error',
                                                 rules:{                                        
                                                 firstname : {required:{% if constant('ENTRY_CONTACT_FIRSTNAME') != null %} true {% else %} false {% endif %}, minlength: {{ constant('ENTRY_CONTACT_FIRSTNAME_MIN_LENGTH') }}},
                                                 lastname : {required:{% if constant('ENTRY_CONTACT_LASTNAME') != null %} true {% else %} false {% endif %}, minlength: {{ constant('ENTRY_CONTACT_LASTNAME_MIN_LENGTH') }}},                                                
@@ -103,10 +103,10 @@ var validator = $("#contact_us").bind("invalid-form.validate", function() {
                                         enquiry: {required:true, minlength: {{ constant('ENTRY_CONTACT_ENQUIRY_MIN_LENGTH') }}}
                                         },
                                                 messages:{                                        
-                                                firstname : {required: '{{ constant('ENTRY_CONTACT_REQUIRED') }}', minlength : '{{ constant('ENTRY_CONTACT_FIRSTNAME_ERROR') }}'},
-                                                lastname : {required: '{{ constant('ENTRY_CONTACT_REQUIRED') }}', minlength : '{{ constant('ENTRY_CONTACT_LASTNAME_ERROR') }}'},                                                
-                                                email : {required: '{{ constant('ENTRY_CONTACT_REQUIRED') }}', minlength: '{{ constant('ENTRY_CONTACT_EMAIL_ERROR') }}', email: '{{ constant('ENTRY_CONTACT_EMAIL_CHECK_ERROR') }}'},
-                                                enquiry:{required: '{{ constant('ENTRY_CONTACT_REQUIRED') }}', minlength: '{{ constant('ENTRY_CONTACT_ENQUIRY_ERROR') }}'}
+                                                firstname : {required: '{{ constant('ENTRY_CONTACT_REQUIRED') | raw}}', minlength : '{{ constant('ENTRY_CONTACT_FIRSTNAME_ERROR') }}'},
+                                                lastname : {required: '{{ constant('ENTRY_CONTACT_REQUIRED') | raw}}', minlength : '{{ constant('ENTRY_CONTACT_LASTNAME_ERROR') }}'},                                                
+                                                email : {required: '{{ constant('ENTRY_CONTACT_REQUIRED') | raw}}', minlength: '{{ constant('ENTRY_CONTACT_EMAIL_ERROR') }}', email: '{{ constant('ENTRY_CONTACT_EMAIL_CHECK_ERROR') }}'},
+                                                enquiry:{required: '{{ constant('ENTRY_CONTACT_REQUIRED') | raw}}', minlength: '{{ constant('ENTRY_CONTACT_ENQUIRY_ERROR') }}'}
                                                 },
                                                 errorPlacement: function(error, element) {                 
                                         error.insertAfter("#div" + element.attr("name"));                                               
