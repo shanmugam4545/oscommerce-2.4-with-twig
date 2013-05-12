@@ -53,8 +53,12 @@ class products {
         
         $data = array();       
         $display = isset($_GET['display']) ? $_GET['display'] : 'column';
-        $page = (empty($_GET['page']) || !is_numeric($_GET['page']) || !isset($_GET['page'])) ? $page = 1 : $page = $_GET['page'];        
-        $per_page = isset($_GET['per_page']) ? ($_GET['per_page'] < TWIG_MIN_DISPLAY_SEARCH_RESULTS ?  $_GET['per_page'] = TWIG_MIN_DISPLAY_SEARCH_RESULTS : $_GET['per_page']) : TWIG_MAX_DISPLAY_SEARCH_RESULTS;        
+        $page = (empty($_GET['page']) || !is_numeric($_GET['page']) || !isset($_GET['page'])) ? $page = 1 : $page = $_GET['page']; 
+        if ( isset($_GET['template']) && isset($_GET['per_page'])) {        
+        $per_page = TWIG_MAX_DISPLAY_SEARCH_RESULTS;   
+        }else{
+        $per_page = isset($_GET['per_page']) ? ($_GET['per_page'] < TWIG_MIN_DISPLAY_SEARCH_RESULTS  ?  $_GET['per_page'] = TWIG_MIN_DISPLAY_SEARCH_RESULTS : $_GET['per_page']) : TWIG_MAX_DISPLAY_SEARCH_RESULTS;    
+        }
         $from =  $page == 1 ?  0 : $page * $per_page - $per_page;
         $to =  $page == 1 ? $per_page : $per_page;
 
