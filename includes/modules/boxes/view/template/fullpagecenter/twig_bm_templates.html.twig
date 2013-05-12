@@ -4,3 +4,22 @@
 {{ data | raw }}   
 
 
+<script>
+$('.tp').click(function() { window.location = getQuery(window.location.href, "template", $(this).attr("id"))})
+function getQuery (uri, key, value) {
+ var re = new RegExp("([?|&])" + key + "=.*?(&|#|$)", "i");
+   if (uri.match(re)) {
+    return uri.replace(re, '$1' + key + "=" + value + '$2');
+  } else {
+    var hash =  '';
+    var separator = uri.indexOf('?') !== -1 ? "&" : "?";
+    if( uri.indexOf('#') !== -1 ){
+      hash = uri.replace(/.*#/, '#');
+      uri = uri.replace(/#.*/, '');
+    }
+  return uri + separator + key + "=" + value + hash;
+  }
+}
+</script>
+
+

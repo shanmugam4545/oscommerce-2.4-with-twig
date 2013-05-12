@@ -13,41 +13,42 @@ require(DIR_WS_MODULES . 'boxes/bm_templates.php');
       
     var $code = 'twig_bm_templates';
 
-    public function execute() {
-      global $request_type;         
-          
-          $templates_array = array();
-          
-          $templates_query = osc_db_query("select id, title, code from twig_templates order by id");
-    
-            while ($templates = osc_db_fetch_array($templates_query)) {
-        
-            $templates_array[] = array('id' => $templates['code'],
-                                       'text' => $templates['title']);
-            }
-            
-          $hidden_get_variables = '';
-          reset($_GET);
-          while (list($key, $value) = each($_GET)) {              
-            if ( is_string($value) && ($key != 'template') && ($key != session_name()) && ($key != 'x') && ($key != 'y') && ($key != 'per_page') && ($key != 'page')) {
-              $hidden_get_variables .= osc_draw_hidden_field($key, $value);
-              
-            }
-          }
-            
-          $data =  osc_draw_form('templates', osc_href_link(null, '', $request_type, false), 'get') . $hidden_get_variables .                   
-                    osc_draw_pull_down_menu('template', $templates_array, $_SESSION['template'] , 'onchange="this.form.submit();" id="templates_pulldown"') .
-                    osc_hide_session_id() . '</form>';                  
+    public function execute() {       
 
-            $data = array(
-                 'data' => $data,
-                 'group' => $this->group,
-                 'boxe' => $this->code,
-                 'enabled' => $this->enabled,
-                 'sort_order' => $this->sort_order,
-                 'title' => $this->title);
+        $hidden_get_variables = '';
+        reset($_GET);
+        while (list($key, $value) = each($_GET)) {
+            if (is_string($value) && ($key != 'template') && ($key != session_name()) && ($key != 'x') && ($key != 'y') && ($key != 'per_page') && ($key != 'page')) {
+                $hidden_get_variables .= osc_draw_hidden_field($key, $value);
+            }
+        }
+        $template_data = '<div class="bfh-selectbox">';
+        $template_data .= '<input type="hidden" value="">';
+        $template_data .= $hidden_get_variables;
+        $template_data .= '<a class="bfh-selectbox-toggle" role="button" data-toggle="bfh-selectbox" href="#">
+                    <span class="bfh-selectbox-option input-medium" data-option="' . $_SESSION['template'] . '">' . $_SESSION['template'] . '</span>
+                  <b class="caret"></b>
+                  </a>
+                  <div class="bfh-selectbox-options" id="templates-bfh-selectbox-options">                  
+                    <ul role="listbox">';
 
-             return $data;     
+        $templates_query = osc_db_query("select id, title, code from twig_templates order by id");
+        while ($templates = osc_db_fetch_array($templates_query)) {
+            $template_data .= '<li role="option"><a id="' . $templates['code'] . '" class="tp" tabindex="-1" href="#" data-option="' . $templates['code'] . '">' . $templates['title'] . '</a></li>';
+        }
+
+        $template_data .= '</ul></div></div>';
+
+        $data = array(
+            'data' => $template_data,
+            'group' => $this->group,
+            'boxe' => $this->code,
+            'enabled' => $this->enabled,
+            'sort_order' => $this->sort_order,
+            'title' => $this->title);
+
+        return $data;
     }
-  }
+
+}
 ?>
