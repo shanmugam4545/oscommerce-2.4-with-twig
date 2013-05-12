@@ -67,7 +67,7 @@ define('ADDRESS_BOOK_TITLE', 'Address Book Entries');
 
 define('PRIMARY_ADDRESS', '(primary address)');
 
-define('TEXT_MAXIMUM_ENTRIES', '<strong>NOTE:</strong> A maximum of %s address book entries allowed.');
+define('TEXT_MAXIMUM_ENTRIES', '<font color="#ff0000"><strong>NOTE:</strong></font> A maximum of %s address book entries allowed.');
 
 define('HEADING_TITLE_ADD_ENTRY', 'New Address Book Entry');
 define('HEADING_TITLE_MODIFY_ENTRY', 'Update Address Book Entry');
@@ -157,7 +157,7 @@ define('TEXT_PASSWORD_FORGOTTEN', 'Password forgotten? Click here.');
 define('TEXT_LOGIN_ERROR', 'Error: No match for E-Mail Address and/or Password.');
 define('TEXT_VISITORS_CART', '<font color="#ff0000"><strong>Note:</strong></font> Your &quot;Visitors Cart&quot; contents will be merged with your &quot;Members Cart&quot; contents once you have logged on. <a href="javascript:session_win();">[More Info]</a>');
 
-define('TEXT_ORIGIN_LOGIN', '<small><strong>NOTE:</strong></small> If you already have an account with us, please login at the <a href="%s"><u>login page</u></a>.');
+define('TEXT_ORIGIN_LOGIN', '<font color="#FF0000"><small><strong>NOTE:</strong></small></font> If you already have an account with us, please login at the <a href="%s"><u>login page</u></a>.');
 
 define('EMAIL_SUBJECT', 'Welcome to ' . STORE_NAME);
 define('EMAIL_GREET_MR', 'Dear Mr. %s,' . "\n\n");
@@ -189,15 +189,11 @@ define('TEXT_NO_RESET_LINK_FOUND', 'Error: The password reset link was not found
 
 define('SUCCESS_PASSWORD_RESET', 'Your password has been successfully updated. Please login with your new password.');
 
+/* twig */
+define('FORM_HELPER', 'Mouse over for help');
 define('CREATE_ACCOUNT_INFO', 'Info');
 define('CREATE_ACCOUNT_FORM_ERROR_TITLE','Errors in your form');
 define('CREATE_ACCOUNT_FORM_ERROR','You have ');
 define('CREATE_ACCOUNT_FORM_ERROR_NUMBERS',' errors in your form.<br />Please make corrections');
 define('CREATE_ACCOUNT_FIELD_REQUIRED','This field is required !');
-
-
-/* twig */
-define('FORM_HELPER', 'Mouse over for help');
-
-
 ?>
