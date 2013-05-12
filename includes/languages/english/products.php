@@ -23,7 +23,6 @@ define('TEXT_CURRENT_REVIEWS', 'Current Reviews:');
 define('TEXT_MORE_INFORMATION', 'For more information, please visit this products <a href="%s" target="_blank"><u>webpage</u></a>.');
 define('TEXT_DATE_ADDED', 'This product was added to our catalog on %s.');
 define('TEXT_DATE_AVAILABLE', '<font color="#ff0000">This product will be in stock on %s.</font>');
-define('TEXT_DATE_AVAILABLE_TWIG', 'This product will be in stock on ');
 define('TEXT_ALSO_PURCHASED_PRODUCTS', 'Customers who bought this product also purchased');
 define('TEXT_PRODUCT_OPTIONS', 'Available Options:');
 define('TEXT_CLICK_TO_ENLARGE', 'Click to enlarge');
@@ -71,4 +70,6 @@ define('TEXT_GOOD', '<small><font color="#ff0000"><strong>GOOD</strong></font></
 
 define('TEXT_REVIEW_RECEIVED', 'Thank you for your review. It has been submitted to the store owner for approval and should appear shortly.');
 
+/* twig */
+define('TEXT_DATE_AVAILABLE_TWIG', 'This product will be in stock on ');
 ?>
