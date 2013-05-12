@@ -6,7 +6,8 @@
   http://www.oscommerce.com
 
   Copyright (c) 2010 osCommerce
-
+  Copyright (c) 2013 FoxP2 http://www.oscommerce.fr
+ 
   Released under the GNU General Public License
 */
 
