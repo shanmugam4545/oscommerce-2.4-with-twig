@@ -1,14 +1,10 @@
 <?php
-/*
-  $Id$
-
-  osCommerce, Open Source E-Commerce Solutions
-  http://www.oscommerce.com
-
-  Copyright (c) 2007 osCommerce
-
-  Released under the GNU General Public License
-*/
+/**
+ * osCommerce Online Merchant
+ *
+ * @copyright Copyright (c) 2013 osCommerce; http://www.oscommerce.com
+ * @license GNU General Public License; http://www.oscommerce.com/gpllicense.txt
+ */
 
 // look in your $PATH_LOCALE/locale directory for available locales
 // or type locale -a on the server.

@@ -1,14 +1,10 @@
 <?php
-/*
-  $Id$
-
-  osCommerce, Open Source E-Commerce Solutions
-  http://www.oscommerce.com
-
-  Copyright (c) 2010 osCommerce
-
-  Released under the GNU General Public License
-*/
+/**
+ * osCommerce Online Merchant
+ *
+ * @copyright Copyright (c) 2013 osCommerce; http://www.oscommerce.com
+ * @license GNU General Public License; http://www.oscommerce.com/gpllicense.txt
+ */
 
   define('MODULE_SOCIAL_BOOKMARKS_GOOGLE_PLUS_SHARE_TITLE', 'Google+ Share');
   define('MODULE_SOCIAL_BOOKMARKS_GOOGLE_PLUS_SHARE_DESCRIPTION', 'Partager les produits sur Google+');

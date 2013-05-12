@@ -1,14 +1,10 @@
 <?php
-/*
-  $Id$
-
-  osCommerce, Open Source E-Commerce Solutions
-  http://www.oscommerce.com
-
-  Copyright (c) 2002 osCommerce
-
-  Released under the GNU General Public License
-*/
+/**
+ * osCommerce Online Merchant
+ *
+ * @copyright Copyright (c) 2013 osCommerce; http://www.oscommerce.com
+ * @license GNU General Public License; http://www.oscommerce.com/gpllicense.txt
+ */
 
 define('MODULE_SHIPPING_TABLE_TEXT_TITLE', 'Frais selon Total');
 define('MODULE_SHIPPING_TABLE_TEXT_DESCRIPTION', 'Frais selon Total');

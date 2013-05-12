@@ -1,14 +1,10 @@
 <?php
-/*
-  $Id$
-
-  osCommerce, Open Source E-Commerce Solutions
-  http://www.oscommerce.com
-
-  Copyright (c) 2010 osCommerce
-
-  Released under the GNU General Public License
-*/
+/**
+ * osCommerce Online Merchant
+ *
+ * @copyright Copyright (c) 2013 osCommerce; http://www.oscommerce.com
+ * @license GNU General Public License; http://www.oscommerce.com/gpllicense.txt
+ */
 
   define('MODULE_ACTION_RECORDER_ADMIN_LOGIN_TITLE', 'Outil pour la gestion de l\'identification');
   define('MODULE_ACTION_RECORDER_ADMIN_LOGIN_DESCRIPTION', 'Enregistrement des identifications sur l\'administration.');
