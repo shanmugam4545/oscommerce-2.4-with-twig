@@ -25,14 +25,6 @@ define('DATE_TIME_FORMAT', DATE_FORMAT_SHORT . ' %H:%M:%S');
 define('JQUERY_DATEPICKER_I18N_CODE', ''); // leave empty for en_US; see http://jqueryui.com/demos/datepicker/#localization
 define('JQUERY_DATEPICKER_FORMAT', 'mm/dd/yy'); // see http://docs.jquery.com/UI/Datepicker/formatDate
 
-define('BOOTSTRAP_DATEPICKER_I18N_CODE', null); // by default day/month/year are in english !
-define('BOOTSTRAP_DATEPICKER_FORMAT', 'mm/dd/yyyy');
-
-define('BOOTSTRAP_COUNTRIES_FORMAT', 'en_US');
-define('BOOTSTRAP_STATES_FORMAT', 'en_US');
-define('BOOTSTRAP_CURRENCIES_FORMAT', 'en_US');
-define('BOOTSTRAP_LANGUAGES_FORMAT', '_US');
-
 ////
 // Return date in raw format
 // $date should be in format mm/dd/yyyy
@@ -66,8 +58,6 @@ define('HEADER_TITLE_TOP', '<i class="icon-fa-home icon-large"></i> Home');
 define('HEADER_TITLE_CATALOG', 'Catalog');
 define('HEADER_TITLE_LOGOFF', 'Log Off');
 define('HEADER_TITLE_LOGIN', 'Log In');
-define('HEADER_TITLE_SIGNUP', 'Sign Up');
-define('HEADER_TITLE_CART', 'Cart');
 
 // footer text in includes/footer.php
 define('FOOTER_TEXT_REQUESTS_SINCE', 'requests since');
@@ -109,11 +99,7 @@ define('CATEGORY_ADDRESS', 'Your Address');
 define('CATEGORY_CONTACT', 'Your Contact Information');
 define('CATEGORY_OPTIONS', 'Options');
 define('CATEGORY_PASSWORD', 'Your Password');
-define('CATEGORY_LOGIN','Informations for login');
-
-
 define('ENTRY_COMPANY', 'Company Name:');
-define('PLACEHOLDER_ENTRY_COMPANY', 'Your Company Name');
 define('ENTRY_COMPANY_TEXT', '');
 define('ENTRY_GENDER', 'Gender:');
 define('ENTRY_GENDER_ERROR', 'Please select your Gender.');
@@ -133,21 +119,18 @@ define('ENTRY_EMAIL_ADDRESS_CHECK_ERROR', 'Your E-Mail Address does not appear t
 define('ENTRY_EMAIL_ADDRESS_ERROR_EXISTS', 'Your E-Mail Address already exists in our records - please log in with the e-mail address or create an account with a different address.');
 define('ENTRY_EMAIL_ADDRESS_TEXT', '*');
 define('ENTRY_STREET_ADDRESS', 'Street Address:');
-define('PLACEHOLDER_ENTRY_STREET_ADDRESS', 'Your Address');
 define('ENTRY_STREET_ADDRESS_ERROR', 'Your Street Address must contain a minimum of ' . ENTRY_STREET_ADDRESS_MIN_LENGTH . ' characters.');
 define('ENTRY_STREET_ADDRESS_TEXT', '*');
 define('ENTRY_SUBURB', 'Suburb:');
 define('ENTRY_SUBURB_TEXT', '');
-define('ENTRY_SUBURB_ERROR', 'Your personnal street details.');
-define('PLACEHOLDER_ENTRY_SUBURB', 'Address Details');
 define('ENTRY_POST_CODE', 'Post Code:');
 define('ENTRY_POST_CODE_ERROR', 'Your Post Code must contain a minimum of ' . ENTRY_POSTCODE_MIN_LENGTH . ' characters.');
 define('ENTRY_POST_CODE_TEXT', '*');
-define('PLACEHOLDER_ENTRY_POSTCODE', 'Your postcode');
+
 define('ENTRY_CITY', 'City:');
 define('ENTRY_CITY_ERROR', 'Your City must contain a minimum of ' . ENTRY_CITY_MIN_LENGTH . ' characters.');
 define('ENTRY_CITY_TEXT', '*');
-define('PLACEHOLDER_ENTRY_CITY', 'Your City');
+
 define('ENTRY_STATE', 'State/Province:');
 define('ENTRY_STATE_ERROR', 'Your State must contain a minimum of ' . ENTRY_STATE_MIN_LENGTH . ' characters.');
 define('ENTRY_STATE_ERROR_SELECT', 'Please select a state from the States pull down menu.');
@@ -161,8 +144,7 @@ define('ENTRY_TELEPHONE_NUMBER_TEXT', '*');
 define('ENTRY_FAX_NUMBER', 'Fax Number:');
 define('ENTRY_FAX_NUMBER_TEXT', '');
 define('ENTRY_NEWSLETTER', 'Newsletter:');
-define('ENTRY_NEWSLETTER_ERROR', 'We don\'t share your email with others commercial websites.');
-define('ENTRY_NEWSLETTER_TEXT', 'Subscribe newsletter');
+
 define('ENTRY_NEWSLETTER_YES', 'Subscribed');
 define('ENTRY_NEWSLETTER_NO', 'Unsubscribed');
 define('ENTRY_PASSWORD', 'Password:');
@@ -182,15 +164,9 @@ define('ENTRY_PASSWORD_NEW_TEXT', '*');
 define('ENTRY_PASSWORD_NEW_ERROR', 'Your new Password must contain a minimum of ' . ENTRY_PASSWORD_MIN_LENGTH . ' characters.');
 define('ENTRY_PASSWORD_NEW_ERROR_NOT_MATCHING', 'The Password Confirmation must match your new Password.');
 define('PASSWORD_HIDDEN', '--HIDDEN--');
-define('PASSWORD_HIDE', 'Hide password');
-define('PLACEHOLDER_EMAIL_ADRESS', 'Your Email Address');
+
 
 define('FORM_REQUIRED_INFORMATION', '* Required information');
-define('FORM_ERROR','You have ');
-define('FORM_ERROR_NUMBERS',' errors in your form.<br />Please make corrections');
-define('INFO', 'Info');
-define('ALL_FORM_REQUIRED_INFORMATION', 'Required information');
-define('FORM_ERROR_TITLE', 'Error in your form');
 
 // constants for use in osc_prev_next_display function
 define('TEXT_RESULT_PAGE', 'Result Pages:');
@@ -211,10 +187,6 @@ define('PREVNEXT_BUTTON_FIRST', '&lt;&lt;FIRST');
 define('PREVNEXT_BUTTON_PREV', '[&lt;&lt;&nbsp;Prev]');
 define('PREVNEXT_BUTTON_NEXT', '[Next&nbsp;&gt;&gt;]');
 define('PREVNEXT_BUTTON_LAST', 'LAST&gt;&gt;');
-
-define('BUTTON_NEXT', 'Next');
-define('BUTTON_PREV', 'Prev');
-define('BUTTON_SLIDESHOW', 'Slideshow');
 
 define('IMAGE_BUTTON_ADD_ADDRESS', 'Add Address');
 define('IMAGE_BUTTON_ADDRESS_BOOK', 'Address Book');
@@ -244,7 +216,6 @@ define('IMAGE_BUTTON_WRITE_REVIEW', 'Write Review');
 define('SMALL_IMAGE_BUTTON_DELETE', 'Delete');
 define('SMALL_IMAGE_BUTTON_EDIT', 'Edit');
 define('SMALL_IMAGE_BUTTON_VIEW', 'View');
-define('SMALL_IMAGE_BUTTON_CLOSE', 'Close');
 
 define('ICON_ARROW_RIGHT', 'more');
 define('ICON_CART', 'In Cart');
@@ -260,14 +231,12 @@ define('TEXT_SORT_PRODUCTS', 'Sort products ');
 define('TEXT_DESCENDINGLY', 'descendingly');
 define('TEXT_ASCENDINGLY', 'ascendingly');
 define('TEXT_BY', ' by ');
-define('TEXT_VIEW_ALL', 'View all ');
 
 define('TEXT_REVIEW_BY', 'by %s');
 define('TEXT_REVIEW_WORD_COUNT', '%s words');
 define('TEXT_REVIEW_RATING', 'Rating: %s [%s]');
 define('TEXT_REVIEW_DATE_ADDED', 'Date Added: %s');
 define('TEXT_NO_REVIEWS', 'There are currently no product reviews.');
-define('TEXT_REVIEWS_SEE','see %s times');
 
 define('TEXT_NO_NEW_PRODUCTS', 'There are currently no products.');
 
@@ -284,6 +253,45 @@ define('TEXT_CCVAL_ERROR_UNKNOWN_CARD', 'The first four digits of the number ent
 define('FOOTER_TEXT_BODY', 'Copyright &copy; ' . date('Y') . ' <a href="' . osc_href_link() . '">' . STORE_NAME . '</a><br />Powered by <a href="http://www.oscommerce.com" target="_blank">osCommerce</a>');
 
 /* twig */
+
+define('BOOTSTRAP_DATEPICKER_I18N_CODE', null); // by default day/month/year are in english !
+define('BOOTSTRAP_DATEPICKER_FORMAT', 'mm/dd/yyyy');
+
+define('BOOTSTRAP_COUNTRIES_FORMAT', 'en_US');
+define('BOOTSTRAP_STATES_FORMAT', 'en_US');
+define('BOOTSTRAP_CURRENCIES_FORMAT', 'en_US');
+
+
+define('HEADER_TITLE_SIGNUP', 'Sign Up');
+define('HEADER_TITLE_CART', 'Cart');
+
+define('CATEGORY_LOGIN','Informations for login');
+define('PLACEHOLDER_ENTRY_COMPANY', 'Your Company Name');
+define('PLACEHOLDER_ENTRY_STREET_ADDRESS', 'Your Address');
+define('ENTRY_SUBURB_ERROR', 'Your personnal street details.');
+define('PLACEHOLDER_ENTRY_SUBURB', 'Address Details');
+define('PLACEHOLDER_ENTRY_POSTCODE', 'Your postcode');
+define('PLACEHOLDER_ENTRY_CITY', 'Your City');
+define('ENTRY_NEWSLETTER_ERROR', 'We don\'t share your email with others commercial websites.');
+define('ENTRY_NEWSLETTER_TEXT', 'Subscribe newsletter');
+define('PASSWORD_HIDE', 'Hide password');
+define('PLACEHOLDER_EMAIL_ADRESS', 'Your Email Address');
+
+define('FORM_ERROR','You have ');
+define('FORM_ERROR_NUMBERS',' errors in your form.<br />Please make corrections');
+define('INFO', 'Info');
+define('ALL_FORM_REQUIRED_INFORMATION', 'Required information');
+define('FORM_ERROR_TITLE', 'Error in your form');
+
+
+define('BUTTON_NEXT', 'Next');
+define('BUTTON_PREV', 'Prev');
+define('BUTTON_SLIDESHOW', 'Slideshow');
+define('SMALL_IMAGE_BUTTON_CLOSE', 'Close');
+define('TEXT_VIEW_ALL', 'View all ');
+
+define('TEXT_REVIEWS_SEE','see %s times');
+
 define('NAV_ACCOUNT_INFORMATION', 'My informations');
 define('NAV_ACCOUNT_ADDRESS_BOOK', 'My address book');
 define('NAV_ACCOUNT_PASSWORD', 'My account password');
