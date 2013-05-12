@@ -25,11 +25,11 @@ require(DIR_WS_MODULES . 'boxes/bm_languages.php');
 
         if (count($lng->catalog_languages) > 0) {          
           reset($lng->catalog_languages);         
-          while (list($key, $value) = each($lng->catalog_languages)) {
-            $dataavailable[] = $key.BOOTSTRAP_LANGUAGES_FORMAT;            
+          while (list($key, $value) = each($lng->catalog_languages)) {              
+            $dataavailable[] = $value['code_iso'];            
           }
           
-          $languages_data = '<div id="lang" class="bfh-selectbox bfh-languages hidden" data-language="' . $_SESSION['languages_code'].BOOTSTRAP_LANGUAGES_FORMAT . '" data-available="' . implode(',',$dataavailable) . '" data-flags="true">
+          $languages_data = '<div id="lang" class="bfh-selectbox bfh-languages hidden" data-language="' . $_SESSION['languages_code'] . '" data-available="' . implode(',',$dataavailable) . '" data-flags="true">
                   <input type="hidden" value="">
                   <a class="bfh-selectbox-toggle" role="button" data-toggle="bfh-selectbox" href="#">
                   <span class="bfh-selectbox-option input-medium" data-option=""></span>

@@ -56,11 +56,11 @@
                                'zh' => 'zh|chinese simplified');
 
       $this->catalog_languages = array();
-      $languages_query = osc_db_query("select languages_id, name, code, image, directory from " . TABLE_LANGUAGES . " order by sort_order");
+      $languages_query = osc_db_query("select languages_id, name, code, code_iso, image, directory from " . TABLE_LANGUAGES . " order by sort_order");
       while ($languages = osc_db_fetch_array($languages_query)) {
         $this->catalog_languages[$languages['code']] = array('id' => $languages['languages_id'],
                                                              'name' => $languages['name'],
-                                                             'code' => $languages['code'],// added for BootstrapFormHelper
+                                                             'code_iso' => $languages['code_iso'],// added for BootstrapFormHelper
                                                              'image' => $languages['image'],
                                                              'directory' => $languages['directory']);
       }

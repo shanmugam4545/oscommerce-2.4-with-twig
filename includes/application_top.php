@@ -243,7 +243,7 @@
 
     $_SESSION['language'] = $lng->language['directory'];
     $_SESSION['languages_id'] = $lng->language['id'];
-    $_SESSION['languages_code'] = $lng->language['code'];// added for BootstrapFormHelper
+    $_SESSION['languages_code'] = $lng->language['code_iso'];// added for BootstrapFormHelper
     
   }
 
