@@ -196,7 +196,7 @@ define('CREATE_ACCOUNT_FORM_ERROR_NUMBERS',' errors in your form.<br />Please ma
 define('CREATE_ACCOUNT_FIELD_REQUIRED','This field is required !');
 
 
-
+/* twig */
 define('FORM_HELPER', 'Mouse over for help');
 
 
