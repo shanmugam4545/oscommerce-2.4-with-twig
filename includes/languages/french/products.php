@@ -1,21 +1,20 @@
 <?php
-/*
-  $Id$
+/**
+ * osCommerce Online Merchant
+ *
+ * @copyright Copyright (c) 2013 osCommerce; http://www.oscommerce.com
+ * @license GNU General Public License; http://www.oscommerce.com/gpllicense.txt
+ */
 
-  osCommerce, Open Source E-Commerce Solutions
-  http://www.oscommerce.com
-
-  Copyright (c) 2002 osCommerce
-
-  Released under the GNU General Public License
-*/
 define('NAVBAR_TITLE_SPECIALS', 'Promotions');
 define('NAVBAR_TITLE_NEW', 'Nouveaux produits');
 define('NAVBAR_TITLE_REVIEWS', 'Avis des clients');
+define('NAVBAR_TITLE_TELL_A_FRIEND', 'Faire connaître à un contact');
 
 define('HEADING_TITLE_SPECIALS', 'Profitez-en tant qu\'ils sont à ce prix !');
 define('HEADING_TITLE_NEW', 'Nouveaux produits');
 define('HEADING_TITLE_REVIEWS', 'Lisez ce que les autres pensent');
+define('HEADING_TITLE_TELL_A_FRIEND', 'Faire connaître à un contact le produit \'%s\'');
 
 define('TEXT_PRODUCT_NOT_FOUND', 'Produit non trouvé !');
 define('TEXT_CURRENT_REVIEWS', 'Avis des clients sur le produit :');
@@ -29,9 +28,6 @@ define('TEXT_CLICK_TO_ENLARGE', 'Cliquer pour agrandir');
 define('TEXT_DATE_ADDED_NEW', 'Ajouté le :');
 define('TEXT_MANUFACTURER_NEW', 'Fabricant :');
 define('TEXT_PRICE_NEW', 'Prix :');
-
-define('NAVBAR_TITLE_TELL_A_FRIEND', 'Faire connaître à un contact');
-define('HEADING_TITLE_TELL_A_FRIEND', 'Faire connaître à un contact le produit \'%s\'');
 
 define('FORM_TITLE_CUSTOMER_DETAILS', 'Vous');
 define('FORM_TITLE_FRIEND_DETAILS', 'Votre contact');

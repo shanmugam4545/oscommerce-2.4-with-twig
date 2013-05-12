@@ -1,22 +1,20 @@
 <?php
-/*
-  $Id$
-
-  osCommerce, Open Source E-Commerce Solutions
-  http://www.oscommerce.com
-
-  Copyright (c) 2002 osCommerce
-
-  Released under the GNU General Public License
-*/
+/**
+ * osCommerce Online Merchant
+ *
+ * @copyright Copyright (c) 2013 osCommerce; http://www.oscommerce.com
+ * @license GNU General Public License; http://www.oscommerce.com/gpllicense.txt
+ */
 
 define('NAVBAR_TITLE_SPECIALS', 'Specials');
 define('NAVBAR_TITLE_NEW', 'New Products');
 define('NAVBAR_TITLE_REVIEWS', 'Reviews');
+define('NAVBAR_TITLE_TELL_A_FRIEND', 'Tell A Friend');
 
 define('HEADING_TITLE_SPECIALS', 'Get Them While They\'re Hot!');
 define('HEADING_TITLE_NEW', 'New Products');
 define('HEADING_TITLE_REVIEWS', 'Read What Others Are Saying');
+define('HEADING_TITLE_TELL_A_FRIEND', 'Tell A Friend About \'%s\'');
 
 define('TEXT_PRODUCT_NOT_FOUND', 'Product not found!');
 define('TEXT_CURRENT_REVIEWS', 'Current Reviews:');
@@ -30,9 +28,6 @@ define('TEXT_CLICK_TO_ENLARGE', 'Click to enlarge');
 define('TEXT_DATE_ADDED_NEW', 'Date Added:');
 define('TEXT_MANUFACTURER_NEW', 'Manufacturer:');
 define('TEXT_PRICE_NEW', 'Price:');
-
-define('NAVBAR_TITLE_TELL_A_FRIEND', 'Tell A Friend');
-define('HEADING_TITLE_TELL_A_FRIEND', 'Tell A Friend About \'%s\'');
 
 define('FORM_TITLE_CUSTOMER_DETAILS', 'Your Details');
 define('FORM_TITLE_FRIEND_DETAILS', 'Your Friends Details');
