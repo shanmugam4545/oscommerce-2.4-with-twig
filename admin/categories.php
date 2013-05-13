@@ -250,6 +250,7 @@
 
           $sql_data_array = array('products_name' => osc_db_prepare_input($_POST['products_name'][$language_id]),
                                   'products_description' => osc_db_prepare_input($_POST['products_description'][$language_id]),
+                                  'products_short_description' => osc_db_prepare_input($_POST['products_short_description'][$language_id]),
                                   'products_url' => osc_db_prepare_input($_POST['products_url'][$language_id]));
 
           if ($action == 'insert_product') {
@@ -349,9 +350,9 @@
             osc_db_query("insert into " . TABLE_PRODUCTS . " (products_quantity, products_model,products_image, products_price, products_date_added, products_date_available, products_weight, products_status, products_tax_class_id, manufacturers_id) values ('" . osc_db_input($product['products_quantity']) . "', '" . osc_db_input($product['products_model']) . "', '" . osc_db_input($product['products_image']) . "', '" . osc_db_input($product['products_price']) . "',  now(), " . (empty($product['products_date_available']) ? "null" : "'" . osc_db_input($product['products_date_available']) . "'") . ", '" . osc_db_input($product['products_weight']) . "', '0', '" . (int)$product['products_tax_class_id'] . "', '" . (int)$product['manufacturers_id'] . "')");
             $dup_products_id = osc_db_insert_id();
 
-            $description_query = osc_db_query("select language_id, products_name, products_description, products_url from " . TABLE_PRODUCTS_DESCRIPTION . " where products_id = '" . (int)$products_id . "'");
+            $description_query = osc_db_query("select language_id, products_name, products_description, products_short_description, products_url from " . TABLE_PRODUCTS_DESCRIPTION . " where products_id = '" . (int)$products_id . "'");
             while ($description = osc_db_fetch_array($description_query)) {
-              osc_db_query("insert into " . TABLE_PRODUCTS_DESCRIPTION . " (products_id, language_id, products_name, products_description, products_url, products_viewed) values ('" . (int)$dup_products_id . "', '" . (int)$description['language_id'] . "', '" . osc_db_input($description['products_name']) . "', '" . osc_db_input($description['products_description']) . "', '" . osc_db_input($description['products_url']) . "', '0')");
+              osc_db_query("insert into " . TABLE_PRODUCTS_DESCRIPTION . " (products_id, language_id, products_name, products_description, products_short_description, products_url, products_viewed) values ('" . (int)$dup_products_id . "', '" . (int)$description['language_id'] . "', '" . osc_db_input($description['products_name']) . "', '" . osc_db_input($description['products_description']) . "', , '" . osc_db_input($description['products_short_description']) . "', '" . osc_db_input($description['products_url']) . "', '0')");
             }
 
             $product_images_query = osc_db_query("select image, htmlcontent, sort_order from " . TABLE_PRODUCTS_IMAGES . " where products_id = '" . (int)$products_id . "'");
@@ -386,6 +387,7 @@
   if ($action == 'new_product') {
     $parameters = array('products_name' => '',
                        'products_description' => '',
+                       'products_short_description' => '',
                        'products_url' => '',
                        'products_id' => '',
                        'products_quantity' => '',
@@ -404,7 +406,7 @@
     $pInfo = new objectInfo($parameters);
 
     if (isset($_GET['pID']) && empty($_POST)) {
-      $product_query = osc_db_query("select pd.products_name, pd.products_description, pd.products_url, p.products_id, p.products_quantity, p.products_model, p.products_image, p.products_price, p.products_weight, p.products_date_added, p.products_last_modified, date_format(p.products_date_available, '%Y-%m-%d') as products_date_available, p.products_status, p.products_tax_class_id, p.manufacturers_id from " . TABLE_PRODUCTS . " p, " . TABLE_PRODUCTS_DESCRIPTION . " pd where p.products_id = '" . (int)$_GET['pID'] . "' and p.products_id = pd.products_id and pd.language_id = '" . (int)$_SESSION['languages_id'] . "'");
+      $product_query = osc_db_query("select pd.products_name, pd.products_description, pd.products_short_description, pd.products_url, p.products_id, p.products_quantity, p.products_model, p.products_image, p.products_price, p.products_weight, p.products_date_added, p.products_last_modified, date_format(p.products_date_available, '%Y-%m-%d') as products_date_available, p.products_status, p.products_tax_class_id, p.manufacturers_id from " . TABLE_PRODUCTS . " p, " . TABLE_PRODUCTS_DESCRIPTION . " pd where p.products_id = '" . (int)$_GET['pID'] . "' and p.products_id = pd.products_id and pd.language_id = '" . (int)$_SESSION['languages_id'] . "'");
       $product = osc_db_fetch_array($product_query);
 
       $pInfo->objectInfo($product);
@@ -561,6 +563,21 @@ updateGross();
     for ($i=0, $n=sizeof($languages); $i<$n; $i++) {
 ?>
           <tr>
+            <td class="main" valign="top"><?php if ($i == 0) echo TEXT_PRODUCTS_SHORT_DESCRIPTION; ?></td>
+            <td><table border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td class="main" valign="top"><?php echo osc_image(DIR_WS_CATALOG_LANGUAGES . $languages[$i]['directory'] . '/images/' . $languages[$i]['image'], $languages[$i]['name']); ?>&nbsp;</td>
+                <td class="main"><?php echo osc_draw_textarea_field('products_short_description[' . $languages[$i]['id'] . ']', 'soft', '70', '15', (empty($pInfo->products_id) ? '' : osc_get_products_short_description($pInfo->products_id, $languages[$i]['id']))); ?></td>
+              </tr>
+            </table></td>
+          </tr>
+<?php
+    }
+?>
+<?php
+    for ($i=0, $n=sizeof($languages); $i<$n; $i++) {
+?>
+          <tr>
             <td class="main" valign="top"><?php if ($i == 0) echo TEXT_PRODUCTS_DESCRIPTION; ?></td>
             <td><table border="0" cellspacing="0" cellpadding="0">
               <tr>
@@ -696,7 +713,7 @@ $('#products_date_available').datepicker({
     </form>
 <?php
   } elseif ($action == 'new_product_preview') {
-    $product_query = osc_db_query("select p.products_id, pd.language_id, pd.products_name, pd.products_description, pd.products_url, p.products_quantity, p.products_model, p.products_image, p.products_price, p.products_weight, p.products_date_added, p.products_last_modified, p.products_date_available, p.products_status, p.manufacturers_id  from " . TABLE_PRODUCTS . " p, " . TABLE_PRODUCTS_DESCRIPTION . " pd where p.products_id = pd.products_id and p.products_id = '" . (int)$_GET['pID'] . "'");
+    $product_query = osc_db_query("select p.products_id, pd.language_id, pd.products_name, pd.products_description, pd.products_short_description, pd.products_url, p.products_quantity, p.products_model, p.products_image, p.products_price, p.products_weight, p.products_date_added, p.products_last_modified, p.products_date_available, p.products_status, p.manufacturers_id  from " . TABLE_PRODUCTS . " p, " . TABLE_PRODUCTS_DESCRIPTION . " pd where p.products_id = pd.products_id and p.products_id = '" . (int)$_GET['pID'] . "'");
     $product = osc_db_fetch_array($product_query);
 
     $pInfo = new objectInfo($product);
@@ -706,6 +723,7 @@ $('#products_date_available').datepicker({
     for ($i=0, $n=sizeof($languages); $i<$n; $i++) {
       $pInfo->products_name = osc_get_products_name($pInfo->products_id, $languages[$i]['id']);
       $pInfo->products_description = osc_get_products_description($pInfo->products_id, $languages[$i]['id']);
+      $pInfo->products_short_description = osc_get_products_short_description($pInfo->products_id, $languages[$i]['id']);
       $pInfo->products_url = osc_get_products_url($pInfo->products_id, $languages[$i]['id']);
 ?>
     <table border="0" width="100%" cellspacing="0" cellpadding="2">

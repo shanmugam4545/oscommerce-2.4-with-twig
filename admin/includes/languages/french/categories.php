@@ -100,4 +100,7 @@ define('ERROR_CANNOT_LINK_TO_SAME_CATEGORY', 'Erreur : Impossible de lier des pr
 define('ERROR_CATALOG_IMAGE_DIRECTORY_NOT_WRITEABLE', 'Erreur : Impossible d\'écrire dans le répertoire images : ' . DIR_FS_CATALOG_IMAGES);
 define('ERROR_CATALOG_IMAGE_DIRECTORY_DOES_NOT_EXIST', 'Erreur : Le répertoire d\'images n\'existe pas : ' . DIR_FS_CATALOG_IMAGES);
 define('ERROR_CANNOT_MOVE_CATEGORY_TO_PARENT', 'Erreur : La catégorie ne peut pas être déplacée dans la sous-catégorie.');
+
+/* twig */
+define('TEXT_PRODUCTS_SHORT_DESCRIPTION', 'Description courte du produit :');
 ?>
