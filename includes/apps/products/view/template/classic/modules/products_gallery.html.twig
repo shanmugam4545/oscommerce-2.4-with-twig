@@ -22,15 +22,18 @@ $('#piGal ul').bxGallery({
 });
 </script>
 {% else %}
+{% if product_image != null %}
     <div id="piGal" style="float: right;">
       <a href="{{ [constant('HTTP_SERVER'),constant('DIR_WS_HTTP_CATALOG'),constant('DIR_WS_IMAGES'),product_image]|join }}" target="_blank" data-fancy-target="fancybox">{{ image([constant('DIR_WS_IMAGES'), product_image]|join, product_name, null, null, 'hspace="5" vspace="5" itemprop="image"') | raw}}</a>
     </div>
+{% endif %}
 {% endif %}
 <script>
 $("#piGal a[data-fancy-target='fancybox']").fancybox({
   cyclic: true
 });
 </script>
+
 {% endmacro %}
 
 

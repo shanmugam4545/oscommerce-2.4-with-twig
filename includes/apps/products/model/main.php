@@ -19,6 +19,9 @@ class main {
     
     $cPath = osc_get_product_path((int)$_GET['id']);
     
+    $pi_galery = null;
+    $pi_size = 0;
+    
     $product_info_query = osc_db_query("select p.products_id, pd.products_name, pd.products_description, p.products_model, p.products_quantity, p.products_image, pd.products_url, p.products_price, p.products_tax_class_id, p.products_date_added, p.products_date_available, p.manufacturers_id, p.products_template, p.products_gallery from " . TABLE_PRODUCTS . " p, " . TABLE_PRODUCTS_DESCRIPTION . " pd where p.products_status = '1' and p.products_id = '" . (int)$_GET['id'] . "' and pd.products_id = p.products_id and pd.language_id = '" . (int)$_SESSION['languages_id'] . "'");
     $product_info = osc_db_fetch_array($product_info_query);
     osc_db_query("update " . TABLE_PRODUCTS_DESCRIPTION . " set products_viewed = products_viewed+1 where products_id = '" . (int)$_GET['id'] . "' and language_id = '" . (int)$_SESSION['languages_id'] . "'");
@@ -53,11 +56,12 @@ class main {
     if (osc_not_null($product_info['products_image'])) {
       $pi_query = osc_db_query("select image, thumb, htmlcontent from " . TABLE_PRODUCTS_IMAGES . " where products_id = '" . (int)$product_info['products_id'] . "' order by sort_order");
       if (osc_db_num_rows($pi_query) > 0) {
+          $pi_size = osc_db_num_rows($pi_query);
           while ($pi = osc_db_fetch_array($pi_query)) {
           $pi_galery[] = $pi;
           }
       }else{
-          $pi_galery = null;
+          
       }
     }
 
@@ -116,7 +120,7 @@ class main {
                          'cpath' => $cPath,
                          'products_gallery' => self::getGalleryTemplate(),
                          'gallery_data' => $pi_galery,
-                         'gallery_size' => osc_db_num_rows($pi_query),
+                         'gallery_size' => $pi_size,
                          'product_image' => $product_info['products_image'],
                          'product_description' => $product_info['products_description'],
                          'nb_product_attribute' => $products_attributes['total'],
