@@ -351,7 +351,8 @@
     require_once(DIR_FS_CATALOG . '/lib/lib/Twig/Autoloader.php');
     
     Twig_Autoloader::register();
-
+    
+    // this code is just for demo !
     if ($OSCOM_Cache->read('twig_template')) {
         $templates_array = $OSCOM_Cache->getCache();
     } else {
@@ -361,13 +362,12 @@
         }
         $OSCOM_Cache->write($templates_array);
     }
-
-    // this code is just for demo !
+    
     if (!isset($_SESSION['template'])) {
 
         $_SESSION['template'] = TWIG_STORE_TEMPLATE;
-        $_SESSION['template_name'] = 'FoxP2';
-        
+        $_SESSION['template_name'] = '2 Columns';
+         
     } else {
 
         for ($i = 0; $i < 3; $i++) {
