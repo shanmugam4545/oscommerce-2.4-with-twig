@@ -3,18 +3,14 @@
 {% extends "base.html.twig" %}
 {% block stylesheet %}
 <link rel="stylesheet" href="ext/bootstrap/css/datepicker.css" />
-<link rel="stylesheet" href="ext/bootstrap/css/bootstrap-formhelpers.css" />
-<link rel="stylesheet" href="ext/bootstrap/countries/css/bootstrap-formhelpers-countries.flags.css" />
 {% endblock %}
 {% block head_javascript %}
 <script src="ext/jquery/jquery.validate.js"></script>
-<script src="ext/bootstrap/js/bootstrap-formhelpers-selectbox.js"></script>
 <script src="ext/bootstrap/countries/js/bootstrap-formhelpers-countries.js"></script>
-<script src="ext/bootstrap/countries/js/bootstrap-formhelpers-countries.{{ constant('BOOTSTRAP_COUNTRIES_FORMAT') }}.js"></script>
+<script src="ext/bootstrap/countries/js/locales/bootstrap-formhelpers-countries.{{ constant('BOOTSTRAP_COUNTRIES_FORMAT') }}.js"></script>
 <script src="ext/bootstrap/states/js/bootstrap-formhelpers-states.js"></script>
 <script src="ext/bootstrap/states/js/bootstrap-formhelpers-states.{{ constant('BOOTSTRAP_STATES_FORMAT') }}.js"></script>
 <script src="ext/bootstrap/js/bootstrap-datepicker.js"></script>
-
 {% if constant('BOOTSTRAP_DATEPICKER_I18N_CODE') is not null %}
 <script src="ext/bootstrap/js/locales/bootstrap-datepicker.{{ constant('BOOTSTRAP_DATEPICKER_I18N_CODE')}}.js" charset="UTF-8"></script>
 {% endif %}
@@ -192,7 +188,7 @@
 
 {{ hiddenfield('state',address.entry_state) | raw }}
                                                                                                <a class="bfh-selectbox-toggle hidden" role="button" data-toggle="bfh-selectbox" href="#" data-placement="top" data-content="{{ constant('ENTRY_COUNTRY_ERROR') | raw }}" data-original-title=" {{ constant('ENTRY_COUNTRY') }}">
-                                                                                                       <span id="idstate" class="bfh-selectbox-option input-large" data-option=""></span>
+                                                                                                       <span id="idstate" class="bfh-selectbox-option input-large" data-option="{{ address.entry_state }}">{{ address.entry_state }}</span>
                                                                                                   
                                                                                                        <b class="caret"></b>
                                                                                                        </a>                                                                                 

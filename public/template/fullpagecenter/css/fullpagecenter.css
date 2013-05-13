@@ -44,7 +44,7 @@
 #blockactive { background: #e6e6e6; color:#fff; }
 #blockactive a { background: #e6e6e6;color:#737373; }
 #blockactive a:hover { background: #e6e6e6; }
-
+#listboxstate ul{ width: 100%;}
 #form-helper{display:none;}
 /* boxe template footer */
 #templates_pulldown { width: 50%;}
