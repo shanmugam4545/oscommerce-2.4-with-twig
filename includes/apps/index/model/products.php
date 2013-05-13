@@ -54,8 +54,10 @@ class products {
         $data = array();       
         $display = isset($_GET['display']) ? $_GET['display'] : 'column';
         $page = (empty($_GET['page']) || !is_numeric($_GET['page']) || !isset($_GET['page'])) ? $page = 1 : $page = $_GET['page']; 
+        /* modified for demo */
         if ( isset($_GET['template']) && isset($_GET['per_page'])) {        
-        $per_page = TWIG_MAX_DISPLAY_SEARCH_RESULTS;   
+        $per_page = TWIG_MAX_DISPLAY_SEARCH_RESULTS;  
+        $page = 1;
         }else{
         $per_page = isset($_GET['per_page']) ? ($_GET['per_page'] < TWIG_MIN_DISPLAY_SEARCH_RESULTS  ?  $_GET['per_page'] = TWIG_MIN_DISPLAY_SEARCH_RESULTS : $_GET['per_page']) : TWIG_MAX_DISPLAY_SEARCH_RESULTS;    
         }
