@@ -346,29 +346,41 @@
   require(DIR_WS_CLASSES . 'template.php');
   $OSCOM_Template = new template();
   
-  if (TWIG_ACTIVATION === 'True' && is_dir(DIR_FS_CATALOG. '/lib/lib/Twig')) { // check if git submodule is included !      
+  if (TWIG_ACTIVATION === 'True' && is_dir(DIR_FS_CATALOG . '/lib/lib/Twig')) { // check if git submodule is included !      
+      
+    require_once(DIR_FS_CATALOG . '/lib/lib/Twig/Autoloader.php');
     
-  require_once(DIR_FS_CATALOG. '/lib/lib/Twig/Autoloader.php');
-  Twig_Autoloader::register();
-  
-  // this code is just for demo !
-  if ( !isset($_SESSION['template']) ) {
+    Twig_Autoloader::register();
+
+    if ($OSCOM_Cache->read('twig_template')) {
+        $templates_array = $OSCOM_Cache->getCache();
+    } else {
+        $templates_query = osc_db_query("select id, title, code from twig_templates order by id");
+        while ($templates = osc_db_fetch_array($templates_query)) {
+            $templates_array[] = array('title' => $templates['title'], 'code' => $templates['code']);
+        }
+        $OSCOM_Cache->write($templates_array);
+    }
+
+    // this code is just for demo !
+    if (!isset($_SESSION['template'])) {
 
         $_SESSION['template'] = TWIG_STORE_TEMPLATE;
+        $_SESSION['template_name'] = 'FoxP2';
         
     } else {
 
-        $templates = array('classic', 'fullpage', 'fullpagecenter');
-        
-        if (isset($_GET['template']) && in_array($_GET['template'],$templates)) {
+        for ($i = 0; $i < 3; $i++) {
             
-            $_SESSION['template'] = $_GET['template'];
-            
-        } 
+            if (isset($_GET['template']) && in_array($_GET['template'], $templates_array[$i])) {
+
+                $_SESSION['template'] = $_GET['template'];
+                $_SESSION['template_name'] = $templates_array[$i]['title'];
+            }
+        }
     } // end demo 
-  
-  require(DIR_WS_CLASSES . 'TwigTemplate.php');
-  $OSCOM_TwigTemplate = new TwigTemplate();
-  
-  }
+
+    require(DIR_WS_CLASSES . 'TwigTemplate.php');
+    $OSCOM_TwigTemplate = new TwigTemplate();
+}
 ?>
