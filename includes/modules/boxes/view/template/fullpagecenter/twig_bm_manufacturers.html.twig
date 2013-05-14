@@ -1,0 +1,12 @@
+{# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
+{# file: includes/modules/boxes/view/template/fullpagecenter/twig_bm_manufacturers.html.twig #}
+{% if data|length > 0 %}
+<div class="span3 pull-right" style="margin-top: 5px;margin-left: 0px;">
+<span class="pull-left"><a class="brand-dropdown-link" href="">{{ constant('TWIG_OUR_BRANDS') }}</a></span>
+{{ form('manufacturers', link(null, '', 'NONSSL', false) |raw , 'get') | raw }}
+{% if MAX_MANUFACTURERS_LIST < 2 %}{% set limit = true %}{% endif %}
+{{ pulldown('manufacturers_id', data, manufacturer_id, 'onchange="this.form.submit();" style="width: 50%"',false, limit) | raw }}
+{{ hidesession() | raw }}
+</form>
+</div>
+{% endif %}

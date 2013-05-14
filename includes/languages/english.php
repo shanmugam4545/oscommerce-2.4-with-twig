@@ -302,6 +302,8 @@ define('SIGN_IN_WITH_GOOGLE', '<i class="icon-fa-google-plus-sign"></i> Sign In 
 define('SIGN_IN_WITH_TWITTER', '<i class="icon-fa-twitter-sign"></i> Sign In with Twitter');
 define('PRODUCT_OPTION_OPTIONAL', 'this option is optionnal');
 
+define('TWIG_OUR_BRANDS', 'Our brands : ');
+
 define('PRODUCT_OPTION_RADIO_BUTTON','Select this option');
 
 define('TWIG_PRODUCT_IMAGE','Product Image');

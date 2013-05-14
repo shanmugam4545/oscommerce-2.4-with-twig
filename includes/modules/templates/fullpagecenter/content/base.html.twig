@@ -104,21 +104,19 @@
                 <div id="breadcrumb" class="span8" style="margin-left:0px;">
         {{ breadcrumb | raw }}
                 </div>
-                    <div class="pull-right" style="margin-top: 5px;margin-left: 0px;">
-                        <span class="pull-left"><a class="brand-dropdown-link" href="">Our brands : </a></span>
+                    
 
-                        <select class="selectpicker span2">
-                            <option value="">Please select ...</option>
-                            <option value="htc">htc</option>
-                            <option value="nokia">nokia</option>
-                            <option value="samsung">samsung</option>
-                        </select>
+{% for boxe in boxes %}        
+{% if boxe.boxe != null and boxe.boxe == 'twig_bm_manufacturers' %}
+{% include [boxe.boxe, TwigExtension]|join with{'data': boxe.data } %}
+{% endif %}
+{% endfor %}
 
                         
                     </div>
 
                 </div>  
-            </div> 
+            
 {% endblock breadcrumb %}
      
 {% block categorie_horizontal %}
