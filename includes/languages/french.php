@@ -245,7 +245,7 @@ define('TEXT_CCVAL_ERROR_INVALID_DATE', 'La date d\'expiration entrée pour cett
 define('TEXT_CCVAL_ERROR_INVALID_NUMBER', 'Le numémero entrée pour cette carte de crédit n\'est pas valide. Veuillez vérifier le numéro et réessayez.');
 define('TEXT_CCVAL_ERROR_UNKNOWN_CARD', 'Le code à 4 chiffres que vous avez entré est : %s. Si ce code est correct, nous n\'acceptons pas ce type de carte crédit. S\'il est erroné veuillez réessayer.');
 
-define('FOOTER_TEXT_BODY', 'Copyright &copy; ' . date('Y') . ' <a href="' . osc_href_link() . '">' . STORE_NAME . '</a><br />Propulsé par <a href="http://www.oscommerce.com" target="_blank">osCommerce</a><br /><font color="gray">Traduction : oscommerce-fr.info - <a href="http://www.oscommerce-fr.info" target="_blank">osCommerce France</a>');
+define('FOOTER_TEXT_BODY', 'Copyright &copy; ' . date('Y') . ' <a href="' . osc_href_link() . '">' . STORE_NAME . '</a><br />Propulsé par <a href="http://www.oscommerce.com" target="_blank">osCommerce</a><br />Traduction : oscommerce-fr.info - <a href="http://www.oscommerce-fr.info" target="_blank">osCommerce France</a>');
 
 
 /* twig */
