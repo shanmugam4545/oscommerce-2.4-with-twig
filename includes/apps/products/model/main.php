@@ -31,12 +31,13 @@ class main {
     } else {
       $special_price = null;
     }
-    
+    $manufacturer_id = null;
     $manufacturer_info = array();
     if (osc_not_null($product_info['manufacturers_id']) ) {
         $manufacturer_query = osc_db_query("select m.manufacturers_id, m.manufacturers_name, m.manufacturers_image, mi.manufacturers_url from " . TABLE_MANUFACTURERS . " m left join " . TABLE_MANUFACTURERS_INFO . " mi on (m.manufacturers_id = mi.manufacturers_id and mi.languages_id = '" . (int)$_SESSION['languages_id'] . "'), " . TABLE_PRODUCTS . " p  where p.products_id = '" . (int)$_GET['id'] . "' and p.manufacturers_id = m.manufacturers_id");
         if (osc_db_num_rows($manufacturer_query)) {
           $manufacturer_info = osc_db_fetch_array($manufacturer_query);
+          $manufacturer_id = $manufacturer_info['manufacturers_id'];
         }
         
     }
@@ -111,6 +112,7 @@ class main {
 
         $product = array('template' => self::getTemplate(),
                          'product_id' => $product_info['products_id'],
+                         'manufacturer_id' => $manufacturer_id,
                          'product_name' => $product_info['products_name'],
                          'product_model' => $product_info['products_model'],
                          'product_price' => $currencies->display_price($product_info['products_price'], osc_get_tax_rate($product_info['products_tax_class_id'])),
