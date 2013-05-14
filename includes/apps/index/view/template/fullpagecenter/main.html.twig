@@ -7,4 +7,13 @@
 {{ modulefeatureproducts(35) | raw}}    
 
 </div>
+<div class="row-fluid">
+<ul class="thumbnails">
+{% for boxe in boxes %}
+{% if boxe.boxe != null and boxe.boxe == 'twig_bm_best_sellers' %}
+{% include [boxe.boxe, TwigExtension]|join with{'data': boxe.data, 'limit' : 5, withphoto : true } %}
+{% endif %}
+{% endfor %}
+</ul>
+</div>
 {% endblock %}

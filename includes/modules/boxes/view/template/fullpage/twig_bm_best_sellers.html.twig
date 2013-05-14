@@ -1,0 +1,20 @@
+{# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
+{# file: includes/modules/boxes/view/template/fullpage/twig_bm_best_sellers.html.twig #}
+{% if data|length > 0 %}
+<li class=" span3 text-center">
+<h4 class="muted"><i class="icon-fa-heart"></i> {{ constant('MODULE_BOXES_BEST_SELLERS_TITLE') }}</h4>   
+{% for bseller in data|slice(0,limit) %}
+<div class="media well">
+   {% if withphoto == true %}
+   <a class="pull-left" href="{{ link('products', ['id=',bseller['products_id']]|join) | raw }}">
+       <img class="media-object" src="{{ [constant('DIR_WS_IMAGES'),bseller['products_image']]|join }}" alt="{{ bseller['products_name'] }}" />
+   </a>
+   {% endif %}
+        <div class="media-body">
+            <h5 class="media-heading text-left">{{ bseller['products_name'] }}</h5>
+        <a  class="btn btn-info btn-small pull-right" href="{{ link('products', ['id=',bseller['products_id']]|join) | raw }}">{{ constant('PRODUCTS_LISTING_PRODUCT_BUTTON_SEE_DETAILS') }}</a>
+        </div>
+</div>
+{% endfor %}
+</li>
+{% endif %}
