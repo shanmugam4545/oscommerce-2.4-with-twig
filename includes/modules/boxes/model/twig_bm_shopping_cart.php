@@ -1,14 +1,11 @@
 <?php
-/*
-  $Id$
-
-  osCommerce, Open Source E-Commerce Solutions
-  http://www.oscommerce.com
-
-  Copyright (c) 2010 osCommerce
-
-  Released under the GNU General Public License
-*/
+/**
+ * osCommerce Online Merchant
+ *
+ * @copyright Copyright (c) 2013 osCommerce; http://www.oscommerce.com
+ * @copyright Copyright (c) 2013 FoxP2; http://www.oscommerce.fr
+ * @license GNU General Public License; http://www.oscommerce.com/gpllicense.txt
+ */
 
 require(DIR_WS_MODULES . 'boxes/bm_shopping_cart.php');
 
