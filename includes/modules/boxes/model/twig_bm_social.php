@@ -6,6 +6,7 @@
  * @copyright Copyright (c) 2013 FoxP2; http://www.oscommerce.fr
  * @license GNU General Public License; http://www.oscommerce.com/gpllicense.txt
  */
+
 require(DIR_WS_MODULES . 'boxes/bm_social.php');
 
   class twig_bm_social extends bm_social {   
