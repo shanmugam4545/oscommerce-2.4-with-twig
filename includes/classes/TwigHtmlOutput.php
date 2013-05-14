@@ -23,7 +23,9 @@ class TwigHtmlOutput extends Twig_Extension
             new Twig_SimpleFunction('button', 'twig_osc_draw_button'),
             new Twig_SimpleFunction('radio', 'twig_draw_radio_field'),
             new Twig_SimpleFunction('checkboxe', 'twig_draw_checkbox_field'),
+            new Twig_SimpleFunction('pulldown', 'twig_draw_pull_down_menu'),
             new Twig_SimpleFunction('osc_output_string', 'twig_osc_output_string'),
+            new Twig_SimpleFunction('hidesession', 'twig_hide_session_id'),
         );
     }
     public function getName()
@@ -331,5 +333,48 @@ class TwigHtmlOutput extends Twig_Extension
     $field .= ' />';
 
     return $field;
+  }
+  
+// Output a form pull down menu
+  function twig_draw_pull_down_menu($name, $values, $default = '', $parameters = '', $required = false, $limit = false) {
+    $field = '<select name="' . osc_output_string($name) . '"';
+
+    if (osc_not_null($parameters)) $field .= ' ' . $parameters;
+
+    $field .= '>';
+
+    if (empty($default) && ( (isset($_GET[$name]) && is_string($_GET[$name])) || (isset($_POST[$name]) && is_string($_POST[$name])) ) ) {
+      if (isset($_GET[$name]) && is_string($_GET[$name])) {
+        $default = $_GET[$name];
+      } elseif (isset($_POST[$name]) && is_string($_POST[$name])) {
+        $default = $_POST[$name];
+      }
+    }
+    if ($limit == true) {
+    $field .= '<option value="">' . PULL_DOWN_DEFAULT . '</option>';
+    }
+    
+    for ($i=0, $n=sizeof($values); $i<$n; $i++) {
+      $field .= '<option value="' . osc_output_string($values[$i]['id']) . '"';
+      if ($default == $values[$i]['id']) {
+        $field .= ' selected="selected"';
+      }
+
+      $field .= '>' . osc_output_string($values[$i]['text'], array('"' => '&quot;', '\'' => '&#039;', '<' => '&lt;', '>' => '&gt;')) . '</option>';
+    }
+    $field .= '</select>';
+
+    if ($required == true) $field .= TEXT_FIELD_REQUIRED;
+
+    return $field;
+  }
+  
+// Hide form elements
+  function twig_hide_session_id() {
+    global $session_started, $SID;
+
+    if (($session_started == true) && osc_not_null($SID)) {
+      return osc_draw_hidden_field(session_name(), session_id());
+    }
   }
 ?>

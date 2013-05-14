@@ -1,0 +1,28 @@
+{# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
+{# file: includes/modules/boxes/view/template/classic/twig_bm_manufacturers.html.twig #}
+{% if data|length > 0 %}
+<div class="media">
+    <span class="pull-left">
+        <i class="icon-fa-puzzle-piece text-info"></i>
+    </span>
+    <div class="media-body">        
+    <h4 class="media-heading text-info">{{ constant('MODULE_BOXES_MANUFACTURERS_BOX_TITLE') }}</h4>
+    <ul class="nav nav-list">    
+    {% if data|length <= constant('MAX_DISPLAY_MANUFACTURERS_IN_A_LIST') %}
+    {% for manufacturer in data %}
+    <li><a href="{{ link(null, ['manufacturers_id=',manufacturer['id']]|join) | raw }}">{{ manufacturer['text'] | slice(0, constant('MAX_DISPLAY_MANUFACTURER_NAME_LEN')) }}</a></li>  
+    {% endfor %}
+    {% else %}
+    <li>
+            {{ form('manufacturers', link(null, '', 'NONSSL', false) |raw , 'get') | raw }}
+            {% if MAX_MANUFACTURERS_LIST < 2 %}{% set limit = true %}{% endif %}
+            {{ pulldown('manufacturers_id', data, manufacturer_id, 'onchange="this.form.submit();" style="width: 100%"',false, limit) | raw }}
+            {{ hidesession() | raw }}
+            </form>
+    </li>
+{% endif %}
+        
+      </ul>
+    </div>
+</div>
+{% endif %}
