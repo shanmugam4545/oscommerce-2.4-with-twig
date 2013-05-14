@@ -353,14 +353,14 @@
     Twig_Autoloader::register();
     
     // this code is just for demo !
-    if ($OSCOM_Cache->read('twig_template')) {
+    if ($OSCOM_Cache->read('twig-template')) {
         $templates_array = $OSCOM_Cache->getCache();
     } else {
         $templates_query = osc_db_query("select id, title, code from twig_templates order by id");
         while ($templates = osc_db_fetch_array($templates_query)) {
             $templates_array[] = array('title' => $templates['title'], 'code' => $templates['code']);
         }
-        $OSCOM_Cache->write($templates_array);
+        $OSCOM_Cache->write($templates_array,'twig-template');
     }
     
     if (!isset($_SESSION['template'])) {

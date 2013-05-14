@@ -34,7 +34,7 @@ require(DIR_WS_MODULES . 'boxes/bm_templates.php');
                   <div class="bfh-selectbox-options" id="templates-bfh-selectbox-options">                  
                     <ul role="listbox">';
         
-        $OSCOM_Cache->read('twig_template');      
+        $OSCOM_Cache->read('twig-template');      
 
         foreach($OSCOM_Cache->getCache() as $template) {
             $template_data .= '<li role="option"><a id="' . $template['code'] . '" class="tp" tabindex="-1" href="#" data-option="' . $template['code'] . '">' . $template['title'] . '</a></li>';
