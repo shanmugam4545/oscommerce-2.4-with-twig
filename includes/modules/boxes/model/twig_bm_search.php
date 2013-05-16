@@ -14,7 +14,7 @@ require(DIR_WS_MODULES . 'boxes/bm_search.php');
     
     public function execute() {
       
-     $data = array('data' => '', 'hide_session_id' => osc_hide_session_id(),
+     $data = array('data' => null, 'hide_session_id' => osc_hide_session_id(),
           'group' => $this->group,
           'boxe' => $this->code,
           'enabled' => $this->enabled,

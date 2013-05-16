@@ -14,7 +14,7 @@ require(DIR_WS_MODULES . 'boxes/bm_login.php');
     
     public function execute() {
       
-     $data = array('data' => '',
+     $data = array('data' => null,
           'group' => $this->group,
           'boxe' => $this->code,
           'enabled' => $this->enabled,

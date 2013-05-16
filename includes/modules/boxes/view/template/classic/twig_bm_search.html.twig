@@ -5,7 +5,7 @@
         <i class="icon-fa-search text-info"></i>
     </span>
     <div> 
-<h4 class="media-heading text-info">{{ title }}</h4>
+<h4 class="media-heading text-info">{{ constant('MODULE_BOXES_SEARCH_TITLE') }}</h4>
     {{ form('quick_find', link(), 'get', 'class="text-center"') | raw }}{{ hiddenfield('search', '') | raw }}   
     {{ inputfield('q','','class="input-medium"','search') | raw }}{{ hide_session_id }}
     <button class="btn btn-primary"><i class="icon-fa-search"></i>  {{ constant('MODULE_BOXES_SEARCH_BOX_TITLE') }}</button>

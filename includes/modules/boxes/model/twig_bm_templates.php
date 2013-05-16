@@ -42,13 +42,12 @@ require(DIR_WS_MODULES . 'boxes/bm_templates.php');
 
         $template_data .= '</ul></div></div>';
 
-        $data = array(
-            'data' => $template_data,
-            'group' => $this->group,
-            'boxe' => $this->code,
-            'enabled' => $this->enabled,
-            'sort_order' => $this->sort_order,
-            'title' => $this->title);
+        $data = array('data' => $template_data,
+                      'group' => $this->group,
+                      'boxe' => $this->code,
+                      'enabled' => $this->enabled,
+                      'sort_order' => $this->sort_order,
+                      'title' => $this->title);
 
         return $data;
     }

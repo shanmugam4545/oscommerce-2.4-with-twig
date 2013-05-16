@@ -39,9 +39,9 @@ require(DIR_WS_MODULES . 'boxes/bm_shopping_cart.php');
         $cart_contents_string .= '<li>' . MODULE_BOXES_SHOPPING_CART_BOX_CART_EMPTY . '</li>'; 
       }
 
-      $data = $cart_contents_string;
+      $data_shopping_cart_boxe = $cart_contents_string;
  
-      $shopping_cart = array('data' => $data,
+      $shopping_cart = array('data' => $data_shopping_cart_boxe,
                              'group' => $this->group,
                              'boxe' => $this->code,
                              'enabled' => $this->enabled,

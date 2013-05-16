@@ -2,8 +2,9 @@
 {# file: includes/modules/boxes/view/template/fullpagecenter/twig_bm_templates.html.twig #}
 <h4 class="text-info"><i class="icon-fa-magic"></i> {{ constant('MODULE_BOXES_TEMPLATES_BOX_TITLE') }}</h4>
 {{ data | raw }}   
-
-
+<p style="margin-left:25px;">
+<a class="btn" href="http://validator.w3.org/check?uri=referer"><i class="icon-fa-html5"></i>  Valid HTHL5</a>
+</p>
 <script>
 $('.tp').click(function() { window.location = getQuery(window.location.href, "template", $(this).attr("id"))})
 function getQuery (uri, key, value) {

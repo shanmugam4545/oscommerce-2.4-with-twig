@@ -5,7 +5,7 @@
 {{ form('login', link('account', 'login&process', 'SSL'), 'post', 'id="loginBox" class="form-inline  text-center"', 'true') | raw }}
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icon-fa-remove-sign"></i>  </button>
-    <h3 class="text-info text-left">{{ constant('HEADER_TITLE_LOGIN') }}</h3>
+    <h3 class="text-info text-left">{{ constant('MODULE_BOXES_LOGIN_TITLE') }}</h3>
   </div>
 <div class="modal-body" style="">
 <label for="email_address">{{ constant('ENTRY_EMAIL_ADDRESS') }}</label>{{ forms.inputwithicon('email_address', 'icon-fa-envelope', 'input-prepend', 'input-large', '','text', constant('PLACEHOLDER_EMAIL_ADRESS') ) }}

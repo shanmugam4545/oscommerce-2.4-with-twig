@@ -4,7 +4,9 @@
     <h4 class="media-heading muted"><i class="icon-fa-magic muted"></i> {{ constant('MODULE_BOXES_TEMPLATES_BOX_TITLE') }}</h4>   
 {{ data | raw }}
 </div>
-
+<p style="margin-left:40px;">
+<a class="btn btn-inverse" href="http://validator.w3.org/check?uri=referer"><i class="icon-fa-html5"></i>  Valid HTHL5</a>
+</p>
 <script>
 $('.tp').click(function() { window.location = getQuery(window.location.href, "template", $(this).attr("id"))})
 function getQuery (uri, key, value) {

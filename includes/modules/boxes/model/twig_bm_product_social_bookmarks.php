@@ -40,7 +40,7 @@
             array_push($social_bookmarks,$sb->getOutput());
           }
         }
-        var_dump($social_bookmarks);
+       
 
 
           $data = array('data' => $social_bookmarks,

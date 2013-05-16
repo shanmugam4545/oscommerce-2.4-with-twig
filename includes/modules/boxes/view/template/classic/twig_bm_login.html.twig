@@ -7,7 +7,7 @@
         <i class="icon-fa-user text-info"></i>
     </span>
     <div> 
-<h4 class="media-heading text-info">{{ title }}</h4>
+<h4 class="media-heading text-info">{{ constant('MODULE_BOXES_LOGIN_TITLE') }}</h4>
 {{ form('login', link('account', 'login&process', 'SSL'), 'post', 'id="loginBox" class="text-center"', 'true') | raw }}
 {{ forms.inputlabelandwithicon(constant('ENTRY_EMAIL_ADDRESS'), 'email_address', 'icon-fa-envelope', 'input-prepend', 'input-medium', '','text', constant('PLACEHOLDER_EMAIL_ADRESS') ) }}
 {{ forms.inputlabelandwithicon(constant('ENTRY_PASSWORD'), 'password', 'icon-fa-lock', 'input-prepend', 'input-medium', '', 'password' ) }}

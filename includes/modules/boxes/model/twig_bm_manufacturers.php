@@ -12,16 +12,12 @@ require(DIR_WS_MODULES . 'boxes/bm_manufacturers.php');
 class twig_bm_manufacturers extends bm_manufacturers {
 
     var $code = 'twig_bm_manufacturers';
+    
+    public function getData() {
+        global $OSCOM_PDO;
 
-    public function execute() {
-        global $SID, $OSCOM_Cache, $OSCOM_PDO;
+        $manufacturers_box_array = array();
 
-        $manufacturers_array = array();
-
-        if ((USE_CACHE == 'true') && empty($SID) && $OSCOM_Cache->read('manufacturers-boxe')) {
-
-            $manufacturers_array = $OSCOM_Cache->getCache();
-        } else {
 
             $Qmanufacturers = $OSCOM_PDO->prepare('select m.manufacturers_id as id, m.manufacturers_name as text, m.manufacturers_image as image, mi.manufacturers_short_description as short_description from :table_manufacturers m, :table_manufacturers_info mi where  m.manufacturers_id = mi.manufacturers_id and mi.languages_id = :language_id order by m.manufacturers_name');
             $Qmanufacturers->bindInt(':language_id', $_SESSION['languages_id']);
@@ -29,22 +25,23 @@ class twig_bm_manufacturers extends bm_manufacturers {
 
             if ($Qmanufacturers->fetch() !== false) {
 
-                $manufacturers_array = $Qmanufacturers->fetchall();
-
-                $OSCOM_Cache->write($manufacturers_array, 'manufacturers-boxe');
+                $manufacturers_box_array = $Qmanufacturers->fetchall();
             }
-            $data = array('data' => $manufacturers_array,
-                'manufacturer_id' => (isset($_GET['manufacturers_id']) ? $_GET['manufacturers_id'] : ''),
-                'group' => $this->group,
-                'boxe' => $this->code,
-                'enabled' => $this->enabled,
-                'sort_order' => $this->sort_order,
-                'title' => $this->title);
+         return $manufacturers_box_array;
+        
+    }
+
+    public function execute() {
+
+            $data = array('data' => $this->getData(),
+                          'manufacturer_id' => (isset($_GET['manufacturers_id']) ? $_GET['manufacturers_id'] : null),
+                          'group' => $this->group,
+                          'boxe' => $this->code,
+                          'enabled' => $this->enabled,
+                          'sort_order' => $this->sort_order,
+                          'title' => $this->title);
 
             return $data;
         }
     }
-
-}
-
 ?>

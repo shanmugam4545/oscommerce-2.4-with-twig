@@ -93,7 +93,7 @@
     <div id="columnTwigLeft" class="span{{ GridColumnWidth }} well">
         {% for boxe in boxes %}
               {% if boxe.boxe != null and boxe.group == 'boxes_column_left' %}
-              {% include [boxe.boxe, TwigExtension]|join with{'data': boxe.data, 'title' : boxe.title } %}
+              {% include [boxe.boxe, TwigExtension]|join with{'data': boxe.data } %}
               {% if loop.last == false %}<hr>{% endif %}
               {% endif %}
         {% endfor %}
@@ -110,7 +110,7 @@
     <div id="columnTwigRight" class="span{{ GridColumnWidth }} well">
         {% for boxe in boxes %}
               {% if boxe.boxe != null and boxe.group == 'boxes_column_right' %}              
-              {% include [boxe.boxe, TwigExtension]|join with{'data': boxe.data, 'title' : boxe.title } %}
+              {% include [boxe.boxe, TwigExtension]|join with{'data' : boxe.data } %}
               {% if loop.last == false %}<hr>{% endif %}
               {% endif %}
         {% endfor %}
