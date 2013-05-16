@@ -101,7 +101,7 @@ function twig_module_products_new($cid)
 
     if ($num_new_products > 0) {
 
-        $string = '<h2>' . sprintf(TABLE_HEADING_NEW_PRODUCTS, strftime('%B')) . '</h2>' . "\n";
+        $string = '<h2 class="media-heading">' . sprintf(TABLE_HEADING_NEW_PRODUCTS, strftime('%B')) . '</h2>' . "\n";
 
         $string .= '<div class="row" style="margin-left:20px;">' . "\n";
 
@@ -145,7 +145,7 @@ function twig_module_products_new($cid)
 
             $string .= '<h3>' . $products[$i]['products_name'] . '</h3>' . "\n";
 
-            $string .= '<h4>' . $currencies->display_price($products[$i]['products_price'], osc_get_tax_rate($products[$i]['products_tax_class_id'])) . '</h4><br /><p class="sub-text">' . $products[$i]['products_short_description'] . '<br /></p>' . "\n";
+            $string .= '<h4>' . $currencies->display_price($products[$i]['products_price'], osc_get_tax_rate($products[$i]['products_tax_class_id'])) . '</h4>' . $products[$i]['products_short_description'] . "\n";
 
             $string .= '<span class="pull-right">' . osc_draw_button(IMAGE_BUTTON_BUY_NOW, 'play', osc_href_link('products', 'id=' . $products[$i]['products_id']), 'primary') . '</span><br /><br />' . "\n";
 
