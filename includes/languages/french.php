@@ -239,7 +239,7 @@ define('TEXT_UNKNOWN_TAX_RATE', 'Taux de taxation inconnu');
 
 define('TEXT_REQUIRED', '<span class="errorText">Requis</span>');
 
-define('ERROR_TEP_MAIL', '<font face="Verdana, Arial" size="2" color="#ff0000"><strong><small>ERREUR:</small> Impossible d\'envoyer l\'email par le serveur SMTP spécifié. Vérifiez le fichier PHP.INI et corrigez le nom du serveur SMTP si nécessaire.</strong></font>');
+define('ERROR_TEP_MAIL', '<strong><small>ERREUR:</small> Impossible d\'envoyer l\'email par le serveur SMTP spécifié. Vérifiez le fichier PHP.INI et corrigez le nom du serveur SMTP si nécessaire.</strong>');
 
 define('TEXT_CCVAL_ERROR_INVALID_DATE', 'La date d\'expiration entrée pour cette carte de crédit n\'est pas valide. Veuillez vérifier la date et réessayez.');
 define('TEXT_CCVAL_ERROR_INVALID_NUMBER', 'Le numémero entrée pour cette carte de crédit n\'est pas valide. Veuillez vérifier le numéro et réessayez.');
@@ -353,4 +353,6 @@ define('PRODUCTS_LISTING_PRODUCT_DISPLAY_RATING', 'Note :');
 define('PRODUCTS_LISTING_PRODUCT_DISPLAY_BRAND', 'Marque :');
 define('PRODUCTS_LISTING_PRODUCT_BUTTON_OPEN_IMAGE', 'Voir image');
 define('PRODUCTS_LISTING_PRODUCT_BUTTON_SEE_DETAILS', 'Plus de détail');
+
+define('IKOULA','<div style="font-size:11px; font-family:Arial, Helvetica, sans-serif;text-align:center"><a href="http://express.ikoula.com/hebergement-web" title="Choisissez Ikoula pour tous vos projets d’hébergement web"><img alt="Choisissez Ikoula pour tous vos projets d’hébergement web" src="http://www.ikoula.com/img/heberge_par_ik_black.gif" /></a><br /><a href="http://express.ikoula.com/cloud" title="Choisissez Ikoula pour tous vos projets d’hébergement web">Serveur Cloud</a>  |  <a href="http://express.ikoula.com/hebergement-web" title="Choisissez Ikoula pour tous vos projets d’hébergement web">Hébergement web</a></div>');
 ?>

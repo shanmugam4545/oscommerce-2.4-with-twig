@@ -240,7 +240,7 @@ define('TEXT_UNKNOWN_TAX_RATE', 'Unknown tax rate');
 
 define('TEXT_REQUIRED', '<span class="errorText">Required</span>');
 
-define('ERROR_OSC_MAIL', '<font face="Verdana, Arial" size="2" color="#ff0000"><strong><small>OSC ERROR:</small> Cannot send the email through the specified SMTP server. Please check your php.ini setting and correct the SMTP server if necessary.</strong></font>');
+define('ERROR_OSC_MAIL', '<strong><small>OSC ERROR:</small> Cannot send the email through the specified SMTP server. Please check your php.ini setting and correct the SMTP server if necessary.</strong>');
 
 define('TEXT_CCVAL_ERROR_INVALID_DATE', 'The expiry date entered for the credit card is invalid. Please check the date and try again.');
 define('TEXT_CCVAL_ERROR_INVALID_NUMBER', 'The credit card number entered is invalid. Please check the number and try again.');
@@ -351,4 +351,6 @@ define('PRODUCTS_LISTING_PRODUCT_DISPLAY_RATING', 'Rating :');
 define('PRODUCTS_LISTING_PRODUCT_DISPLAY_BRAND', 'Brand :');
 define('PRODUCTS_LISTING_PRODUCT_BUTTON_OPEN_IMAGE', 'Open image');
 define('PRODUCTS_LISTING_PRODUCT_BUTTON_SEE_DETAILS', 'See detail');
+
+define('IKOULA','<div style="font-size:11px; font-family:Arial, Helvetica, sans-serif;text-align:center"><a href="http://express.ikoula.co.uk/web-hosting" title="Choose Ikoula for all your web hosting projects"><img alt="Choose Ikoula for all your web hosting projects" src="http://www.ikoula.com/img/hosting_by_ik_black.gif"  /></a><br /><a href="http://express.ikoula.co.uk/cloud" title="Choose Ikoula for all your web hosting projects">Cloud Server</a> | <a href="http://express.ikoula.co.uk/web-hosting" title="Choose Ikoula for all your web hosting projects">Web hosting</a></div>');
 ?>

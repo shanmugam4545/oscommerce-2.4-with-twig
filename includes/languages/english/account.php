@@ -67,7 +67,7 @@ define('ADDRESS_BOOK_TITLE', 'Address Book Entries');
 
 define('PRIMARY_ADDRESS', '(primary address)');
 
-define('TEXT_MAXIMUM_ENTRIES', '<font color="#ff0000"><strong>NOTE:</strong></font> A maximum of %s address book entries allowed.');
+define('TEXT_MAXIMUM_ENTRIES', '<strong>NOTE:</strong> A maximum of %s address book entries allowed.');
 
 define('HEADING_TITLE_ADD_ENTRY', 'New Address Book Entry');
 define('HEADING_TITLE_MODIFY_ENTRY', 'Update Address Book Entry');
@@ -155,9 +155,9 @@ define('TEXT_RETURNING_CUSTOMER', 'I am a returning customer.');
 define('TEXT_PASSWORD_FORGOTTEN', 'Password forgotten? Click here.');
 
 define('TEXT_LOGIN_ERROR', 'Error: No match for E-Mail Address and/or Password.');
-define('TEXT_VISITORS_CART', '<font color="#ff0000"><strong>Note:</strong></font> Your &quot;Visitors Cart&quot; contents will be merged with your &quot;Members Cart&quot; contents once you have logged on. <a href="javascript:session_win();">[More Info]</a>');
+define('TEXT_VISITORS_CART', '<strong>Note:</strong> Your &quot;Visitors Cart&quot; contents will be merged with your &quot;Members Cart&quot; contents once you have logged on. <a href="javascript:session_win();">[More Info]</a>');
 
-define('TEXT_ORIGIN_LOGIN', '<font color="#FF0000"><small><strong>NOTE:</strong></small></font> If you already have an account with us, please login at the <a href="%s"><u>login page</u></a>.');
+define('TEXT_ORIGIN_LOGIN', '<small><strong>NOTE:</strong></small> If you already have an account with us, please login at the <a href="%s"><u>login page</u></a>.');
 
 define('EMAIL_SUBJECT', 'Welcome to ' . STORE_NAME);
 define('EMAIL_GREET_MR', 'Dear Mr. %s,' . "\n\n");
