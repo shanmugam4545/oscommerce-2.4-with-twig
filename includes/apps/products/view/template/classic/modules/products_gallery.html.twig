@@ -1,39 +1,28 @@
 {# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
 {# file: includes/apps/products/view/template/classic/modules/products_gallery.html.twig #}
-{% macro fancy(gallery_data,gallery_size,product_image) %}
+{% macro simple_image(gallery_data,gallery_size,product_image,product_name) %}
 {% if gallery_data != null %}
-        <div id="piGal" style="float: right;">
-          <ul class="unstyled">
-{% for key in gallery_data %}
-{% if loop.index == 1 %}{% set data = 'itemprop="image"' %}{% else %}{% set data = '' %}{% endif %}
-            <li><a href="{% if key.htmlcontent != null %}{{ ['#','piGalimg_', loop.index ]|join }}{% else %}{{ [constant('HTTP_SERVER'),constant('DIR_WS_HTTP_CATALOG'),constant('DIR_WS_IMAGES'),key.image]|join }}{% endif %}" target="_blank" data-fancy-target="fancybox">{{ image([constant('DIR_WS_IMAGES') , key.image]|join, '', '', '', data ) | raw}}</a>
-{% if key.htmlcontent != null %}<div style="display: none;"><div id="piGalimg_{{ loop.index}}">{{ key.htmlcontent | raw}}</div></div>{% endif %}</li>
-{% endfor %}
-          </ul>
-        </div>
-
-<script>
-$('#piGal ul').bxGallery({
-  maxwidth: 300,
-  maxheight: 200,
-  thumbwidth:{% if gallery_size > 1 %}75{% else %}0{% endif %},
-  thumbcontainer: 300,
-  load_image: 'ext/jquery/bxGallery/spinner.gif'
-});
-</script>
+<div id="LightboxProductInfo" class="lightbox hide fade" role="dialog" aria-hidden="true">
+<div class="lightbox-header">
+<button type="button" class="close" data-dismiss="lightbox" aria-hidden="true">&times;</button>
+</div>
+<div class="lightbox-content">
+{% if gallery_data|length == 1 %}
+    {{ image([constant('DIR_WS_IMAGES'),gallery_data[0]['image']]|join, '', '', '') | raw}}
+<div class="lightbox-caption"><p>{{ product_name }}</p></div>    
+{% else %}  
+    {{ image([constant('DIR_WS_IMAGES'),gallery_data]|join, '', '', '') | raw}}
+<div class="lightbox-caption"><p>{{ product_name }}</p></div>    
+{% endif %} 
+</div>
+</div>
+<div class="pull-right">
+{% if gallery_data|length == 1 %}     
+<a data-toggle="lightbox" href="#LightboxProductInfo"><img src="{{ [constant('DIR_WS_IMAGES'),product_image]|join }}" alt="" itemprop="image"></a>
+<h5>click to enlarge</h5>
 {% else %}
-{% if product_image != null %}
-    <div id="piGal" style="float: right;">
-      <a href="{{ [constant('HTTP_SERVER'),constant('DIR_WS_HTTP_CATALOG'),constant('DIR_WS_IMAGES'),product_image]|join }}" target="_blank" data-fancy-target="fancybox">{{ image([constant('DIR_WS_IMAGES'), product_image]|join, product_name, null, null, 'hspace="5" vspace="5" itemprop="image"') | raw}}</a>
-    </div>
+<img class="img-polaroid" src="{{ [constant('DIR_WS_IMAGES'),gallery_data]|join }}" alt="" itemprop="image">
 {% endif %}
+</div>
 {% endif %}
-<script>
-$("#piGal a[data-fancy-target='fancybox']").fancybox({
-  cyclic: true
-});
-</script>
-
 {% endmacro %}
-
-

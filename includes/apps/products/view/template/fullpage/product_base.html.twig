@@ -2,11 +2,9 @@
 {# file: includes/apps/products/view/template/fullpage/product_base.html.twig #}
 {% extends "base.html.twig" %}
 {% block head_javascript %}
-<script src="ext/jquery/bxGallery/jquery.bxGallery.1.1.min.js"></script>
-<link rel="stylesheet" href="ext/jquery/fancybox/jquery.fancybox-1.3.4.css" />
-<script src="ext/jquery/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+<link href="ext/bootstrap/css/bootstrap-lightbox.min.css" rel="stylesheet"/>
+<script src="ext/bootstrap/js/bootstrap-lightbox.js"></script>
 {% endblock %}
-
 {% block appcontent %}
 <div id="bodyContent" class="span{{ GridContentWidth}}">
 {{ form('cart_quantity', link('cart',['add&cPath=', cpath ]|join ), 'post', null, true) | raw}}
@@ -53,7 +51,7 @@
 {% block gallery %}
             <div class="pull-left">
             {% import 'products_gallery.html.twig' as display_gallery %}
-            {{ attribute(display_gallery,products_gallery,[gallery_data, gallery_size,product_image]) }}
+            {{ attribute(display_gallery,products_gallery,[gallery_data, gallery_size,product_image,product_name]) }}
                 </div>
 {% endblock %}
 
