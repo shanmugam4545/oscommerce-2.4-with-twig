@@ -54,6 +54,11 @@ class TwigTemplate
         global $OSCOM_APP;      
         
         $loader = new Twig_Loader_Filesystem(DIR_WS_MODULES . 'templates/' . $this->getTemplate() . '/content');
+        
+        if (is_dir(DIR_WS_MODULES . 'boxes' . '/view/template/' . $this->getTemplate())) {
+            $loader->addPath(DIR_WS_MODULES . 'boxes' . '/view/template/' . $this->getTemplate());
+        }
+        $loader->addPath(DIR_WS_MODULES . 'boxes' . '/view/template/' . $this->getParentTemplate());
 
         if (is_dir(DIR_WS_INCLUDES . 'apps/' . $OSCOM_APP->getCode() . '/view/template/' . $this->getTemplate())) {
             $loader->addPath(DIR_WS_INCLUDES . 'apps/' . $OSCOM_APP->getCode() . '/view/template/' . $this->getTemplate());
@@ -66,10 +71,6 @@ class TwigTemplate
         if (is_dir(DIR_WS_INCLUDES . 'apps/' . $OSCOM_APP->getCode() . '/view/template/' . $this->getParentTemplate() . '/modules')) {
             $loader->addPath(DIR_WS_INCLUDES . 'apps/' . $OSCOM_APP->getCode() . '/view/template/' . $this->getParentTemplate() . '/modules');
         }
-        if (is_dir(DIR_WS_MODULES . 'boxes' . '/view/template/' . $this->getTemplate())) {
-            $loader->addPath(DIR_WS_MODULES . 'boxes' . '/view/template/' . $this->getTemplate());
-        }
-        $loader->addPath(DIR_WS_MODULES . 'boxes' . '/view/template/' . $this->getParentTemplate());
 
         $this->_twig = new Twig_Environment($loader, 
                 array('cache' => $this->getTemplateCache(),
