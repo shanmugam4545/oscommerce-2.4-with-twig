@@ -1,5 +1,6 @@
 {# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
 {# file: includes/modules/boxes/view/template/fullpage/twig_bm_manufacturer_info.html.twig #}
+{% if data|length > 0 %}
 <div class="product-boxe">
 <h4 class="text-info">{{ constant('MODULE_BOXES_MANUFACTURER_INFO_TITLE') }}</h4>    
       <ul class="nav nav-list">
@@ -11,5 +12,6 @@
         <li><a href="{{ link(null, ['manufacturers_id=' , mb['manufacturers_id']]|join) | raw }}">{{ constant('MODULE_BOXES_MANUFACTURER_INFO_BOX_OTHER_PRODUCTS') }}</a></li>
         {% endfor %}  
       </ul>
-</div>					
+</div>
 <hr>
+{% endif %}
