@@ -79,13 +79,13 @@ class products {
 
         if (isset($_GET['manufacturers_id']) && !empty($_GET['manufacturers_id'])) 
         {
-        $count_query = osc_db_query("select count(p.products_id) as total FROM " . TABLE_PRODUCTS . " p where p.manufacturers_id = " . (int)$_GET['manufacturers_id'] . "");
+        $count_query = osc_db_query("select count(p.products_id) as total FROM " . TABLE_PRODUCTS . " p, " . TABLE_PRODUCTS_DESCRIPTION . " pd where p.manufacturers_id = " . (int)$_GET['manufacturers_id'] . " and p.products_id = pd.products_id and pd.language_id = '" . (int)$_SESSION['languages_id'] . "'");
         $count = osc_db_fetch_array($count_query);         
         $path = "manufacturers_id=".$_GET['manufacturers_id']."";
         }
         else
         {
-        $count_query = osc_db_query("select count(p2c.products_id) as total FROM " . TABLE_PRODUCTS_TO_CATEGORIES . " p2c where p2c.categories_id = " . $current_category_id . "");
+        $count_query = osc_db_query("select count(p2c.products_id) as total FROM " . TABLE_PRODUCTS_TO_CATEGORIES . " p2c, " . TABLE_PRODUCTS_DESCRIPTION . " pd where p2c.categories_id = " . $current_category_id . " and p2c.products_id = pd.products_id and pd.language_id = '" . (int)$_SESSION['languages_id'] . "'");
         $count = osc_db_fetch_array($count_query);
         $path = "cPath=".$cPath."";
         }
