@@ -127,11 +127,19 @@
 {% endfor %}
 
 {% block breadcrumb %}
-<div id="breadcrumb" class="row-fluid">
-        {{ breadcrumb  | raw}}
+<div id="breadcrumb" class="row-fluid">            
+{% for boxe in boxes %}        
+{% if boxe.boxe != null and boxe.boxe == 'twig_bm_manufacturers' %}
+{% include [boxe.boxe, TwigExtension]|join with{'data': boxe.data } %}
+{% endif %}
+{% endfor %}
+<div style="margin-left:0px;">
+{{ breadcrumb  | raw}}    
 </div>
-{% endblock %}
 </div>
+{% endblock breadcrumb %}
+</div>
+                
 {% endblock %}
 
 

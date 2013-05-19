@@ -1,13 +1,7 @@
 {# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
-{# file: includes/modules/boxes/view/template/classic/twig_bm_manufacturers.html.twig #}
+{# file: includes/modules/boxes/view/template/fullpage/twig_bm_manufacturers.html.twig #}
 {% if data|length > 0%}
-<div class="media">
-    <span class="pull-left">
-        <i class="icon-fa-puzzle-piece text-info"></i>
-    </span>    
-    <h4 class="media-heading text-info">{{ constant('MODULE_BOXES_MANUFACTURERS_BOX_TITLE') }}</h4>
-</div>
-<div style="margin-left:25px"> 
+<div class="pull-right" style="margin-right: 20px;">
 <div class="bfh-selectbox">
     <input type="hidden" name="manufacturers_id" value="{{ manufacturer_id }}">
     <a class="bfh-selectbox-toggle" role="button" data-toggle="bfh-selectbox" href="#">

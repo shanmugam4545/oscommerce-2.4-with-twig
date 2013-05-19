@@ -34,6 +34,8 @@
 #shopping-cart-switcher li{text-align: center;}
 #shopping-cart-switcher-button{margin-left: 80px;}
 #listboxstate ul{ width: 100%;}
+/* boxe manufacturer header */
+#breadcrumb-brand{background: none repeat scroll 0% 0% rgb(0, 0, 0);height: 20px;border:0;border-radius: 0px;}
 /* boxes in product page */
 .product-boxe {border: 1px solid #e3e3e3;background-color: #fff;border-bottom: 1px solid #ccc;border-left: 4px solid #2790B0;border-radius: 0px;border-right: 1px solid #ccc;border-top: 1px solid #ccc;box-shadow: 0px 5px 12px rgba(50, 50, 50, 0.15);margin-bottom: 20px;min-height: 20px;-moz-border-radius: 0px;-moz-box-shadow: 0px 5px 12px rgba(50, 50, 50, 0.15);padding: 19px;position: relative;-webkit-border-radius: 0px;-webkit-box-shadow: 0px 5px 12px rgba(50, 50, 50, 0.15);}
 .product-boxe:before {border-bottom: 9px solid transparent;border-left: 9px solid #2790B0;border-top: 9px solid transparent;content: '';display: inline-block;left: 0px;position: absolute;top: 40%;}
