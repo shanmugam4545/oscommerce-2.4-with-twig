@@ -15,7 +15,7 @@
                 <p>{{ constant('TEXT_RETURNING_CUSTOMER') | raw }}</p>
 {{ form('login', link('account', 'login&process', 'SSL'), 'post', 'class="form-horizontal" id="login"', 'true') | raw }}
 {{ forms.inputlabelandwithicon(constant('ENTRY_EMAIL_ADDRESS'), 'email_address', 'icon-fa-envelope', 'input-prepend', 'input-large', '','text', constant('PLACEHOLDER_EMAIL_ADRESS') ) }}
-{{ forms.inputlabelandwithicon(constant('ENTRY_PASSWORD'), 'password', 'icon-fa-lock', 'input-prepend input-append', 'input-large', '', 'password' ) }}
+{{ forms.inputlabelandwithicon(constant('ENTRY_PASSWORD'), 'password', 'icon-fa-lock', 'input-prepend input-append', 'input-large', '', 'password', '','true' ) }}
                 <div class="form-actions">
                     <div class="controls">
                         <button class="btn btn-primary" type="submit"><i class="icon-fa-ok-sign icon-white"></i> {{ constant('IMAGE_BUTTON_LOGIN') }}</button>

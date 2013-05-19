@@ -67,7 +67,7 @@ $(function ()
 </script>
 {% endmacro %}
 
-{% macro inputlabelandwithicon(label, name, icon, placement, class, value, type, placeholder) %}
+{% macro inputlabelandwithicon(label, name, icon, placement, class, value, type, placeholder, includeshowpassword) %}
 {# placement options : input-prepend, input-append #} 
 <div class="control-group">
     
@@ -81,7 +81,7 @@ $(function ()
                 
                 <input id="{{ name }}" class="{{ class }}" type="{{ type|default('text') }}" name="{{ name }}" placeholder="{{ placeholder }}" value="{{ osc_output_string(value|e) }}" />
             
-            {% if type == 'password' %}   
+            {% if type == 'password' and includeshowpassword == 'true' %}   
             <span id="show{{ name }}" data-toggle="tooltip" data-original-title="{{ constant('CLICK_SHOW_PASSWORD') }}" class="add-on hidden"><i class="icon-fa-eye-open"></i></span>
             {% endif %}
             </div>
