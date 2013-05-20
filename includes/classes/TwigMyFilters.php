@@ -14,7 +14,8 @@ class TwigMyFilters extends Twig_Extension
     
     public function getFilters() 
     {
-        return array(            
+        return array(  
+            new Twig_SimpleFilter('display_price', 'twig_display_price'),            
             new Twig_SimpleFilter('is_array', '_is_array'),  
             new Twig_SimpleFilter('round_rating', 'round_rating'),  
                      
@@ -29,6 +30,11 @@ class TwigMyFilters extends Twig_Extension
 
 }
 // filters
+function twig_display_price($price,$tax_id,$quantity = 1) 
+{
+    global $currencies;
+    return $currencies->display_price($price,$tax_id,$quantity);
+}
 function round_rating($rating) {
     return round($rating * 2 ) / 2;
 }
