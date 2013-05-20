@@ -48,6 +48,8 @@
 #form-helper{display:none;}
 /* boxe template footer */
 #templates_pulldown { width: 50%;}
+/* boxe specials best-sellers */
+.boxnavcat{background: #e6e6e6;height:32px;line-height: 32px;text-align: center;}
 /* application shopping cart */
 .table td.center_text, .table th.center_text { text-align: center; vertical-align: middle;}
 .table th.text_black{background: #e5e5e5}

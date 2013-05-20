@@ -1,0 +1,23 @@
+{# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
+{# file: includes/modules/boxes/view/template/fullpage/twig_bm_special.html.twig #}
+{% if data|length > 0 %}
+<li class="span3 text-center" style="height:120px;">
+<h4 class="muted"><i class="icon-fa-money"></i> {{ constant('MODULE_BOXES_SPECIALS_TITLE') }}</h4>   
+{% for specials in data|slice(0,limit) %}
+<div class="media well">
+   {% if withphoto == true %}
+   <a class="pull-left" href="{{ link('products', ['id=',specials['products_id']]|join) | raw }}">
+       <img class="media-object" src="{{ [constant('DIR_WS_IMAGES'),specials['products_image']]|join }}" alt="{{ specials['products_name'] }}" />
+   </a>
+   {% endif %}
+        <div class="media-body">
+            <h5 class="media-heading text-left" style="height:30px;">{{ specials['products_name'] }}</h5>
+        <ul class="unstyled">
+        <li><del>{{ specials['products_price']|display_price(specials['products_tax_class_id']) }}</del>  <strong class="text-error">{{ specials['specials_new_products_price']|display_price(specials['products_tax_class_id']) }}</strong></li> 
+        </ul><br />
+        <a class="btn btn-info btn-small pull-right" href="{{ link('products', ['id=',specials['products_id']]|join) | raw }}">{{ constant('PRODUCTS_LISTING_PRODUCT_BUTTON_SEE_DETAILS') }}</a>
+        </div>
+</div>
+{% endfor %}
+</li>
+{% endif %}

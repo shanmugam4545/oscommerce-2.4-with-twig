@@ -354,5 +354,7 @@ define('PRODUCTS_LISTING_PRODUCT_DISPLAY_BRAND', 'Marque :');
 define('PRODUCTS_LISTING_PRODUCT_BUTTON_OPEN_IMAGE', 'Voir image');
 define('PRODUCTS_LISTING_PRODUCT_BUTTON_SEE_DETAILS', 'Plus de détail');
 
+define('TWIG_BEST_SELLERS_PRODUCTS_ALREADY_SOLD', 'Déjà %s produits vendus !');
+
 define('IKOULA','<div style="font-size:11px; font-family:Arial, Helvetica, sans-serif;text-align:center"><a href="http://express.ikoula.com/hebergement-web" title="Choisissez Ikoula pour tous vos projets d’hébergement web"><img alt="Choisissez Ikoula pour tous vos projets d’hébergement web" src="http://www.ikoula.com/img/heberge_par_ik_black.gif" /></a><br /><a href="http://express.ikoula.com/cloud" title="Choisissez Ikoula pour tous vos projets d’hébergement web">Serveur Cloud</a>  |  <a href="http://express.ikoula.com/hebergement-web" title="Choisissez Ikoula pour tous vos projets d’hébergement web">Hébergement web</a></div>');
 ?>
