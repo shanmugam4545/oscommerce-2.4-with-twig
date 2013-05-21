@@ -1,0 +1,24 @@
+{# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
+{# file: includes/modules/boxes/view/template/classic/twig_bm_whats_new.html.twig #}
+{% if data|length > 0 %}
+<div class="media">
+    <span class="pull-left">
+        <i class="icon-fa-fire icon-large text-info"></i>
+    </span>
+    <div class="media-body">        
+    <h4 class="media-heading text-info">{{ constant('MODULE_BOXES_WHATS_NEW_TITLE') }}</h4>     
+        <ul class="nav nav-list">
+{% for whatnew in data|slice(random(constant('MAX_RANDOM_SELECT_NEW') - loop.revindex), 1) %}                
+        <li><h5>{{ whatnew['products_name'] }}</h5></li>        
+        <li class="text-center"><a href="{{ link('products', ['id=',whatnew['products_id']]|join) | raw }}"><img src="{{ [constant('DIR_WS_IMAGES'),whatnew['products_image']]|join}}" alt="{{ whatnew['products_name'] }}" width="{{ constant('SMALL_IMAGE_WIDTH') }}" height="{{ constant('SMALL_IMAGE_HEIGHT') }}" /></a></li> 
+        {% if whatnew['specials_new_products_price'] != null %}
+        <li class="text-center"><del>{{ whatnew['products_price']|display_price(whatnew['products_tax_class_id']) }}</del></li>        
+        <li class="text-center text-error"><strong>{{ whatnew['specials_new_products_price']|display_price(whatnew['products_tax_class_id']) }}</strong></li> 
+        {% else %}
+        <li class="text-center">{{ whatnew['products_price']|display_price(whatnew['products_tax_class_id']) }}</li>      
+        {% endif %}
+{% endfor %}             
+       </ul>
+   </div>
+</div>
+{% endif %}
