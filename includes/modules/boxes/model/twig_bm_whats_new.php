@@ -18,7 +18,7 @@ class twig_bm_whats_new extends bm_whats_new {
 
         $what_new_array = array();
 
-        $Qwhatnewbox = $OSCOM_PDO->prepare('select p.products_id, p.products_image, p.products_price, s.specials_new_products_price, pd.products_name from products p  left outer join specials s on s.products_id = p.products_id inner join products_description pd on pd.products_id = p.products_id and p.products_status = 1 and (s.status = 1 or s.status IS NULL) and pd.language_id = :language_id order by p.products_date_added DESC, rand() limit :limit');
+        $Qwhatnewbox = $OSCOM_PDO->prepare('select p.products_id, p.products_image, p.products_price, s.specials_new_products_price, pd.products_name from :table_products p  left outer join :table_specials s on s.products_id = p.products_id inner join :table_products_description pd on pd.products_id = p.products_id and p.products_status = 1 and (s.status = 1 or s.status IS NULL) and pd.language_id = :language_id order by p.products_date_added DESC, rand() limit :limit');
         $Qwhatnewbox->bindInt(':language_id', $_SESSION['languages_id']);
         $Qwhatnewbox->bindInt(':limit', MAX_RANDOM_SELECT_NEW);
         $Qwhatnewbox->execute();
