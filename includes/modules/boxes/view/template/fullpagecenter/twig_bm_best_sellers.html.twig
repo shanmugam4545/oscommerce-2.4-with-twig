@@ -1,7 +1,7 @@
 {# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
 {# file: includes/modules/boxes/view/template/fullpagecenter/twig_bm_best_sellers.html.twig #}
 {% if data|length > 0 %}
-<li class="span4">
+<li class="span3">
 <h4 class="boxnavcat"><i class="icon-fa-heart"></i> {{ constant('MODULE_BOXES_BEST_SELLERS_TITLE') }}</h4>   
 {% for bseller in data|slice(0,limit) %}
 <div class="media well">
@@ -12,7 +12,7 @@
    {% endif %}
         <div class="media-body">
             <h5 class="media-heading text-left" style="height:30px;">{{ bseller['products_name'] }}</h5>
-            <ul class="unstyled"><li class="text-success"><strong>{{ constant('TWIG_BEST_SELLERS_PRODUCTS_ALREADY_SOLD') |format(bseller['products_ordered']) }}</strong></li></ul><br />
+            <ul class="unstyled"><li class="text-success"><strong>{{ constant('TWIG_BEST_SELLERS_PRODUCTS_ALREADY_SOLD') |format(bseller['products_ordered']) }}</strong></li></ul>
             <a class="btn btn-info btn-small pull-right" href="{{ link('products', ['id=',bseller['products_id']]|join) | raw }}">{{ constant('PRODUCTS_LISTING_PRODUCT_BUTTON_SEE_DETAILS') }}</a>
         </div>
 </div>

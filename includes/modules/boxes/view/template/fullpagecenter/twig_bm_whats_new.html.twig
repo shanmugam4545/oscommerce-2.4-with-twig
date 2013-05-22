@@ -1,7 +1,7 @@
 {# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
 {# file: includes/modules/boxes/view/template/fullpagecenter/twig_bm_whats_new.html.twig #}
 {% if data|length > 0 %}
-<li class="span4">
+<li class="span3">
 <h4 class="boxnavcat"><i class="icon-fa-fire"></i> {{ constant('MODULE_BOXES_WHATS_NEW_TITLE') }}</h4>
 {% for whatnew in data|slice(random(constant('MAX_RANDOM_SELECT_NEW')),limit) %}
 <div class="media well">
