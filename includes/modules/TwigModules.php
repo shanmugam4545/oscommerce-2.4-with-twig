@@ -54,7 +54,7 @@ function twig_module_feature_products($cid) {
 
             $string .= '<div class="thumbnail">';
 
-            $string .= osc_image(DIR_WS_IMAGES . $products[$i]['image'], $products[$i]['products_name']);
+            $string .= osc_image(DIR_WS_IMAGES . 'products_features/' . $products[$i]['image'], $products[$i]['products_name']);
 
             $string .= '<div class="caption">';
 
@@ -62,7 +62,7 @@ function twig_module_feature_products($cid) {
 
             $string .= '<strong>' . $currencies->display_price($products[$i]['products_price'], osc_get_tax_rate($products[$i]['products_tax_class_id'])) . '</strong>';
 
-            $string .= osc_draw_button(IMAGE_BUTTON_BUY_NOW, 'play', osc_href_link('products', 'id=' . $products[$i]['products_id']), 'primary');
+            $string .= '<span class="pull-right">' . osc_draw_button(IMAGE_BUTTON_BUY_NOW, 'play', osc_href_link('products', 'id=' . $products[$i]['products_id']), 'primary') . '</span>';
 
             $string .= '</div>';
 
