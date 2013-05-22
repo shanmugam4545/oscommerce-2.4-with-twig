@@ -17,7 +17,7 @@
 			{% endif %}
 			{% endblock %}
 			{% block title %}
-			<h2><strong><a href="{{ link('products', ['id=' , review.products_id]|join) }}">{{ product_name }}</a></strong></h2>
+			<h2><strong><a href="{{ link('products', ['id=' , review.products_id]|join) | raw}}">{{ product_name }}</a></strong></h2>
 			{% endblock %}
 			{% if product_model != null %}
 			<span class="pull-left"><h4>[{{ review.products_model }}]</h4></span>
@@ -34,25 +34,28 @@
 		{% endblock %}
 		<div>
 			{% block review_text %}
-			<p class="offset2 well">
+			<p class="well offset2" style="min-height:60px;">
+                            <i class="icon-fa-quote-left icon-fa-4x pull-left icon-fa-muted"></i>
 				{{ review.reviews_text }}
+                            <i class="icon-fa-quote-right icon-fa-4x pull-right icon-fa-muted"></i>
 			</p>
+                        <div class="clearfix"></div>
 			{% endblock %}
 			{% block review_button %}
-			<p class="pull-right">{{ button(constant('IMAGE_BUTTON_IN_CART'), 'shopping-cart', link('cart', ['add&id=', id , '&formid=' , md5]|join), 'btn') | raw }}</p>
+			<p class="pull-right">{{ button(constant('IMAGE_BUTTON_IN_CART'), 'shopping-cart', link('cart', ['add&id=', id , '&formid=' , md5]|join | raw), 'btn') | raw }}</p>
 			{% endblock %}
 		</div>
 	</div>
 	<div class="row">
 		<div>
 			<p class="nav nav-list active pull-right">
-				<i class="icon-user"></i> {{ constant('TEXT_REVIEW_BY') |format(review.customers_name) }} |
-				<i class="icon-eye-open"></i> {{ constant('TEXT_REVIEWS_SEE') | format(review.reviews_read) }} |
-				<i class="icon-calendar"></i> {{ constant('TEXT_REVIEW_DATE_ADDED') | format(review.date_added |date("m/d/Y")) }}
+				<i class="icon-fa-user"></i> {{ constant('TEXT_REVIEW_BY') |format(review.customers_name) }} |
+				<i class="icon-fa-eye-open"></i> {{ constant('TEXT_REVIEWS_SEE') | format(review.reviews_read) }} |
+				<i class="icon-fa-calendar"></i> {{ constant('TEXT_REVIEW_DATE_ADDED') | format(review.date_added |date("m/d/Y")) }}
 			</p>
 			<div class="buttonSet">
 				<span class="buttonAction">{{ button(constant('IMAGE_BUTTON_WRITE_REVIEW'), 'comment', link('products', ['reviews&new&id=' , id ]|join), 'warning') | raw}}</span>
-				{{ button(constant('IMAGE_BUTTON_BACK'), 'arrow-left', link('products', ['reviews&id=','id']|join) ) | raw }}
+				{{ button(constant('IMAGE_BUTTON_BACK'), 'arrow-left', link('products', ['reviews&id=',id]|join) ) | raw }}
 			</div>
 		</div>
 	</div>
