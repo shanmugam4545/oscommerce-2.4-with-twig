@@ -51,7 +51,7 @@
 <div class="row-fluid">
 <ul class="thumbnails">
 {% for boxe in boxes %}
-{% if boxe.boxe != null and boxe.boxe == 'twig_bm_best_sellers' or boxe.boxe == 'twig_bm_specials' or boxe.boxe == 'twig_bm_whats_new' %}
+{% if boxe.boxe != null and boxe.boxe == 'twig_bm_best_sellers' or boxe.boxe == 'twig_bm_specials' or boxe.boxe == 'twig_bm_whats_new' or boxe.boxe == 'twig_bm_reviews' %}
 {% include [boxe.boxe, TwigExtension]|join with{'data': boxe.data, 'limit' : 5, withphoto : true } %}
 {% endif %}
 {% endfor %}

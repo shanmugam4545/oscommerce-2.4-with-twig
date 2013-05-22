@@ -353,6 +353,7 @@ define('PRODUCTS_LISTING_PRODUCT_BUTTON_OPEN_IMAGE', 'Open image');
 define('PRODUCTS_LISTING_PRODUCT_BUTTON_SEE_DETAILS', 'See detail');
 
 define('TWIG_BEST_SELLERS_PRODUCTS_ALREADY_SOLD', 'Already %s products sold !');
+define('REVIEW_READ', 'Read this review');
 
 define('IKOULA','<div style="font-size:11px; font-family:Arial, Helvetica, sans-serif;text-align:center"><a href="http://express.ikoula.co.uk/web-hosting" title="Choose Ikoula for all your web hosting projects"><img alt="Choose Ikoula for all your web hosting projects" src="http://www.ikoula.com/img/hosting_by_ik_black.gif"  /></a><br /><a href="http://express.ikoula.co.uk/cloud" title="Choose Ikoula for all your web hosting projects">Cloud Server</a> | <a href="http://express.ikoula.co.uk/web-hosting" title="Choose Ikoula for all your web hosting projects">Web hosting</a></div>');
 ?>

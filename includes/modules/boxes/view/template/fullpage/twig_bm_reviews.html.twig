@@ -1,0 +1,26 @@
+{# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
+{# file: includes/modules/boxes/view/template/fullpage/twig_bm_reviews.html.twig #}
+{% if data|length > 0 %}
+<li class="span3">
+<h4 class="muted text-center"><i class="icon-fa-comment"></i> {{ constant('MODULE_BOXES_REVIEWS_TITLE') }}</h4>   
+{% for reviewsbox in data|slice(random(constant('MAX_RANDOM_SELECT_REVIEWS')),limit) %}
+<div class="media well">
+   {% if withphoto == true %}
+   <a class="pull-left" href="{{ link('products', ['reviews=',reviewsbox['reviews_id'],'&id=',reviewsbox['products_id']]|join) | raw }}">
+       <img class="media-object" src="{{ [constant('DIR_WS_IMAGES'),reviewsbox['products_image']]|join}}" alt="{{ reviewsbox['products_name'] }}" />
+   </a>
+        
+   {% endif %}
+   
+        <div class="media-body">
+            <h5 class="media-heading text-left" style="height:30px;">{{ reviewsbox['products_name'] }}<span class="pull-right">{{ constant(['TWIG_RATING_',reviewsbox['reviews_rating'] | round_rating]|join) | raw}}</span></h5>
+            <ul class="unstyled">
+                <li>{{ reviewsbox['reviews_text']|escape|slice(0,30) |raw }}{% if reviewsbox['reviews_text']|length > 30 %} ...{% endif %}</li><br />   
+           </ul> 
+        
+        </div>
+    <a class="btn btn-info btn-small pull-right" href="{{ link('products', ['reviews=',reviewsbox['reviews_id'],'&id=',reviewsbox['products_id']]|join) | raw }}">{{ constant('REVIEW_READ') }}</a>    
+</div>
+{% endfor %}
+</li>
+{% endif %}
