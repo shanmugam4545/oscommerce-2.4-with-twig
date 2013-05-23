@@ -140,7 +140,9 @@ class products {
                      'level_per_page' => $level_per_page,
                      'display' => $display, 
                      'per_page' => (int)$per_page,                      
-                     'path' => $path,                     
+                     'path' => $path,
+                     'cci' => $current_category_id,
+                     'cpath' => $cPath,
                      'data' => $data);
     }
     
