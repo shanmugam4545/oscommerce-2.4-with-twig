@@ -12,7 +12,7 @@
 {% block appcontent %}
 <div id="bodyContent" class="span{{ GridContentWidth}}">
     <div class="page-header">    	
-        <h2 {% if cpath == cci %}style="margin-top: -25px;margin-bottom: 25px;line-height: 62px;"{% else %}style="margin-top: 20px;line-height: 62px;"{% endif %}>{{ catname }}<img class="img-polaroid image_categorie" src="{{ [constant('DIR_WS_IMAGES'), catimage]|join }}" alt="{{ catname }}" /></h2>
+        <h2 {% if cpath == cci %}style="margin-top: -25px;margin-bottom: 25px;line-height: 65px;"{% else %}style="margin-top: 20px;line-height: 65px;"{% endif %}>{{ catname }}<img class="img-polaroid image_categorie" src="{{ [constant('DIR_WS_IMAGES'), catimage]|join }}" alt="{{ catname }}" /></h2>
     </div>
 {% if total > 0 %}
 {{ form('filter', link(null,null, 'NONSSL', false) | raw , 'get') | raw}}

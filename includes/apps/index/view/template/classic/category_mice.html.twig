@@ -3,10 +3,9 @@
 {% extends "base.html.twig" %}
 {% block appcontent %}
 <div id="bodyContent" class="span{{ GridContentWidth}}">
-
 <h2 class="title">{{ cat_name }}<img class="img-polaroid image_categorie pull-right" src="{{ [constant('DIR_WS_IMAGES'), cat_image]|join }}" alt="{{ cat_name }}" />	
 </h2>
-        <div class="clearfix"></div>
+<div class="clearfix"></div>
 {% set row = 3 %}
 <ul class="thumbnails row-fluid">
 {% for i in data %}
@@ -23,9 +22,6 @@
 {% endif %}
 {% endfor %}
 </ul>
-        <div class="clearfix"></div>
-{{ modulefeatureproducts(29) | raw}}  
-
+{{ modulefeatureproducts(29) | raw}}
 </div>
-
 {% endblock %}

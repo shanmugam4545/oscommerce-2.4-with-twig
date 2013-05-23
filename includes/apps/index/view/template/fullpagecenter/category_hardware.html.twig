@@ -2,9 +2,11 @@
 {# file: includes/apps/index/view/template/fullpagecenter/category_smartphone.html.twig #}
 {% extends "categories_base.html.twig" %}
 {% block appcontent %}
+<div style="margin-top:20px;">
 <img class="img-polaroid image_categorie" src="{{ [constant('DIR_WS_IMAGES'), cat_image]|join }}" alt="{{ cat_name }}" />	
-<h2 class="title">{{ cat_name }}</h2>
+<h2 class="title" style="line-height:65px;">{{ cat_name }}</h2>
 <hr>
+</div>
 {% set GridContentWidth = 9 %}
 {% set row = 3 %}
 {% block catright %}

@@ -2,10 +2,11 @@
 {# file: includes/apps/index/view/template/fullpagecenter/categories_base.html.twig #}
 {% extends "base.html.twig" %}
 {% block appcontent %}
-<div id="bodyContent" class="span{{ GridContentWidth }}">
+<div style="margin-top:20px;">
 <img class="img-polaroid image_categorie" src="{{ [constant('DIR_WS_IMAGES'), cat_image]|join }}" alt="{{ cat_name }}" />	
-<h2 class="title">{{ cat_name }}</h2>
+<h2 class="title" style="line-height:65px">{{ cat_name }}</h2>
 <hr>
+</div>
 {% set row = 2 %}
 <ul class="thumbnails row-fluid">
 {% for i in data %}
@@ -22,5 +23,5 @@
 {% endif %}
 {% endfor %}
 </ul>
-</div>
+
 {% endblock %}
