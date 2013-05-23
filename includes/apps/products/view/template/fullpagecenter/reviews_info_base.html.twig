@@ -1,5 +1,5 @@
 {# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
-{# file: includes/apps/products/view/template/classic/reviews_info_base.html.twig #}
+{# file: includes/apps/products/view/template/fullpagecenter/reviews_info_base.html.twig #}
 {% extends "base.html.twig" %}
 {% block stylesheet %}
 <link rel="stylesheet" href="ext/bootstrap/css/bootstrap-lightbox.min.css" />
@@ -30,7 +30,7 @@
 <h3 class="text-left">
 {% if reviewdetail['products_model'] != null %}
         <small>{{ constant('TWIG_PRODUCT_MODEL') }} : <em>{{ reviewdetail['products_model'] }}</em></small>
-{% endif %}    
+{% endif %}
 <span class="pull-right">{{ constant(['TWIG_RATING_',reviewdetail['reviews_rating'] | round_rating]|join) | raw}}</span></h3>
 </div><!-- end page-header -->
 </div>
@@ -76,8 +76,9 @@
 <i class="icon-fa-calendar"></i> {{ constant('TEXT_REVIEW_DATE_ADDED') | format(reviewdetail['date_added'] |date("m/d/Y")) }}
 </p>
 {% block reviewsnavbut %}
-<div class="buttonSet">
-<span class="buttonAction">{{ button(constant('IMAGE_BUTTON_WRITE_REVIEW'), 'comment', link('products', ['reviews&new&id=',reviewdetail['products_id']]|join), 'warning') | raw}}</span>
+<div class="clearfix"></div>
+<div class="form-actions">
+<span class="pull-right">{{ button(constant('IMAGE_BUTTON_WRITE_REVIEW'), 'comment', link('products', ['reviews&new&id=',reviewdetail['products_id']]|join), 'warning') | raw}}</span>
 {{ button(constant('IMAGE_BUTTON_BACK'), 'arrow-left', link('products', ['reviews&id=',reviewdetail['products_id']]|join) ) | raw }}
 </div>
 {% endblock %}
@@ -85,9 +86,4 @@
 </div>
 </div>
 {% endfor %}
-{% endblock %}   
-
-
-
-
-
+{% endblock %}                    

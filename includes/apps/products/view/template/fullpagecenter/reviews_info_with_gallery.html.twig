@@ -1,5 +1,5 @@
 {# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
-{# file: includes/apps/products/view/template/classic/reviews_info_with_gallery.html.twig #}
+{# file: includes/apps/products/view/template/fullpagecenter/reviews_info_with_gallery.html.twig #}
 {% extends "reviews_info_base.html.twig" %}
 {% block stylesheet %}
 <link rel="stylesheet" href="ext/bootstrap/css/bootstrap-image-gallery.min.css" />
@@ -30,9 +30,18 @@
 {% endif %}
 {% endblock %}
 {% block review_text %}
-			<p class="well offset4" style="min-height:60px;padding-bottom:35px;">
+			<p class="well offset4" style="min-height:60px;;padding-bottom:35px;">
                             <i class="icon-fa-quote-left icon-fa-4x pull-left icon-fa-muted"></i>
 				{{ reviewdetail['reviews_text']|escape|raw }}
                             <i class="icon-fa-quote-right icon-fa-4x pull-right icon-fa-muted"></i>
 			</p>
+
 {% endblock %}
+{% block reviewsnavbut %}
+                        <div class="clearfix"></div>
+			<div class="form-actions">
+				<span class="pull-right">{{ button(constant('IMAGE_BUTTON_WRITE_REVIEW'), 'comment', link('products', ['reviews&new&id=',reviewdetail['products_id']]|join), 'warning') | raw}}</span>
+				{{ button(constant('IMAGE_BUTTON_BACK'), 'arrow-left', link('products', ['reviews&id=',reviewdetail['products_id']]|join) ) | raw }}
+			</div>
+{% endblock %}
+                        
