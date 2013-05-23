@@ -11,7 +11,7 @@
    </a>
    {% endif %}
         <div class="media-body">
-            <h5 class="media-heading text-left" style="height:30px;">{{ specials['products_name'] }}</h5>
+            <h5 class="media-heading text-left" style="height:30px;">{{ specials['products_name']|slice(0, 25) }}</h5>
         <ul class="unstyled">
         <li><del>{{ specials['products_price']|display_price(specials['products_tax_class_id']) }}</del>  <strong class="text-error">{{ specials['specials_new_products_price']|display_price(specials['products_tax_class_id']) }}</strong></li> 
         </ul><br />
