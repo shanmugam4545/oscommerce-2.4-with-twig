@@ -5,20 +5,21 @@
     <span class="pull-left">
         <i class="icon-fa-fire icon-large text-info"></i>
     </span>
-    <div class="media-body">        
+    <div>        
     <h4 class="media-heading text-info">{{ constant('MODULE_BOXES_WHATS_NEW_TITLE') }}</h4>     
-        <ul class="nav nav-list">
+        <ul class="unstyled">
 {% for whatnew in data|slice(random(constant('MAX_RANDOM_SELECT_NEW') - loop.revindex), 1) %}                
-        <li><h5>{{ whatnew['products_name'] }}</h5></li>        
+        <li class="text-center"><h5>{{ whatnew['products_name'] }}</h5></li>        
         <li class="text-center"><a href="{{ link('products', ['id=',whatnew['products_id']]|join) | raw }}"><img src="{{ [constant('DIR_WS_IMAGES'),whatnew['products_image']]|join}}" alt="{{ whatnew['products_name'] }}" width="{{ constant('SMALL_IMAGE_WIDTH') }}" height="{{ constant('SMALL_IMAGE_HEIGHT') }}" /></a></li> 
-        {% if whatnew['specials_new_products_price'] != null %}
-        <li class="text-center"><del>{{ whatnew['products_price']|display_price(whatnew['products_tax_class_id']) }}</del></li>        
-        <li class="text-center text-error"><strong>{{ whatnew['specials_new_products_price']|display_price(whatnew['products_tax_class_id']) }}</strong></li> 
+        {% if whatnew['specials_new_products_price'] != null %}        
+        <li class="muted text-center"><del>{{ whatnew['products_price']|display_price(whatnew['products_tax_class_id']) }}</del></li>        
+        <li class="text-error text-center"><strong>{{ whatnew['specials_new_products_price']|display_price(whatnew['products_tax_class_id']) }}</strong></li> 
         {% else %}
-        <li class="text-center">{{ whatnew['products_price']|display_price(whatnew['products_tax_class_id']) }}</li>      
-        {% endif %}
-{% endfor %}             
-       </ul>
+        <li class="text-center"><strong>{{ whatnew['products_price']|display_price(whatnew['products_tax_class_id']) }}</strong></li>      
+        {% endif %}  
+        <li class="text-center"><a style="margin-left:10px" class="btn btn-small btn-info" href="{{ link('products', ['id=',whatnew['products_id']]|join) | raw }}">{{ constant('BUTTON_SEE_THIS_PRODUCT') }}</a></li>
+{% endfor %}
+        </ul>
    </div>
 </div>
 {% endif %}
