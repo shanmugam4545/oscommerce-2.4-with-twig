@@ -70,3 +70,79 @@ border-radius: 4px;
 -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
 box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
 }
+
+
+/* foxp2 : responsive design for bootstrapformhelper */
+#bfh-language-box {
+    margin-left: 25px;
+}
+@media(max-width:1280px) {
+.bfh-selectbox {
+    width: 140px;
+    height: 20px;
+    margin-left: -30px;
+}
+.bfh-selectbox-toggle{
+    width: 140px;
+    max-height: 20px;
+}
+.bfh-selectbox-option{
+    width: 130px;
+}
+
+}
+@media(max-width:1440px) {
+    .bfh-selectbox {
+    width: 150px;
+    height: 20px;
+    margin-left: -30px;
+}
+.bfh-selectbox-toggle{
+    width: 150px;
+    max-height: 20px;
+}
+.bfh-selectbox-option{
+    width: 140px;
+}
+}
+@media(max-width:1680px) {
+    .bfh-selectbox {
+    width: 180px;
+    height: 20px;
+    margin-left: -25px;
+}
+.bfh-selectbox-toggle{
+    width: 180px;
+    max-height: 20px;
+}
+.bfh-selectbox-option{
+    width: 170px;
+}
+.bfh-selectbox-options{
+    margin-top: 10px;
+}
+.bfh-selectbox-options ul {
+    width: 190px;    
+}
+}
+@media(min-width:1920px) {
+    .bfh-selectbox {
+    width: 200px;
+    height: 20px;
+    margin-left: -5px;
+}
+.bfh-selectbox-toggle{
+    width: 200px;
+    max-height: 20px;
+}
+.bfh-selectbox-option{
+    width: 190px;
+}
+.bfh-selectbox-options{
+    margin-top: 10px;
+}
+.bfh-selectbox-options ul {
+    width: 210px;    
+}
+
+}

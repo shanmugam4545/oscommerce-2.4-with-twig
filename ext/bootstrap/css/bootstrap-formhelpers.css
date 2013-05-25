@@ -6,6 +6,7 @@
  * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Designed and built by @vincent lamanna.
+ * Modified for Twig Dynamic Template System by FoxP2
  */
  .remove {
      margin: 0;
@@ -362,3 +363,7 @@ span.bfh-states {
 .open > .bfh-timepicker-popover {
   display: block;
 }
+
+
+
+
