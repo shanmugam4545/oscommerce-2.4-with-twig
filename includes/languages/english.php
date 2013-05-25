@@ -326,6 +326,7 @@ define('TWIG_PAGE_NOT_FOUND_TEXT', '<p>The page you requested could not be found
 define('TWIG_PAGE_NOT_FOUND_BUTTON', 'Take me home');
 
 define('TWIG_RATING_EMPTY', '<span class="icon-fa-star-empty"></span><span class="icon-fa-star-empty"></span><span class="icon-fa-star-empty"></span><span class="icon-fa-star-empty"></span><span class="icon-fa-star-empty"></span>');
+define('TWIG_RATING_0', '<span class="icon-fa-star-empty"></span><span class="icon-fa-star-empty"></span><span class="icon-fa-star-empty"></span><span class="icon-fa-star-empty"></span><span class="icon-fa-star-empty"></span>');
 define('TWIG_RATING_1', '<span class="icon-fa-star text-warning"></span><span class="icon-fa-star-empty"></span><span class="icon-fa-star-empty"></span><span class="icon-fa-star-empty"></span><span class="icon-fa-star-empty"></span>');
 define('TWIG_RATING_1.5',  '<span class="icon-fa-star text-warning"></span><span class="icon-fa-star-half text-warning"></span><span class="icon-fa-star-empty"></span><span class="icon-fa-star-empty"></span><span class="icon-fa-star-empty"></span>');
 define('TWIG_RATING_2','<span class="icon-fa-star text-warning"></span><span class="icon-fa-star text-warning"></span><span class="icon-fa-star-empty"></span><span class="icon-fa-star-empty"></span><span class="icon-fa-star-empty"></span>');
