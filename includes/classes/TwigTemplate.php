@@ -132,24 +132,15 @@ class TwigTemplate
     }
 
     public function render() {
-        
-        $data = $this->getAppData();
-
-        if (is_array($data) && !empty($data)) {
             
-            $params = $this->getAppData();
-            
-        } else {
-
-            $params = array();
-        }
+        $params = $this->getAppData();            
 
         $content = $this->_twig->render($params['template'] . $this->_template_extension, array_merge($this->getGlobalData(), $params));
 
         return $content;
     }
 
-    private function getAppData() {
+    private static function getAppData() {
         global $OSCOM_APP;
 
         $reserved_words = array('empty', 'new', 'shipping'); // thanks HPDL !
@@ -167,18 +158,19 @@ class TwigTemplate
 
             if ( file_exists(DIR_WS_INCLUDES . 'apps/' . $OSCOM_APP->getCode() . '/model/' . $top_model . '.php') ) {
                 
-                include(DIR_WS_INCLUDES . 'apps/' . $OSCOM_APP->getCode() . '/model/' . $top_model . '.php');
+                require_once(DIR_WS_INCLUDES . 'apps/' . $OSCOM_APP->getCode() . '/model/' . $top_model . '.php'); 
+                
                 
             } else {
                 
-                include_once(DIR_WS_INCLUDES . 'apps/index/model/template_error.php');
+                require_once(DIR_WS_INCLUDES . 'apps/index/model/template_error.php');
                 
                 $top_model = 'template_error';
                 
             }
         }
         
-        $nick_kamen = new $top_model();
+        $nick_kamen = new $top_model();        
         
         return $nick_kamen->execute();
     }
