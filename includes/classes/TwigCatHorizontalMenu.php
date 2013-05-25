@@ -143,7 +143,7 @@ class TwigCatHorizontalMenu extends category_tree
                                 }
                                 $level_two .= '<a data-toggle="dropdown"  class="dropdown-toggle" href="' . osc_href_link(null, 'cPath=' . $category_link) . '">' . $ca['name'] . '<i class="icon-fa-caret-down"></i></a>';
                                 
-                                $level_two .= '<ul id="subcat" class="dropdown-menu">';
+                                $level_two .= '<ul class="dropdown-menu">';
 
                                 $level_two .= '<li class="dropdown submenu">';
                                 
