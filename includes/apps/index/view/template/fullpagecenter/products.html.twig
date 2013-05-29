@@ -87,7 +87,7 @@
                                                     </div>
                                                 </div>
                                             </li>
-{% endif %}{{ value }}
+{% endif %}
                                             <li class="span{{size}} element isotope-item well" {% if product['rating'] != null %}data-rating="{{ product['rating']| round_rating }}"{% else %}data-rating="0"{% endif %} data-special="{{ product['special_price'] }}" data-price="{{ product['price'] }}" {% if display == 'column' %}style="margin-left:10px;margin-right: 10px;"{% else %}style="margin-left:0px;margin-right: 0px;" {% endif %}>       
                                                 <a href="{{ link(['products', '&id=' , product['product_id']]|join) | raw}}"><h4 class="productname">{{ product['product_name'] }}</h4></a>
                                                 <div class="media">
