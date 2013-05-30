@@ -1,12 +1,63 @@
 {# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
 {# file: includes/apps/index/view/template/fullpagecenter/main.html.twig #}
 {% extends "base.html.twig" %}
+{% block stylesheet %}
+<link rel="stylesheet" href="ext/bootstrap/css/bootstrap-lightbox.min.css" />
+{% endblock %}
+{% block head_javascript %}
+<script src="ext/bootstrap/js/bootstrap-lightbox.js"></script>
+{% endblock %}
 {% block appcontent %}
-<div class="container">
-    
-{{ modulefeatureproducts(35) | raw}}    
+<div class="container">    
+{{ modulefeatureproducts(35) | raw}}
+</div>
+
+{% if moduleproductsexpected()|length > 0 %}
+<div class="row-fluid">
+    <h3>{{ constant('TABLE_HEADING_UPCOMING_PRODUCTS') }}</h3>
+<div class="well">
+<ul class="thumbnails">        
+{% for expected_products in moduleproductsexpected() %}
+<li class="span6 media">
+<a class="pull-left" href="{{ link(['products','&id=',expected_products['products_id']]|join) |raw}}">
+    <img class="media-object" src="{{ [constant('DIR_WS_IMAGES'),expected_products['products_image']]|join }}" alt="{{ expected_products['products_name'] }}" height="50" width="100">
+</a>
+        
+<div class="media-body"  style="height:100px;">
+    <h4 class="media-heading">{{ expected_products['products_name'] }}</h4>
+
+    <p class="text-info"><strong><i class="icon-fa-calendar"></i>  {{ constant('TABLE_HEADING_DATE_EXPECTED') }} :  {{ expected_products['date_expected'] }}</strong></p>
+    <p class="text-error"><strong><i class="icon-fa-money"></i>  {{ constant('PRODUCTS_LISTING_PRODUCT_DISPLAY_PRICE') }}  {{ expected_products['price'] }}</strong></p> 
 
 </div>
+{% if expected_products['image'] != null %}
+<div id="Lightbox{{ expected_products['products_id'] }}" class="lightbox hide fade" role="dialog" aria-hidden="true">
+<div class="lightbox-header">
+<button type="button" class="close" data-dismiss="lightbox" aria-hidden="true">&times;</button>
+</div>
+<div class="lightbox-content"> 
+<img class="img-polaroid" src="{{ [constant('DIR_WS_IMAGES'),expected_products['image']]|join }}" alt="{{expected_products['product_name'] }}">
+<div class="lightbox-caption"><p>{{expected_products['product_name'] }}</p></div>
+</div>
+</div>
+{% endif %}
+<div class="clearfix"></div>
+<div class="form-actions">
+{% if expected_products['image'] != null %}
+<a class="pull-left btn btn-small" data-toggle="lightbox" href="#Lightbox{{ expected_products['products_id'] }}"><i class="icon-fa-picture"></i> {{ constant('PRODUCTS_LISTING_PRODUCT_BUTTON_OPEN_IMAGE') }}</a>
+{% endif %}
+<a class="pull-right btn btn-small btn-info" href="{{ link(['products','&id=',expected_products['products_id']]|join) |raw}}"><i class="icon-fa-eye-open"></i> {{ constant('BUTTON_SEE_THIS_PRODUCT') }}</a>
+</div>
+<div class="text-warning text-center">{{ constant('TWIG_PRODUCT_EXPECTED_DELAY') |format(expected_products['delay']) }}</div>
+        </li>    
+{% if loop.index is divisibleby(2) %}
+</ul><ul class="thumbnails">          
+{% endif %}        
+{% endfor %}
+</ul>
+    </div></div>
+{% endif %}
+
 <div class="row-fluid">
 <ul class="thumbnails">
 {% for boxe in boxes %}
@@ -16,4 +67,7 @@
 {% endfor %}
 </ul>
 </div>
+
+
+
 {% endblock %}
