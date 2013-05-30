@@ -54,7 +54,7 @@
 
 // make a connection to the database... now
   osc_db_connect() or die('Unable to connect to database server!');
-
+  osc_db_query("SET character set utf8"); 
 // set application wide parameters
   $configuration_query = osc_db_query('select configuration_key as cfgKey, configuration_value as cfgValue from ' . TABLE_CONFIGURATION);
   while ($configuration = osc_db_fetch_array($configuration_query)) {

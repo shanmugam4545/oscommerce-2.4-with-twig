@@ -54,6 +54,7 @@
 
 // make a connection to the database... now
   osc_db_connect() or die('Unable to connect to database server!');
+  osc_db_query("SET character set utf8"); 
 
   require(DIR_WS_CLASSES . 'cache.php');
   $OSCOM_Cache = new cache();
