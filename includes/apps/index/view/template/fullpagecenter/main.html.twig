@@ -15,19 +15,18 @@
 {% if moduleproductsexpected()|length > 0 %}
 <div class="row-fluid">
     <h3>{{ constant('TABLE_HEADING_UPCOMING_PRODUCTS') }}</h3>
-<div class="well">
 <ul class="thumbnails">        
 {% for expected_products in moduleproductsexpected() %}
-<li class="span6 media">
-<a class="pull-left" href="{{ link(['products','&id=',expected_products['products_id']]|join) |raw}}">
+<li class="span6 thumbnail">
+<a class="pull-left well" href="{{ link(['products','&id=',expected_products['products_id']]|join) |raw}}">
     <img class="media-object" src="{{ [constant('DIR_WS_IMAGES'),expected_products['products_image']]|join }}" alt="{{ expected_products['products_name'] }}" height="50" width="100">
 </a>
         
-<div class="media-body"  style="height:100px;">
-    <h4 class="media-heading">{{ expected_products['products_name'] }}</h4>
+<div class="media-body">
+    <h4 class="offset1">{{ expected_products['products_name'] }}</h4>
 
-    <p class="text-info"><strong><i class="icon-fa-calendar"></i>  {{ constant('TABLE_HEADING_DATE_EXPECTED') }} :  {{ expected_products['date_expected'] }}</strong></p>
-    <p class="text-error"><strong><i class="icon-fa-money"></i>  {{ constant('PRODUCTS_LISTING_PRODUCT_DISPLAY_PRICE') }}  {{ expected_products['price'] }}</strong></p> 
+    <p class="offset1 text-info"><strong><i class="icon-fa-calendar"></i>  {{ constant('TABLE_HEADING_DATE_EXPECTED') }} :  {{ expected_products['date_expected'] }}</strong></p>
+    <p class="offset1 text-error"><strong><i class="icon-fa-money"></i>  {{ constant('PRODUCTS_LISTING_PRODUCT_DISPLAY_PRICE') }}  {{ expected_products['price'] }}</strong></p> 
 
 </div>
 {% if expected_products['image'] != null %}
@@ -55,7 +54,7 @@
 {% endif %}        
 {% endfor %}
 </ul>
-    </div></div>
+</div>
 {% endif %}
 
 <div class="row-fluid">
