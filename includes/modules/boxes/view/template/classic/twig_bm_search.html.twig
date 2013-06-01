@@ -1,16 +1,11 @@
 {# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
 {# file: includes/modules/boxes/view/template/classic/twig_bm_search.html.twig #}
-<div class="media">
-    <span class="pull-left">
-        <i class="icon-fa-search text-info"></i>
-    </span>
-    <div> 
-<h4 class="media-heading text-info">{{ constant('MODULE_BOXES_SEARCH_TITLE') }}</h4>
-    {{ form('quick_find', link(), 'get', 'class="text-center"') | raw }}{{ hiddenfield('search', '') | raw }}   
-    {{ inputfield('q','','class="input-medium"','search') | raw }}{{ hide_session_id }}
-    <button class="btn btn-primary"><i class="icon-fa-search"></i>  {{ constant('MODULE_BOXES_SEARCH_BOX_TITLE') }}</button>
-    <p>{{ constant('MODULE_BOXES_SEARCH_BOX_TEXT') }}</p> 
-    <a href="{{ link('search') | raw }}"><i class="icon-fa-link"></i><strong>  {{ constant('MODULE_BOXES_SEARCH_BOX_ADVANCED_SEARCH') }}</strong></a>
-    </form>
-</div>    
-</div>
+<li class="nav-header">{{ constant('MODULE_BOXES_SEARCH_TITLE') }}</li>
+<li>
+{{ form('quick_find', link(), 'get', 'class="text-center"') | raw }}{{ hiddenfield('search', '') | raw }}   
+{{ inputfield('q','','class="input-medium"','search') | raw }}{{ hide_session_id }}
+<button class="btn btn-primary"><i class="icon-fa-search"></i>  {{ constant('MODULE_BOXES_SEARCH_BOX_TITLE') }}</button>
+<p>{{ constant('MODULE_BOXES_SEARCH_BOX_TEXT') }}</p> 
+<a href="{{ link('search') | raw }}"><i class="icon-fa-link"></i><strong>  {{ constant('MODULE_BOXES_SEARCH_BOX_ADVANCED_SEARCH') }}</strong></a>
+</form>
+</li>

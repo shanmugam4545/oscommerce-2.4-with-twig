@@ -2,19 +2,14 @@
 {# file: includes/modules/boxes/view/template/classic/twig_bm_login.html.twig #}
 {% import "forms.html.twig" as forms %}
 {% if session.customer.id == null and (app_content_file != 'create' and app_code != 'account') %}
-<div class="media" id="login-box">
-    <span class="pull-left">
-        <i class="icon-fa-user text-info"></i>
-    </span>
-    <div> 
-<h4 class="media-heading text-info">{{ constant('MODULE_BOXES_LOGIN_TITLE') }}</h4>
+<li class="nav-header">{{ constant('MODULE_BOXES_LOGIN_TITLE') }}</li>
+<li>
 {{ form('login', link('account', 'login&process', 'SSL'), 'post', 'id="loginBox" class="text-center"', 'true') | raw }}
 {{ forms.inputlabelandwithicon(constant('ENTRY_EMAIL_ADDRESS'), 'email_address', 'icon-fa-envelope', 'input-prepend', 'input-medium', '','text', constant('PLACEHOLDER_EMAIL_ADRESS') ) }}
 {{ forms.inputlabelandwithicon(constant('ENTRY_PASSWORD'), 'password', 'icon-fa-lock', 'input-prepend', 'input-medium', '', 'password', '','false' ) }}
     <button class="btn btn-primary"><i class="icon-fa-user"></i>  {{ constant('MODULE_BOXES_LOGIN_BOX_TITLE') }}</button>
     <p>{{ constant('NO_ACCOUNT_HERE') }}</p> 
     <a href="{{ link('account','create') | raw }}"><i class="icon-fa-signin"></i><strong>  {{ constant('HEADER_TITLE_SIGNUP') }}</strong></a>
-    </form>
-</div>    
-</div>
+</form>
+</li>
 {% endif %}

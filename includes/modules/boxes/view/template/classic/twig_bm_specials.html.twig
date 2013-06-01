@@ -1,21 +1,15 @@
 {# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
 {# file: includes/modules/boxes/view/template/classic/twig_bm_specials.html.twig #}
 {% if data|length > 0 %}
-<div class="media">
-    <span class="pull-left">
-        <i class="icon-fa-money icon-large text-info"></i>
-    </span>
-    <div>        
-    <h4 class="media-heading text-info">{{ constant('MODULE_BOXES_SPECIALS_TITLE') }}</h4>     
-        <ul class="unstyled">
+<li class="nav-header">{{ constant('MODULE_BOXES_SPECIALS_TITLE') }}</li>     
+<li>
+<ul class="nav nav-list text-center">
 {% for specials in data|slice(0, 1) %}        
-        <li class="text-center"><h5>{{ specials['products_name'] }}</h5></li>
-        <li class="text-center"><a href="{{ link('products', ['id=',specials['products_id']]|join) | raw }}"><img src="{{ [constant('DIR_WS_IMAGES'),specials['products_image']]|join}}" alt="{{ specials['products_name'] }}" width="{{ constant('SMALL_IMAGE_WIDTH') }}" height="{{ constant('SMALL_IMAGE_HEIGHT') }}" /></a></li> 
-        <li class="muted text-center"><del>{{ specials['products_price']|display_price(specials['products_tax_class_id']) }}</del></li>
-        <li class="text-error text-center"><strong>{{ specials['specials_new_products_price']|display_price(specials['products_tax_class_id']) }}</strong></li>
-        <li class="text-center"><a class="btn btn-small btn-info" href="{{ link('products', ['id=',specials['products_id']]|join) | raw }}">{{ constant('BUTTON_SEE_THIS_PRODUCT') }}</a></li>  
-{% endfor %}  
-        </ul> 
-    </div>
-</div>
+<li><h5>{{ specials['products_name'] }}</h5></li>
+<li><a href="{{ link('products', ['id=',specials['products_id']]|join) | raw }}"><img src="{{ [constant('DIR_WS_IMAGES'),specials['products_image']]|join}}" alt="{{ specials['products_name'] }}" width="{{ constant('SMALL_IMAGE_WIDTH') }}" height="{{ constant('SMALL_IMAGE_HEIGHT') }}" /></a></li> 
+<li class="muted"><del>{{ specials['products_price']|display_price(specials['products_tax_class_id']) }}</del></li>
+<li class="text-error"><strong>{{ specials['specials_new_products_price']|display_price(specials['products_tax_class_id']) }}</strong></li>
+</ul>
+</li>
+{% endfor %}
 {% endif %}

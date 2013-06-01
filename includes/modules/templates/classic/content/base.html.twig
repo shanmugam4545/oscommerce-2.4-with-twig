@@ -91,12 +91,13 @@
 
 {% block columnleft %}
     <div id="columnTwigLeft" class="span{{ GridColumnWidth }} well">
+        <ul class="unstyled">
         {% for boxe in boxes %}
               {% if boxe.boxe != null and boxe.group == 'boxes_column_left' %}
-              {% include [boxe.boxe, TwigExtension]|join with{'data': boxe.data } %}
-              {% if loop.last == false %}<hr>{% endif %}
+              {% include [boxe.boxe, TwigExtension]|join with{'data': boxe.data } %}              
               {% endif %}
         {% endfor %}
+        </ul>
     </div>
 {% endblock %}
 
@@ -108,12 +109,13 @@
 
 {% block columnright %}
     <div id="columnTwigRight" class="span{{ GridColumnWidth }} well">
+        <ul class="unstyled">
         {% for boxe in boxes %}
               {% if boxe.boxe != null and boxe.group == 'boxes_column_right' %}              
-              {% include [boxe.boxe, TwigExtension]|join with{'data' : boxe.data } %}
-              {% if loop.last == false %}<hr>{% endif %}
+              {% include [boxe.boxe, TwigExtension]|join with{'data' : boxe.data } %}              
               {% endif %}
         {% endfor %}
+        </ul>
     </div>
 {% endblock %}
 

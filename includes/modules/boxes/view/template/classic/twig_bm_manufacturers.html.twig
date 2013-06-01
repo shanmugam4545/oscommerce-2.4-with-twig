@@ -1,13 +1,9 @@
 {# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
 {# file: includes/modules/boxes/view/template/classic/twig_bm_manufacturers.html.twig #}
 {% if data|length > 0%}
-<div class="media">
-    <span class="pull-left">
-        <i class="icon-fa-puzzle-piece text-info"></i>
-    </span>    
-    <h4 class="media-heading text-info">{{ constant('MODULE_BOXES_MANUFACTURERS_BOX_TITLE') }}</h4>
-</div>
-<div style="margin-left:25px"> 
+<li class="nav-header">{{ constant('MODULE_BOXES_MANUFACTURERS_BOX_TITLE') }}</li>
+<li>
+<div id="box-manufacturers-classic">
 <div class="bfh-selectbox">
     <input type="hidden" name="manufacturers_id" value="{{ manufacturer_id }}">
     <a class="bfh-selectbox-toggle" role="button" data-toggle="bfh-selectbox" href="#">
@@ -21,7 +17,6 @@
     {% endfor %}
     </ul>
     </div>
-</div>       
 </div>
 <script>
 var mid = {{ manufacturer_id }};
@@ -32,4 +27,6 @@ function getQuery (uri, key, value) {
     return uri.replace(re,  + key + "=" + value);
 }
 </script>
+</div>
+</li>
 {% endif %}
