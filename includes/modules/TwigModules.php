@@ -33,12 +33,14 @@ function twig_module_expected_products() {
     $expected_products = array();
     
     $Qexpected_products = $OSCOM_PDO->prepare('select timestampdiff(day,now(),p.products_date_available) as delay, p.products_id, pd.products_name, p.products_image, IF(c.symbol_left != \'\', concat(c.symbol_left, \' \',format(((p.products_price * t.tax_rate) / 100 )+ (p.products_price * c.value), c.decimal_places)), concat(format(((p.products_price * t.tax_rate) / 100 )+ (p.products_price * c.value), c.decimal_places),\' \',c.symbol_right)) as price, pi.image, date_format(p.products_date_available, :format_date) as date_expected from :table_products p left outer join :table_products_images pi on p.products_id = pi.products_id left outer join :table_tax_rates t on t.tax_class_id = p.products_tax_class_id inner join :table_products_description pd on pd.products_id = p.products_id, :table_currencies c where pd.language_id = :language_id and c.code = :currency_code and (pi.sort_order = 1 or pi.sort_order is null) having delay <> null or delay > 0 order by :sort_field limit :limit');
-    $Qexpected_products->bindint(':language_id',(int)$_SESSION['languages_id']);
-    $Qexpected_products->bindvalue(':currency_code', $_SESSION['currency']);
-    $Qexpected_products->bindvalue(':format_date',DATE_FORMAT_SHORT);
+    $Qexpected_products->bindInt(':language_id',(int)$_SESSION['languages_id']);
+    $Qexpected_products->bindValue(':currency_code', $_SESSION['currency']);
+    $Qexpected_products->bindValue(':format_date',DATE_FORMAT_SHORT);
     $Qexpected_products->bindvalue(':sort_field',EXPECTED_PRODUCTS_FIELD);
-    $Qexpected_products->bindint(':limit', MAX_DISPLAY_UPCOMING_PRODUCTS);
+    $Qexpected_products->bindInt(':limit', MAX_DISPLAY_UPCOMING_PRODUCTS);
     $Qexpected_products->execute();
+    
+    $Qexpected_products->setCache('products-expected-'.(int)$_SESSION['languages_id'],'3600');
     
     if( $Qexpected_products->fetch() !== false )
     {
