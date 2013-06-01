@@ -1,0 +1,35 @@
+{# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
+{# file: includes/modules/boxes/view/template/right/twig_bm_manufacturers.html.twig #}
+{% if data|length > 0%}
+<div class="media">
+    <span class="pull-left">
+        <i class="icon-fa-puzzle-piece text-info"></i>
+    </span>    
+    <h4 class="media-heading text-info">{{ constant('MODULE_BOXES_MANUFACTURERS_BOX_TITLE') }}</h4>
+</div>
+<div style="margin-left:25px"> 
+<div class="bfh-selectbox">
+    <input type="hidden" name="manufacturers_id" value="{{ manufacturer_id }}">
+    <a class="bfh-selectbox-toggle" role="button" data-toggle="bfh-selectbox" href="#">
+    <span class="bfh-selectbox-option input-medium" id="pulldowndefault" data-option="{{ manufacturer_id }}">{{ manufacturer_name }}</span>
+    <b class="caret"></b>
+    </a>
+    <div class="bfh-selectbox-options" id="manufacturers-bfh-selectbox-options"> 
+    <ul role="listbox">    
+    {% for manufacturer in data %}  
+    <li role="option"><a id="{{ manufacturer['id'] }}" class="manufacturer" tabindex="-1" href="#" data-option="{{ manufacturer['id'] }}">{{ manufacturer['text'] | slice(0, constant('MAX_DISPLAY_MANUFACTURER_NAME_LEN')) }}</a></li>    
+    {% endfor %}
+    </ul>
+    </div>
+</div>       
+</div>
+<script>
+var mid = {{ manufacturer_id }};
+if(mid === 0){$('#pulldowndefault').text('{{ constant('PULL_DOWN_DEFAULT') }}');}
+$('.manufacturer').click(function() {    
+    window.location = getQuery(window.location.pathname, "manufacturers_id", $(this).attr("id"))})
+function getQuery (uri, key, value) {
+    return uri.replace(re,  + key + "=" + value);
+}
+</script>
+{% endif %}

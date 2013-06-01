@@ -371,7 +371,7 @@
          
     } else {
 
-        for ($i = 0; $i < 3; $i++) {
+        for ($i = 0; $i < sizeof($templates_array); $i++) {
             
             if (isset($_GET['template']) && in_array($_GET['template'], $templates_array[$i])) {
 

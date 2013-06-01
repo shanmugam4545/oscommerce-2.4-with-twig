@@ -1,0 +1,22 @@
+{# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
+{# file: includes/modules/boxes/view/template/right/twig_bm_shopping_cart.html.twig #}
+<div class="media">
+    <span class="pull-left">
+        <i class="icon-fa-shopping-cart icon-large text-info"></i>
+    </span>
+    <span class="pull-right">
+        <a href="{{ link('cart') }}"><i class="icon-fa-external-link icon-large text-info"></i></a>
+    </span>
+    <div class="media-body">        
+    <h4 class="media-heading text-info">{{ constant('MODULE_BOXES_SHOPPING_CART_BOX_TITLE') }}</h4>
+    </div>
+    <div>
+      <ul class="nav nav-list">
+          {% if data is null %}
+              {{ constant('MODULE_BOXES_SHOPPING_CART_BOX_CART_EMPTY') | raw }}
+          {% else %}
+              {{ data | raw }}
+          {% endif %}             
+      </ul>
+    </div>
+</div>

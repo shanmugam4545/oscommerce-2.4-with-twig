@@ -1,0 +1,17 @@
+{# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
+{# file: includes/modules/boxes/view/template/right/twig_bm_best_sellers.html.twig #}
+{% if data|length > 0 %}
+<div class="media">
+    <span class="pull-left">
+        <i class="icon-fa-heart icon-large text-info"></i>
+    </span>
+    <div class="media-body">        
+    <h4 class="media-heading text-info">{{ constant('MODULE_BOXES_BEST_SELLERS_TITLE') }}</h4>
+      <ul class="nav nav-list">
+{% for bseller in data %}
+              <li><a href="{{ link('products', ['id=',bseller['products_id']]|join) | raw }}">{{ bseller['products_name'] }}</a></li>
+{% endfor %}              
+      </ul>
+   </div>
+</div>
+{% endif %}

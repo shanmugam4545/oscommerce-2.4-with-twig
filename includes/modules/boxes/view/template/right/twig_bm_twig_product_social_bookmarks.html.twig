@@ -1,0 +1,17 @@
+{# Copyright (c) 2013 FoxP2; http://www.oscommerce.fr #}
+{# file: includes/modules/boxes/view/template/right/twig_bm_product_social_bookmarks.html.twig #}
+<div class="media">
+    <span class="pull-left">
+        <i class="icon-fa-share text-info"></i>
+    </span>
+    <div class="media-body">        
+    <h4 class="media-heading text-info">{{ constant('MODULE_BOXES_PRODUCT_SOCIAL_BOOKMARKS_BOX_TITLE') }}</h4>
+    <div>
+      <ul class="nav nav-list" style="margin-left:-15px;">
+          {% for key,value in data %}
+              <li><a href="{{ value['link'] | raw}}" {% if value['target'] != null %}target="{{value['target']}}"{% endif %}><i class="{{ value['icon'] }}"></i> {{ value['title'] }}</a></li>
+          {% endfor %}
+      </ul>
+    </div>
+    </div>
+</div>
