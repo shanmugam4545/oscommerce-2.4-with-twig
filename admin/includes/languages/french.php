@@ -261,6 +261,8 @@ define('ICON_WARNING', 'Attention');
 // constants for use in tep_prev_next_display function
 // constants for use in tep_prev_next_display function
 define('TEXT_RESULT_PAGE', 'Page %s sur %d');
+define('JUMP_TO', 'Aller à la ...');
+define('PAGE', 'Page');
 define('TEXT_DISPLAY_NUMBER_OF_BANNERS', 'Affiche <strong>%d</strong> à <strong>%d</strong> (sur <strong>%d</strong> bannières)');
 define('TEXT_DISPLAY_NUMBER_OF_COUNTRIES', 'Affiche <strong>%d</strong> à <strong>%d</strong> (sur <strong>%d</strong> pays)');
 define('TEXT_DISPLAY_NUMBER_OF_CUSTOMERS', 'Affiche <strong>%d</strong> à <strong>%d</strong> (sur <strong>%d</strong> clients)');
@@ -313,5 +315,8 @@ define('TEXT_PRICE_CONFIG', 'Prix');
 
 /* twig */
 define('BOX_CONFIGURATION_TWIG','Réglages Twig');
+define('TABLE_HEADING_OPT_REQUIRED', 'Obligatoire');
+define('TABLE_HEADING_OPT_TEMPLATE', 'Template');
+define('TABLE_HEADING_OPT_IMAGE', 'Image');
 
 ?>

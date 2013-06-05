@@ -256,6 +256,8 @@ define('ICON_WARNING', 'Warning');
 
 // constants for use in osc_prev_next_display function
 define('TEXT_RESULT_PAGE', 'Page %s of %d');
+define('JUMP_TO', 'Jump to ...');
+define('PAGE', 'Page');
 define('TEXT_DISPLAY_NUMBER_OF_BANNERS', 'Displaying <strong>%d</strong> to <strong>%d</strong> (of <strong>%d</strong> banners)');
 define('TEXT_DISPLAY_NUMBER_OF_COUNTRIES', 'Displaying <strong>%d</strong> to <strong>%d</strong> (of <strong>%d</strong> countries)');
 define('TEXT_DISPLAY_NUMBER_OF_CUSTOMERS', 'Displaying <strong>%d</strong> to <strong>%d</strong> (of <strong>%d</strong> customers)');
@@ -296,6 +298,11 @@ define('ERROR_FILETYPE_NOT_ALLOWED', 'Error: File upload type not allowed.');
 define('SUCCESS_FILE_SAVED_SUCCESSFULLY', 'Success: File upload saved successfully.');
 define('WARNING_NO_FILE_UPLOADED', 'Warning: No file uploaded.');
 
-
+/* twig */
 define('BOX_CONFIGURATION_TWIG','Twig Setup');
+define('TEXT_TRUE_CONFIG', 'Yes');
+define('TEXT_FALSE_CONFIG', 'No');
+define('TABLE_HEADING_OPT_REQUIRED', 'Required');
+define('TABLE_HEADING_OPT_TEMPLATE', 'Template');
+define('TABLE_HEADING_OPT_IMAGE', 'Image');
 ?>

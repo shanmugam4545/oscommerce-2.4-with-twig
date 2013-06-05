@@ -1,0 +1,123 @@
+/* 
+    Document   : admin.css
+    Created on : 5 juin 2013
+    Author     : FoxP2
+    version : 1.0
+    Description:
+        css for pagination
+
+*/
+.foxpagination {
+  height: 36px;
+  margin-top: 0px;
+  margin-right: 10px;
+}
+.foxpagination > ul {
+  display: inline-block;  
+  margin-left: -200px;
+  margin-top: 40px;
+  margin-bottom: 0;
+  border-radius: 3px;
+  box-shadow: 0 1px 2px rgba(0,0,0,.05);
+  
+}
+.foxpagination li {
+    display: inline;  
+  }
+.foxpagination a {
+  float: left;
+  padding: 0 14px;
+  line-height: 34px;
+  text-decoration: none;
+  border: 1px solid #ddd;
+  border-left-width: 0;  
+}
+.foxpagination a:hover,
+.foxpagination .open > a,
+.foxpagination .active > a {
+  background-color: #f5f5f5;
+}
+.foxpagination .open > a,
+.foxpagination .active > a { 
+  cursor: default;
+}
+.foxpagination .disabled span,
+.foxpagination .disabled a,
+.foxpagination .disabled a:hover {
+  color: graytext;
+  background-color: transparent;
+  cursor: default;
+}
+.foxpagination li:first-child a {
+  border-left-width: 1px;
+  border-radius: 3px 0 0 3px;  
+}
+.foxpagination li:last-child a {
+  border-radius:0 3px 3px 0;
+}
+.dropdown-menu {    
+    position: absolute;    
+    top: 100%;
+    left: 0px;
+    z-index: 1000;
+    display: none;
+    float: left;
+    width: auto;
+    min-width: 180px;
+    padding: 5px 0px 0px 0px;
+    margin: 35px 0px 0px -240px;
+    -webkit-margin-right: 0px;
+    list-style: none outside none;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 6px 6px 6px 6px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    background-clip: padding-box;
+}
+@media screen and (-webkit-min-device-pixel-ratio:0)
+{
+.dropdown-menu {    
+    position: absolute;    
+    top: 100%;
+    left: 0px;
+    z-index: 1000;
+    display: none;
+    float: left;
+    width: auto;
+    min-width: 180px;
+    padding: 5px 0px 0px 0px;
+    margin: 35px 0px 0px -200px;
+    -webkit-margin-right: 0px;
+    list-style: none outside none;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 6px 6px 6px 6px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    background-clip: padding-box;
+}
+}
+.foxlink{
+    width: 160px;   
+}
+.lifoxlink a{
+    border: 0px;
+}
+.lifoxlink a:active{
+    color: #fff;
+}
+.foxdropdown{
+     width: 170px;     
+}
+.link-disabled a{
+    cursor: not-allowed;
+}
+.link-disabled a:hover{
+    text-decoration: none;    
+}
+.foxlinkactive a:hover{
+    text-decoration: none;
+}
+.dropdownfox a:hover{
+    text-decoration: none;   
+}
+

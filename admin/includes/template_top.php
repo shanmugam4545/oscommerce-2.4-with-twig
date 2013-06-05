@@ -27,6 +27,8 @@
 
 <link rel="stylesheet" type="text/css" href="<?php echo osc_catalog_href_link('ext/bootstrap/css/bootstrap.min.css'); ?>" />
 
+<link rel="stylesheet" type="text/css" href="<?php echo osc_catalog_href_link('ext/bootstrap/admin/admin.css'); ?>" />
+
 <!-- this is until boot strap is 100% -->
 <link rel="stylesheet" type="text/css" href="<?php echo osc_catalog_href_link('ext/jquery/ui/redmond/jquery-ui-1.8.23.css'); ?>">
 
@@ -46,7 +48,7 @@
 <!-- CDN is only for UI compatibility with jquery-1.9.1 untill boot strap is 100% integrated -->
 <script src="//code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
 
-<link rel="stylesheet" href="ext/bootstrap/css/font-awesome.min.css" />
+<link rel="stylesheet" href="<?php echo osc_catalog_href_link('ext/bootstrap/css/font-awesome.min.css'); ?>" />
 
 <?php
   if (osc_not_null(JQUERY_DATEPICKER_I18N_CODE)) {

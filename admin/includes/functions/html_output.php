@@ -36,6 +36,7 @@
     }
 
     while ( (substr($link, -1) == '&') || (substr($link, -1) == '?') ) $link = substr($link, 0, -1);
+    $link = str_replace('&', '&amp;', $link);
 
     return $link;
   }

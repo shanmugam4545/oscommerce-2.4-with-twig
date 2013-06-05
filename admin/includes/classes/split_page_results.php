@@ -38,6 +38,82 @@
       $sql_query .= " limit " . max($offset, 0) . ", " . $max_rows_per_page;
     }
 
+    function display_pagination($query_numrows, $max_rows_per_page, $max_page_links, $current_page_number, $parameters = '', $page_name = 'page') {
+        global $PHP_SELF;
+
+        if (osc_not_null($parameters) && (substr($parameters, -1) != '&'))
+            $parameters .= '&';
+
+// calculate number of pages needing links
+        $num_pages = ceil($query_numrows / $max_rows_per_page);
+
+        $pages_array = array();
+        for ($i = 1; $i <= $num_pages; $i++) {
+            $pages_array[] = array('id' => $i, 'text' => $i);
+        }
+        
+        if ($num_pages > 1) {
+
+            $display_links = '<div class="foxpagination pull-right">';
+
+            $display_links .= osc_draw_form('pages', basename($PHP_SELF), '', 'get');
+
+            $display_links .= '<ul>';
+
+            if ($current_page_number > 1) {
+                $display_links .= '<li class="foxlinkactive"><a class="text-info" href="' . osc_href_link(basename($PHP_SELF), $parameters . $page_name . '=' . ($current_page_number - 1), 'NONSSL') . '"><i class="icon-fa-double-angle-left text-info"></i></a></li>';
+            } else {
+                $display_links .= '<li class="disabled link-disabled"><a href="#"><i class="icon-fa-double-angle-left muted"></i></a></li>';
+            }
+
+            $display_links .= '<li class="dropdown dropdownfox">';
+
+            $display_links .= '<a href="#" data-toggle="dropdown" class="dropdown-toggle foxdropdown"><strong>' . JUMP_TO .  '<i style="margin-top:10px;" class="icon-fa-caret-down text-info pull-right"></i></strong></a>';
+
+            $display_links .= '<ul class="dropdown-menu">';
+
+            for ($i = 1; $i <= sizeof($pages_array); $i++) {
+                if ($current_page_number == $i) {
+                    $class = "lifoxlink active";
+                } else {
+                    $class = "lifoxlink";
+                }
+                $display_links .= '<li class="' . $class . '"><a class="foxlink" tabindex="-1" href="' . osc_href_link(basename($PHP_SELF), $parameters . $page_name . '=' . $i, 'NONSSL') . '">' . PAGE . ' ' . $i . '</a></li>';
+            }
+
+            $display_links .= '</ul></li>';
+
+            if (($current_page_number < $num_pages) && ($num_pages != 1)) {
+                $display_links .= '<li class="foxlinkactive"><a href="' . osc_href_link(basename($PHP_SELF), $parameters . $page_name . '=' . ($current_page_number + 1), 'NONSSL') . '"><strong><i class="icon-fa-double-angle-right text-info"></i></strong></a></li>';
+            } else {
+                $display_links .= '<li class="disabled link-disabled"><a href="#"><strong><i class="icon-fa-double-angle-right muted"></i></strong></a></li>';
+            }
+
+
+            $display_links .= '</ul>';
+
+            if ($parameters != '') {
+                if (substr($parameters, -1) == '&')
+                    $parameters = substr($parameters, 0, -1);
+                $pairs = explode('&', $parameters);
+                while (list(, $pair) = each($pairs)) {
+                    list($key, $value) = explode('=', $pair);
+                    $display_links .= osc_draw_hidden_field(rawurldecode($key), rawurldecode($value));
+                }
+            }
+
+            $display_links .= osc_hide_session_id() . '</form>';
+
+            $display_links .= '</div>';
+        } else {
+            $display_links = '<div class="pagination pagination-right">' . sprintf(TEXT_RESULT_PAGE, $num_pages, $num_pages) . '</div>';
+        }
+
+        $display_links .= '<script>$(".link-disabled >a ").click(function(e){e.preventDefault();});</script>';
+
+        return $display_links;
+    }
+
     function display_links($query_numrows, $max_rows_per_page, $max_page_links, $current_page_number, $parameters = '', $page_name = 'page') {
       global $PHP_SELF;
 
