@@ -47,7 +47,9 @@
 #listboxstate ul{ width: 100%;}
 #form-helper{display:none;}
 /* boxe template footer */
-#templates_pulldown { width: 50%;}
+#templates-bfh-selectbox-options { top:auto;bottom:100%;}
+/* boxe currencies footer */
+#currencies-bfh-selectbox-options { top:auto;bottom:100%;}
 /* boxe specials best-sellers */
 .boxnavcat{background: #e6e6e6;height:32px;line-height: 32px;text-align: center;}
 /* application shopping cart */
