@@ -33,7 +33,7 @@ require(DIR_WS_MODULES . 'boxes/bm_languages.php');
                   <span class="bfh-selectbox-option input-medium" data-option=""></span>
                   <b class="caret"></b>
                   </a>
-                  <div class="bfh-selectbox-options">                    
+                  <div class="bfh-selectbox-options" id="languages-bfh-selectbox-options">                    
                     <ul role="listbox">
                     </ul>                  
                 </div>
