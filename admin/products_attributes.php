@@ -124,9 +124,14 @@ if (osc_not_null($action)) {
             break;
     }
 }
+
 $max_options_id_query = osc_db_query("select max(products_options_id) + 1 as next_id from " . TABLE_PRODUCTS_OPTIONS);
 $max_options_id_values = osc_db_fetch_array($max_options_id_query);
-$next_id_option = $max_options_id_values['next_id'];
+$next_id_option = osc_not_null($max_options_id_values['next_id']) ? $max_options_id_values['next_id'] : 1;
+
+$max_values_id_query = osc_db_query("select max(products_options_values_id) + 1 as next_id from " . TABLE_PRODUCTS_OPTIONS_VALUES);
+$max_values_id_values = osc_db_fetch_array($max_values_id_query);
+$option_value_next_id = osc_not_null($max_values_id_values['next_id']) ? $max_values_id_values['next_id'] : 1;
 
 require(DIR_WS_INCLUDES . 'template_top.php');
 ?>
@@ -138,14 +143,14 @@ if ($action == 'delete_product_option') { // delete product option
     $options = osc_db_query("select products_options_id, products_options_name from " . TABLE_PRODUCTS_OPTIONS . " where products_options_id = '" . (int) $_GET['option_id'] . "' and language_id = '" . (int) $_SESSION['languages_id'] . "'");
     $options_values = osc_db_fetch_array($options);
 ?>
-    <div class="accordion-group">
-    <div class="accordion-heading">
-    <a class="accordion-toggle" data-toggle="collapse" data-parent="products_attributes_accordion" href="#blockoptions">
-    <h3 class="text-info"><?php echo HEADING_TITLE_OPT; ?></h3></a>
-    </div>
-    <div id="blockoptions" class="accordion-body row-fluid collapse">
-    <div class="accordion-inner">
-    <h4><?php echo TABLE_HEADING_OPT_NAME; ?> : <?php echo $options_values['products_options_name']; ?></h4>
+     <div class="accordion-group">
+        <div class="accordion-heading">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="products_attributes_accordion" href="#blockoptions">
+                <h3 class="text-info"><?php echo HEADING_TITLE_OPT; ?></h3></a>
+        </div>
+        <div id="blockoptions" class="accordion-body row-fluid collapse">
+            <div class="accordion-inner">
+                <h4><?php echo TABLE_HEADING_OPT_NAME; ?> : <?php echo $options_values['products_options_name']; ?></h4>
     <?php
     $products = osc_db_query("select p.products_id, pd.products_name, pov.products_options_values_name from " . TABLE_PRODUCTS . " p, " . TABLE_PRODUCTS_OPTIONS_VALUES . " pov, " . TABLE_PRODUCTS_ATTRIBUTES . " pa, " . TABLE_PRODUCTS_DESCRIPTION . " pd where pd.products_id = p.products_id and pov.language_id = '" . (int) $_SESSION['languages_id'] . "' and pd.language_id = '" . (int) $_SESSION['languages_id'] . "' and pa.products_id = p.products_id and pa.options_id='" . (int) $_GET['option_id'] . "' and pov.products_options_values_id = pa.options_values_id order by pd.products_name");
     if (osc_db_num_rows($products)) {
@@ -159,19 +164,15 @@ if ($action == 'delete_product_option') { // delete product option
                     </tr>
                 </thead>
                 <tbody>
-                    <?php
-                    $rows = 0;
-                    while ($products_values = osc_db_fetch_array($products)) {
-                        $rows++;
+                    <?php                    
+                    while ($products_values = osc_db_fetch_array($products)) {                        
                         ?>
                         <tr>
                             <td style="vertical-align:middle;text-align: center;"><?php echo $products_values['products_id']; ?>
                             <td style="vertical-align:middle;text-align: center;"><?php echo $products_values['products_name']; ?>
                             <td style="vertical-align:middle;text-align: center;"><?php echo $products_values['products_options_values_name']; ?>
                         </tr>
-                        <?php
-                    }
-                    ?>
+                        <?php  }   ?>
                 </tbody>
             </table>
         <div class="text-error"><strong><?php echo TEXT_WARNING_OF_DELETE; ?></strong>
@@ -217,12 +218,9 @@ if ($action == 'delete_product_option') { // delete product option
                                 </tr>
                             </thead> 
                             <tbody>
-                                <?php
-                                $next_id = 1;
-                                $rows = 0;
+                                <?php                               
                                 $options = osc_db_query($options);
-                                while ($options_values = osc_db_fetch_array($options)) {
-                                    $rows++;
+                                while ($options_values = osc_db_fetch_array($options)) {                                   
                                     if (($action == 'update_option') && ($_GET['option_id'] == $options_values['products_options_id'])) {
                                         $inputs = '';
                                         for ($i = 0, $n = sizeof($languages); $i < $n; $i++) {
@@ -293,8 +291,7 @@ if ($action == 'delete_option_value') { // delete product option value
                         </thead> 
                         <tbody>
                             <?php
-                            while ($products_values = osc_db_fetch_array($products)) {
-                                $rows++;
+                            while ($products_values = osc_db_fetch_array($products)) {                                
                                 ?>
                                 <tr>
                                     <td style="vertical-align:middle;text-align: center;"><?php echo $products_values['products_id']; ?></td>
@@ -352,17 +349,11 @@ if ($action == 'delete_option_value') { // delete product option value
                                 </tr>
                             </thead> 
                             <tbody>
-                                <?php
-                                $max_values_id_query = osc_db_query("select max(products_options_values_id) + 1 as next_id from " . TABLE_PRODUCTS_OPTIONS_VALUES);
-                                $max_values_id_values = osc_db_fetch_array($max_values_id_query);
-                                $option_value_next_id = $max_values_id_values['next_id'];
-                                $next_id = 1;
-                                $rows = 0;
+                                <?php                              
                                 $values = osc_db_query($values);
                                 while ($values_values = osc_db_fetch_array($values)) {
                                     $options_name = osc_options_name($values_values['products_options_id']);
-                                    $values_name = $values_values['products_options_values_name'];
-                                    $rows++;
+                                    $values_name = $values_values['products_options_values_name'];                                    
                                     ?>
                                     <?php
                                     if (($action == 'update_option_value') && ($_GET['value_id'] == $values_values['products_options_values_id'])) {
@@ -417,7 +408,7 @@ if ($action == 'delete_option_value') { // delete product option value
                                                 ?>
                                             </select>
                                         </td>
-                                        <td style="vertical-align:middle;text-align: center;"><input type="hidden" name="value_id" value="<?php echo $next_id; ?>"><?php echo $inputs; ?></td>
+                                        <td style="vertical-align:middle;text-align: center;"><input type="hidden" name="value_id" value="<?php echo $option_value_next_id; ?>"><?php echo $inputs; ?></td>
                                         <td style="vertical-align:middle;text-align: center;"><button type="submit" class="btn-small btn-success"><i class="icon-plus icon-white"></i> <?php echo IMAGE_INSERT; ?></button></td>
                                     </tr>
                                     <?php
@@ -476,9 +467,6 @@ if ($action == 'delete_option_value') { // delete product option value
                             $products_name_only = osc_get_products_name($attributes_values['products_id']);
                             $options_name = osc_options_name($attributes_values['options_id']);
                             $values_name = osc_values_name($attributes_values['options_values_id']);
-                            $rows++;
-                            ?>
-                            <?php
                             if (($action == 'update_attribute') && ($_GET['attribute_id'] == $attributes_values['products_attributes_id'])) {
                                 ?>
                                 <tr class="info">
@@ -651,36 +639,19 @@ if ($action == 'delete_option_value') { // delete product option value
 </div>
 <script>
 $(".collapse").collapse().each(function(){
-    var state;
-    var block = this.id;
-    function isStored(){        
-        state = localStorage.getItem('#'+block);        
-        return state;
-    };
+var state; var block = this.id;
+    function isStored(){ state = localStorage.getItem('#'+block); return state; };
         if( isStored(this.id)) {
-            if(state === 'in collapse') {
-            $( this ).collapse( 'show' );
-            $('.'+block).removeClass('hide');
-            }
-            if(state === 'collapse') {
-            $( this ).collapse( 'hide' );            
-            }
+            if(state === 'in collapse') { $( this ).collapse( 'show' ); $('.'+block).removeClass('hide'); }
+            if(state === 'collapse') { $( this ).collapse( 'hide' ); }
         }else{
-            $( this ).collapse();
-            $('.'+block).removeClass('hide');
+            $( this ).collapse(); $('.'+block).removeClass('hide');
         }
     });
-    $('.accordion-heading > a').click(function(){
-        var block = jQuery(this).attr('href');
-        var state = jQuery(block).attr('class').substring(25);
-        if (state === 'in collapse') {
-        localStorage.setItem(block,'collapse');
-        $('.'+block.substring(1)).addClass('hide');
-        }else{
-        localStorage.setItem(block,'in collapse'); 
-        $('.'+block.substring(1)).removeClass('hide');
-        }
-        
+$('.accordion-heading > a').click(function(){
+var block = jQuery(this).attr('href');  var state = jQuery(block).attr('class').substring(25);
+    if (state === 'in collapse') { localStorage.setItem(block,'collapse'); $('.'+block.substring(1)).addClass('hide');
+        }else{ localStorage.setItem(block,'in collapse'); $('.'+block.substring(1)).removeClass('hide'); }        
      });
 </script>                            
 <?php
