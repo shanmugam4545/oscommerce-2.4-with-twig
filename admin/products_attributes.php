@@ -135,7 +135,7 @@ require(DIR_WS_INCLUDES . 'template_top.php');
 <!-- options //-->
 <?php
 if ($action == 'delete_product_option') { // delete product option
-    $options = osc_db_query("select products_options_id, products_options_name, products_options_template, products_options_required, products_options_image from " . TABLE_PRODUCTS_OPTIONS . " where products_options_id = '" . (int) $_GET['option_id'] . "' and language_id = '" . (int) $_SESSION['languages_id'] . "'");
+    $options = osc_db_query("select products_options_id, products_options_name from " . TABLE_PRODUCTS_OPTIONS . " where products_options_id = '" . (int) $_GET['option_id'] . "' and language_id = '" . (int) $_SESSION['languages_id'] . "'");
     $options_values = osc_db_fetch_array($options);
 ?>
     <div class="accordion-group">
