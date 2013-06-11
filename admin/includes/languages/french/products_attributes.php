@@ -29,7 +29,8 @@ define('TABLE_TEXT_MAX_COUNT', 'Nombre maximum de téléchargements:');
 define('MAX_ROW_LISTS_OPTIONS', 10);
 
 define('TEXT_WARNING_OF_DELETE', 'Cette option possède des produits liés - il n\'est pas possible de la supprimer.');
-define('TEXT_OK_TO_DELETE', 'Cette option n\'a pas de produit lié, vus pouvez la supprimer.');
+define('TEXT_OK_TO_DELETE', 'Cette option n\'a pas de produit lié, vous pouvez la supprimer.');
 define('TEXT_OPTION_ID', 'ID Option');
 define('TEXT_OPTION_NAME', 'Nom de l\'option');
+
 ?>
