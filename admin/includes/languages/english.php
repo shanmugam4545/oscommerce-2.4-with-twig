@@ -299,10 +299,9 @@ define('SUCCESS_FILE_SAVED_SUCCESSFULLY', 'Success: File upload saved successful
 define('WARNING_NO_FILE_UPLOADED', 'Warning: No file uploaded.');
 
 /* twig */
-define('BOX_CONFIGURATION_TWIG','Twig Setup');
 define('TEXT_TRUE_CONFIG', 'Yes');
 define('TEXT_FALSE_CONFIG', 'No');
-define('TABLE_HEADING_OPT_REQUIRED', 'Required');
-define('TABLE_HEADING_OPT_TEMPLATE', 'Template');
-define('TABLE_HEADING_OPT_IMAGE', 'Image');
+define('BOX_CONFIGURATION_TWIG','Twig Setup');
+// categories box text in includes/boxes/catalog.php
+define('BOX_CATALOG_CATEGORIES_TWIG_PRODUCTS_ATTRIBUTES', '<i class="icon-fa-plus"></i> Twig Products Attributes');
 ?>

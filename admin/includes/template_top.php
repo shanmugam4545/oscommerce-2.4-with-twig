@@ -43,10 +43,10 @@
 
 <script src="<?php echo osc_catalog_href_link('ext/jquery/jquery-1.9.1.min.js'); ?>"></script>
 
-<script src="<?php echo osc_catalog_href_link('ext/bootstrap/js/bootstrap.min.js'); ?>"></script>
-
 <!-- CDN is only for UI compatibility with jquery-1.9.1 untill boot strap is 100% integrated -->
 <script src="//code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
+
+<script src="<?php echo osc_catalog_href_link('ext/bootstrap/js/bootstrap.min.js'); ?>"></script>
 
 <link rel="stylesheet" href="<?php echo osc_catalog_href_link('ext/bootstrap/css/font-awesome.min.css'); ?>" />
 
@@ -104,11 +104,7 @@ $.datepicker.setDefaults($.datepicker.regional['<?php echo JQUERY_DATEPICKER_I18
     </div>
   </header>
 
-<?php
-  if ($messageStack->size > 0) {
-    echo $messageStack->output();
-  }
-?>
+
 
   <div class="row-fluid">
 

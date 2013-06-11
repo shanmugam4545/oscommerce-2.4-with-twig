@@ -23,6 +23,12 @@
         'title' => BOX_CATALOG_CATEGORIES_PRODUCTS_ATTRIBUTES,
         'link' => osc_href_link(FILENAME_PRODUCTS_ATTRIBUTES)
       ),
+/* Twig */
+      array(
+        'code' => FILENAME_TWIG_PRODUCTS_ATTRIBUTES,
+        'title' => BOX_CATALOG_CATEGORIES_TWIG_PRODUCTS_ATTRIBUTES,
+        'link' => osc_href_link(FILENAME_TWIG_PRODUCTS_ATTRIBUTES)
+      ),        
       array(
         'code' => FILENAME_MANUFACTURERS,
         'title' => BOX_CATALOG_MANUFACTURERS,

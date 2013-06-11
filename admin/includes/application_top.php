@@ -204,4 +204,8 @@
                         array('title' => TEXT_CACHE_MANUFACTURERS, 'code' => 'manufacturers', 'file' => 'manufacturers_box-language.cache', 'multiple' => true),
                         array('title' => TEXT_CACHE_ALSO_PURCHASED, 'code' => 'also_purchased', 'file' => 'also_purchased-language.cache', 'multiple' => true)
                        );
+  
+  /* Twig */
+  require(DIR_WS_CLASSES . 'cache.php');
+  $OSCOM_Cache = new cache();
 ?>

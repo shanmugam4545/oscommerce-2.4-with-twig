@@ -315,8 +315,6 @@ define('TEXT_PRICE_CONFIG', 'Prix');
 
 /* twig */
 define('BOX_CONFIGURATION_TWIG','Réglages Twig');
-define('TABLE_HEADING_OPT_REQUIRED', 'Obligatoire');
-define('TABLE_HEADING_OPT_TEMPLATE', 'Template');
-define('TABLE_HEADING_OPT_IMAGE', 'Image');
-
+// categories box text in includes/boxes/catalog.php
+define('BOX_CATALOG_CATEGORIES_TWIG_PRODUCTS_ATTRIBUTES', '<i class="icon-fa-plus"></i> Twig Attributs produits');
 ?>

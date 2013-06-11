@@ -87,7 +87,7 @@
     function alertBlock($contents, $alert_output = false) {
 		  
       for ($i=0, $n=sizeof($contents); $i<$n; $i++) {
-        $alertBox_string .= '  <div class="span8 offset2">' . "\n";
+        $alertBox_string .= '  <div class="row-fluid text-center">' . "\n";
         $alertBox_string .= '  <div';
 		  
         if (isset($contents[$i]['params']) && osc_not_null($contents[$i]['params']))
