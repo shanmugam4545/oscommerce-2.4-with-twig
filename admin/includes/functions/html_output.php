@@ -67,7 +67,7 @@
 ////
 // The HTML image wrapper function
   function osc_image($src, $alt = '', $width = '', $height = '', $parameters = '') {
-    $image = '<img src="' . osc_output_string($src) . '" border="0" alt="' . osc_output_string($alt) . '"';
+    $image = '<img src="' . osc_output_string($src) . '" alt="' . osc_output_string($alt) . '"';
 
     if (osc_not_null($alt)) {
       $image .= ' title="' . osc_output_string($alt) . '"';
@@ -102,7 +102,7 @@
 ////
 // Draw a 1 pixel black line
   function osc_black_line() {
-    return osc_image(DIR_WS_IMAGES . 'pixel_black.gif', '', '100%', '1');
+    return osc_image(DIR_WS_IMAGES . 'pixel_black.gif', '', '0','1');
   }
 
 ////
