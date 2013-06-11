@@ -131,6 +131,12 @@
 
 <?php echo osc_draw_form('login', FILENAME_LOGIN, 'action=' . $form_action); ?>
 
+<?php
+  if ($messageStack->size > 0) {
+    echo $messageStack->output();
+  }
+?>
+
 <div class="well offset3 span6" style="margin-top: 100px;">
   <fieldset>
     <legend>
